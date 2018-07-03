@@ -31,8 +31,8 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
     //--Insertar nuevo proveedor
     //$ref = "COM-".$com_fecha.$com_numero.;
-    $result = mysqli_query($con,"INSERT INTO compras(usuCreacion,identificador, descripcion, fecha, semana, frente, factura, unidad, costo, cantidad, importe, iva, subtotal, comentario,fk_proveedor, fk_obra, fk_clientes, fechInicial, fechFinal, estado)
-        VALUES('admin', 'ref', '$com_descripcion', '$com_fecha', '$com_semana','$com_frente', '$com_numero', '$com_unidad', '$com_costo', '$com_cantidad', '$com_importe', '$com_iva', '$com_subtotal', '$com_nota', '$com_proveedor', '$com_obra', '$com_cliente', '$com_fechInicial', '$com_fechFinal', '0')");
+    $result = mysqli_query($con,"INSERT INTO compras(usuCreacion,identificador, descripcion, fecha, semana, frente, factura, unidad, costo, cantidad, importe, iva, subtotal, comentario,fk_proveedor, fk_obra, fk_clientes, foto, fechInicial, fechFinal, estado)
+        VALUES('admin', 'ref', '$com_descripcion', '$com_fecha', '$com_semana','$com_frente', '$com_numero', '$com_unidad', '$com_costo', '$com_cantidad', '$com_importe', '$com_iva', '$com_subtotal', '$com_nota', '$com_proveedor', '$com_obra', '$com_cliente', '', '$com_fechInicial', '$com_fechFinal', '0')");
 
     //header("Location: ../../../../../index.php?p=compras");
   }

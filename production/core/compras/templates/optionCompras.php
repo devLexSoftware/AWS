@@ -138,7 +138,7 @@ else {
                             <div class="col-md-3">
                             <label  for="Proveedor_Reporte">Proveedor:<span class="required">*</span></label>
                                 <select class="form-control" name="Proveedor_Reporte" id="Proveedor_Reporte" onchange="actualizar(this.value,'proveedores')">
-                                    <option value="<?php echo($elemento['fk_proveedor']); ?>"><?php echo($elemento6['empresa']); ?></option>
+                                    <option value="<?php echo($elemento['fk_proveedor']); ?>"><?php echo($elemento6['proveedor']); ?></option>
                                     <?php
                                             while($elemento3 = mysqli_fetch_array($result3)){
                                                 echo '

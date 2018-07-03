@@ -17,8 +17,14 @@ function abrir(archivo, ref) {
     switch (archivo) {
 
         //***********   Para sistema
-        case "cotizacion":
-            $("#divContenido").load('production/core/clientes/templates/cotizacion.php');
+        case "cotizaciones":
+            $("#divContenido").load('production/core/cotizaciones/templates/cotizaciones.php');
+            break;
+        case "cotizacionesOk":
+            $("#divContenido").load('production/core/cotizaciones/templates/cotizaciones.php');
+            break;
+        case "optionCotizaciones":
+            $("#divContenido").load('production/core/cotizaciones/templates/optionCotizaciones.php?ref=' + ref);
             break;
         case "proveedores":
             $("#divContenido").load('production/core/proveedores/templates/proveedores.php');
@@ -104,6 +110,7 @@ function abrir(archivo, ref) {
 
 
         default:
+            $("#divContenido").load('production/core/inicio/templates/cuentaObras.php');
             break;
     }
 }

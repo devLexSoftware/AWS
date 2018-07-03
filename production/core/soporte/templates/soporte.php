@@ -1,7 +1,7 @@
 
   <h1>Contacto</h1>
   <hr>
-
+<div >
   <form role="form-horizontal" method="post" action="production/core/soporte/actions/email.php" id="formContacto" autocomplete="off" name="Contacto">
 
     <div class="form-group row ">
@@ -12,10 +12,7 @@
         <h6>Correo: soporte@lexsoftware.net</h6>
         <h6>Teléfono contacto: 462-146-7027</h6>
         <h6>Teléfono desarrollo: 462-629-4473</h6>
-      </div>
-      <div class="form-group col-md-4">
-        <img src="../../../recursos/img/sistema/logoLex.jpg" style="width:50%;" alt="">
-      </div>
+      </div>      
     </div>
     <hr>
     <div class="form-group row ">
@@ -30,6 +27,12 @@
         <button type="submit" class="btn btn-primary" name="button">Correo</button>
       </div>
     </div>
+    </form>
+    <div>
+    <img src="../../../workshop.com/pictures/LexCompanyLogo.png" style="position:absolute; background-repeat: no-repeat; top:5%; left:50%;">
+      </div>
+</div>
+
 
     
   <div class="modal fade" id="error">

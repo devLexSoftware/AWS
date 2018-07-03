@@ -62,7 +62,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="../../../workshop.com/pictures/c1.PNG" alt="..." class="img-circle profile_img">
+                <img src="../../../workshop.com/pictures/WorkshopLogo.png" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Bienvenido,</span>
@@ -78,15 +78,8 @@
               <div class="menu_section">
                 <h3>Menú</h3>
                 <ul class="nav side-menu">
-
-                  <li><a><i class=""></i> Obras <span class=""></span></a>
-                    <ul class="nav child_menu">
-                      <li ><a >Cotizaciones</a></li>
-                      <li><a href="index.php?p=obras">Listado de Obras</a></li>
-                      <li><a >Historial de Pagos</a></li>
-                      <li><a >Historial de Cobros</a></li>
-                    </ul>
-                  </li>
+                <li ><a href="index.php?p=cotizaciones" >Cotizaciones</a></li>
+                <li><a href="index.php?p=obras">Obras</a></li>
                   <li><a href="index.php?p=clientes"><i class=""></i> Clientes <span class=""></span></a></li>
                   <li><a href="index.php?p=compras"><i class=""></i> Compras <span class=""></span></a></li>
                   <li><a href="index.php?p=proveedores"><i class=""></i> Proveedores <span class=""></span></a></li>
@@ -120,7 +113,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="../../../workshop.com/pictures/c1.PNG" alt="">Arq. Norberto Morales González
+                    <img src="../../../workshop.com/pictures/WorkshopLogo.png" alt="">Arq. Norberto Morales González
                   </a>
 
                     <li><a href="production/config/salir.php"><i class="pull-right"></i> Log Out</a></li>
@@ -141,39 +134,7 @@
               <div class="container-fluid">
                 <div class="row">
                   <div id="divContenido" class="form-group col-md-12">
-                      <!-- Contenido de la página, esto varia dependiendo del modulo-->
-                      <div class="" role="">
-                      <!-- top tiles for works-->
-
-                    <div class="x_content" >
-                      <ul class="nav nav-pills">
-                        <li class="active"><a href="index.php">Home</a></li>
-                        <li class="dropdown">
-                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Obras
-                          <span class="caret"></span></a>
-                          <ul class="dropdown-menu">
-                            <li><a href="#">Cotizaciones</a></li>
-                            <li><a href="index.php?p=obras">Listado de obras</a></li>
-                            <li><a href="#">Historial de pagos</a></li>
-                            <li><a href="#">Historial de cobros</a></li>
-                          </ul>
-                        </li>
-                        <li><a href="index.php?p=clientes">Clientes</a></li>
-                        <li><a href="index.php?p=compras">Compras</a></li>
-                        <li><a href="index.php?p=proveedores">Proveedores</a></li>
-                        <li><a href="#">Empleados</a></li>
-                        <li><a href="#">Grupos</a></li>
-                      </ul>
-                    </div>
-                    <hr>
-                    <br>
-                    <br>
-                    <?php
-                include("cuentaObras.php");                
-              ?>
-              <br>
-              <br>
-              <hr>
+                      
                   </div>
                   </div>
                 </div>                

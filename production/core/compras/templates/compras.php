@@ -173,7 +173,7 @@ else {
                             </div>
                             <div class="col-md-2">
                                 <label for="CostoUnit_Reporte">Costo Unitario:<span class="required">*</span></label>
-                                <input onchange="calculos(2)"  step="0.01" type="number" id="CostoUnit_Reporte" name="CostoUnit_Reporte" required="required" class="form-control col-md-2 col-xs-12" placeholder="0">
+                                <input  step="0.01" type="number" id="CostoUnit_Reporte" name="CostoUnit_Reporte" required="required" class="form-control col-md-2 col-xs-12" placeholder="0">
                             </div>
                         </div>
 
@@ -308,7 +308,7 @@ else {
           document.getElementById("Iva_Reporte").value = "";
           impor = document.getElementById("Importe_Reporte").value;
         }
-        document.getElementById("CostoUnit_Reporte").value = impor/can;
+        document.getElementById("CostoUnit_Reporte").value = (impor/can).toFixed(2);
       }
 </script>
 <script>
