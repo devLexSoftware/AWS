@@ -23,7 +23,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $obr_fechFin        = $_POST['obr_fechFin'];
     $obr_avance         = $_POST['obr_avance'];
     $obr_nota           = $_POST['obr_nota'];
-
+    $obr_grupo          = $_POST['obr_grupo'];
 
     //--Insertar nuevo proveedor
     //$ref = "CLI-".substr($cli_nombre,0, 4).$cli_rfc."-".$cli_email;    
@@ -32,7 +32,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
     $result = mysqli_query($con, "UPDATE obras SET nombre = '$obr_nombre', calle = '$obr_calle', numExt = '$obr_numExt', numInt = '$obr_numInt', colonia = '$obr_colonia',
                                     cp = '$obr_cp', ciudad = '$obr_ciudad', municipio = '$obr_municipio', comentario = '$obr_nota', fechInicio = '$obr_fechInicio', fechFin = '$obr_fechFin',
-                                    avance = '$obr_avance', fk_clientes = $obr_cliente
+                                    avance = '$obr_avance', fk_clientes = $obr_cliente, fk_grupo = $obr_grupo
                                     WHERE identificador = '$obr_ref'");
     
     header("Location: ../../../../../workshop.com/index.php?p=obrasOk");

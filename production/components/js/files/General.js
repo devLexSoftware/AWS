@@ -94,6 +94,15 @@ function abrir(archivo, ref) {
         case "grupos":
             $("#divContenido").load('production/core/grupos/templates/grupos.php');
             break;
+        case "gruposOk":
+            $("#divContenido").load('production/core/grupos/templates/grupos.php');
+            break;
+        case "optionGrupos":
+            $("#divContenido").load('production/core/grupos/templates/optionGrupos.php?ref=' + ref);
+            break;
+        case "gruposDel":
+            $("#divContenido").load('production/core/grupos/templates/grupos.php');
+            break;
 
 
 

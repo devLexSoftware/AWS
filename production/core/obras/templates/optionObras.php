@@ -17,6 +17,12 @@ else {
     $result = mysqli_query($con,"SELECT * FROM clientes WHERE id = $elemento[fk_clientes];");    
     $elemento2 = mysqli_fetch_array($result);   
 
+    $result2 = mysqli_query($con,"SELECT * FROM grupos WHERE estado = 0;");    
+
+    $result = mysqli_query($con,"SELECT * FROM grupos WHERE id = $elemento[fk_grupo];");    
+    $elemento3 = mysqli_fetch_array($result);   
+
+
 }
 ?>
 
@@ -70,7 +76,17 @@ else {
                                                 </select>                                    
                                         </div>
                                         <div class="col-md-6">
-
+                                        <label >Grupo:</label>                                            
+                                                <select class="form-control" name="obr_grupo" id="obr_grupo">
+                                                <option value="<?php echo($elemento['fk_grupos']); ?>"><?php echo($elemento3['nombre']); ?></option>
+                                                    <?php
+                                                        while($elemento2 = mysqli_fetch_array($result2)){
+                                                            echo '                                                
+                                                                <option id="'.$elemento2[id].'" value="'.$elemento2[id].'" name="'.$elemento2[id].'">'.$elemento2[nombre].'</option>
+                                                            ';
+                                                        }
+                                                    ?>                                        
+                                                </select>   
                                         </div>
                                     </div>
                                 <div class="form-group row">

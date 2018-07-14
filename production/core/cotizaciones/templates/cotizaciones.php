@@ -17,7 +17,7 @@
                                 </div>
                             </div>
 
-                    <div class="x_content" id="target" >
+                    <div class="x_content" id="target" style="display: none;">
                         <br/>
                         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="production/core/cotizaciones/actions/addCotizacion.php">
                             <div class="form-group row">

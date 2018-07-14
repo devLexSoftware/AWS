@@ -22,12 +22,13 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $obr_fechFin        = $_POST['obr_fechFin'];
     $obr_avance         = $_POST['obr_avance'];
     $obr_nota           = $_POST['obr_nota'];
+    $obr_grupo          = $_POST['obr_grupo'];
 
 
     //--Insertar nuevo proveedor
     $ref = "OBR-".$obr_cliente."-".$obr_nombre;
-    $result = mysqli_query($con,"INSERT INTO obras(usuCreacion,identificador, nombre, calle, numExt, numInt, colonia, cp, ciudad, municipio, fechInicio, fechFin, avance, comentario, fk_clientes, estado)
-        VALUES('admin', '$ref', '$obr_nombre', '$obr_calle', '$obr_numExt', '$obr_numInt', '$obr_colonia', '$obr_cp', '$obr_ciudad', '$obr_municipio', '$obr_fechInicio', '$obr_fechFin', '$obr_avance', '$obr_nota', '$obr_cliente', 0)");
+    $result = mysqli_query($con,"INSERT INTO obras(usuCreacion,identificador, nombre, calle, numExt, numInt, colonia, cp, ciudad, municipio, fechInicio, fechFin, avance, comentario, fk_clientes, estado, fk_grupo)
+        VALUES('admin', '$ref', '$obr_nombre', '$obr_calle', '$obr_numExt', '$obr_numInt', '$obr_colonia', '$obr_cp', '$obr_ciudad', '$obr_municipio', '$obr_fechInicio', '$obr_fechFin', '$obr_avance', '$obr_nota', '$obr_cliente', 0, '$obr_grupo')");
     $id = mysqli_insert_id($con);
 
     $result = mysqli_query($con,"INSERT INTO detalles_obras(usuCreacion,avance, comentario, fk_obra)

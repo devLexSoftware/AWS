@@ -84,7 +84,7 @@
                   <li><a href="index.php?p=compras"><i class=""></i> Compras <span class=""></span></a></li>
                   <li><a href="index.php?p=proveedores"><i class=""></i> Proveedores <span class=""></span></a></li>
                   <li><a href="index.php?p=empleados"><i class=""></i>Empleados <span class=""></span></a></li>
-                  <li><a ><i class=""></i>Grupos</i></a></li>
+                  <li><a href="index.php?p=grupos"><i class=""></i>Grupos</i></a></li>
                 </ul>
               </div>
 

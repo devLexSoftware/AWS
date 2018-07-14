@@ -77,18 +77,7 @@ else {
                                 <div class="col-md-3">
                                   <label >Giro:</label>
                                       <input type="text" id="Empl_GiroEmpleado" name="Empl_GiroEmpleado" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el giro de la empresa" value="<?php echo($elemento['giro']); ?>">
-                                  </div>
-                                  <div class="col-md-3">
-                                    <label >Grupo / Equipo:</label>
-                                        <select id="Empl_GrupoEmpleado" name="Empl_GrupoEmpleado" class="form-control" value="<?php echo($elemento['grupo']); ?>">
-                                            <option>Selecciona el grupo</option>
-                                            <option>Grupo 1</option>
-                                            <option>Grupo 2</option>
-                                            <option>Grupo 3</option>
-                                            <option>Grupo 4</option>
-                                            <option>Grupo 5</option>
-                                        </select>
-                                    </div>
+                                  </div>                                 
                             </div>
 
                             <div class="form-group row">

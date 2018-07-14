@@ -7,7 +7,9 @@ if (mysqli_connect_errno()) {
 echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 else {
-    $result1 = mysqli_query($con,"SELECT * FROM clientes WHERE estado = 0;");                 
+    $result1 = mysqli_query($con,"SELECT * FROM clientes WHERE estado = 0;");    
+    $result2 = mysqli_query($con,"SELECT * FROM grupos WHERE estado = 0;");    
+
 }
 ?>
 
@@ -54,7 +56,17 @@ else {
                                                 </select>                                    
                                         </div>
                                         <div class="col-md-6">
-
+                                        <label >Grupo:</label>                                            
+                                                <select class="form-control" name="obr_grupo" id="obr_grupo">
+                                                    <option>Seleciona el grupo</option>
+                                                    <?php
+                                                        while($elemento2 = mysqli_fetch_array($result2)){
+                                                            echo '                                                
+                                                                <option id="'.$elemento2[id].'" value="'.$elemento2[id].'" name="'.$elemento2[id].'">'.$elemento2[nombre].'</option>
+                                                            ';
+                                                        }
+                                                    ?>                                        
+                                                </select>   
                                         </div>
                                     </div>
                                 <div class="form-group row">
