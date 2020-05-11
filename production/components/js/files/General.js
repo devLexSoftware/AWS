@@ -104,7 +104,18 @@ function abrir(archivo, ref) {
             $("#divContenido").load('production/core/grupos/templates/grupos.php');
             break;
 
-
+        case "pedidos":
+            $("#divContenido").load('production/core/pedidos/templates/pedidos.php');
+            break;
+        case "optionPedidos":
+            $("#divContenido").load('production/core/pedidos/templates/optionPedidos.php?ref=' + ref);
+            break;
+        case "pedidosOk":
+            $("#divContenido").load('production/core/pedidos/templates/pedidos.php');
+            break;
+        case "pedidosDel":
+            $("#divContenido").load('production/core/pedidos/templates/pedidos.php');
+            break;
 
         case "soporte":
             $("#divContenido").load('production/core/soporte/templates/soporte.php');

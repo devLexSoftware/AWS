@@ -1,0 +1,149 @@
+<?php
+include("../../../config/conexion.php");
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
+$con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+if (mysqli_connect_errno()) {
+echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+else {
+    $result1 = mysqli_query($con,"SELECT * FROM clientes;");    
+    $result2 = mysqli_query($con,"SELECT * FROM obras;");    
+    $result3 = mysqli_query($con,"SELECT * FROM proveedores;");    
+}
+?>
+
+
+    <!-- Page content -->
+
+    <div class="">
+
+        <!--Title page -->
+        <div class="page-title">
+            <div class="title_left">
+                <h3>C O M P R A S</h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 col-md-offset-10">
+                    <button id="BtnVerReportes_Reportes" name="BtnVerReportes_Reportes" type="submit" class="btn btn-success">
+                <a href="index.php?p=compras_reportes.php">Nueva compra</a></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="cleafix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <div class="x_title">
+                    <h2>Formulario de reporte</h2>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+                    <br/>
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="production/core/compras/actions/addCompras.php">
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="Obra_Reporte">Obra:<span class="required">*</span></label>
+                                <select class="form-control" name="Obra_Reporte" id="Obra_Reporte">                                    
+                                    <option>Selecciona la obra</option>
+                                    <?php
+                                            while($elemento = mysqli_fetch_array($result2)){
+                                                echo '                                                
+                                                    <option id="'.$elemento[id].'" name="'.$elemento[id].'">'.$elemento[nombre].'</option>
+                                                ';
+                                            }
+                                        ?>                                        
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="Frente_Reporte">Frente:<span class="required">*</span></label>
+                                <input type="text" id="Frente_Reporte" name="Frente_Reporte" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el frente">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Semana_Reporte">Semana:<span class="required">*</span></label>
+                                <input type="date" id="Semana_Reporte" name="Semana_Reporte" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingresa la semana">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label for="Periodo_Reporte">Periodo:<span class="required">*</span></label>
+                                <input type="text" id="InicioPeriodo_Reporte" name="InicioPeriodo_Reporte" required="required" class="form-control col-md-2 col-xs-12" placeholder="Ingresa el inicio de periodo"><br><br>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="Periodo_Reporte">final</label>
+                                <input type="text" id="FinPeriodo_Reporte" name="FinPeriodo_Reporte" required="required" class="form-control col-md-2 col-xs-12" placeholder="Ingresa el fin del periodo">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Cantidad_Reporte">Reporte:<span class="required">*</span></label>
+                                <input type="text" id="Cantidad_Reporte" name="Cantidad_Reporte" required="required" class="form-control col-md-2 col-xs-12" placeholder="Ingresa la cantidad">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="Proveedor_Reporte">Proveedor:<span class="required">*</span></label>
+                                <select class="form-control" name="Proveedor_Reporte" id="Proveedor_Reporte" onchange="actualizar(this.value,'proveedores')">
+                                    <option>Selecciona el proveedor</option>
+                                    <?php
+                                            while($elemento = mysqli_fetch_array($result3)){
+                                                echo '                                                
+                                                    <option id="'.$elemento[id].'" value="'.$elemento[id].'">'.$elemento[proveedor].'</option>
+                                                ';
+                                            }
+                                        ?>    
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Unidad_Reporte">Unidad:<span class="required">*</span></label>
+                                <input type="text" id="Unidad_Reporte" name="Unidad_Reporte" required="required" class="form-control col-md-2 col-xs-12" placeholder="Ingresa la unidad">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="Frente_Reporte">Frente:<span class="required">*</span></label>
+                                <input type="text" id="Frente_Reporte" name="Frente_Reporte" required="required" class="form-control col-md-2 col-xs-12" placeholder="Ingresa el nombre del frente">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="NomFactura_Reporte">Factura:<span class="required">*</span></label>
+                                <input type="text" id="NomFactura_Reporte" name="NomFactura_Reporte" required="required" class="form-control col-md-2 col-xs-12" placeholder="Ingresa el nombre de la factura">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="Descripcion_Reporte">Descripción:<span class="required">*</span></label>
+                                <input type="text" id="Descripcion_Reporte" name="Descripcion_Reporte" required="required" class="form-control col-md-2 col-xs-12" placeholder="Ingresa la descripcion del servcio">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="CostoUnit_Reporte">Costo Unitario:<span class="required">*</span></label>
+                                <input type="text" id="CostoUnit_Reporte" name="CostoUnit_Reporte" required="required" class="form-control col-md-2 col-xs-12" placeholder="Ingresa el costo unitario">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-10">
+                                <label>Notas:</label>
+                                <textarea class="form-control" name="Notas_Reporte" id="Notas_Reporte" rows="1" cols="50"></textarea>
+                            </div>
+                            <div class="col-md-2">
+                                <label> Da click para</label>
+                                <input type="submit" class="form-control btn btn-success" value="Guardar">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+
+            <!-- Navegacion -->
+            <script src="../../../../production/components/js/files/compras/general.js"></script>

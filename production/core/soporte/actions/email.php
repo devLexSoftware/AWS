@@ -12,7 +12,7 @@ try {
     $mail->Host = "smtp.gmail.com"; // GMail
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
     $mail->Username = 'desarrollolexsoftware@gmail.com';                 // SMTP username
-    $mail->Password = 'Admin123456789';                           // SMTP password
+    $mail->Password = 'AdminQ1W2E3R4T5';                           // SMTP password
     $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 587;                                    // TCP port to connect to
 
@@ -26,9 +26,9 @@ try {
     $mail->AltBody = 'Mensaje enviado desde sistema';
 
     $mail->send();
-    header("Location: ../../../../../workshop.com/index.php?p=soporteExito");
+    header("Location: ../../../../../index.php?p=soporteExito");
 } catch (Exception $e) {
-    header("Location: ../../../../../workshop.com/index.php?p=soporteError");
+    header("Location: ../../../../../index.php?p=soporteError");
 }
 
 

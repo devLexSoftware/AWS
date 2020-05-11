@@ -287,8 +287,8 @@ else {
 
 
 <!-- Navegacion -->
-<script src="../../../workshop.com/production/components/js/files/compras/general.js"></script>
-<script src="../../../workshop.com/production/components/js/files/obras/general.js"></script>
+<script src="../../../production/components/js/files/compras/general.js"></script>
+<script src="../../../production/components/js/files/obras/general.js"></script>
 
 <script type="text/javascript">
       function calculos(val){
@@ -316,7 +316,7 @@ $(document).ready(function() {
     $("form").submit( function() {
         $.ajax({
             type: "POST",
-            url: "../../../workshop.com/production/core/compras/actions/addCompras.php",
+            url: "../../../production/core/compras/actions/addCompras.php",
             data: $("#form").serialize(),
             success: function()
             {

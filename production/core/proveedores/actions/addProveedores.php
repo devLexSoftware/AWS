@@ -26,6 +26,6 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $result = mysqli_query($con,"INSERT INTO proveedores(usuCreacion,identificador,empresa,proveedor,descripcion,rfc,contacto1,contacto2,email,direccion,comentario, estado)
         VALUES('admin', '$ref', '$prv_nombre', '$prv_proveedor','$prv_descripcion', '$prv_rfc', '$prv_telefono', '$prv_celular', '$prv_email','$prv_direccion', '$prv_nota', 0)");   
 
-header("Location: ../../../../../workshop.com/index.php?p=proveedores");
+header("Location: ../../../../../index.php?p=proveedores");
   }
  ?>

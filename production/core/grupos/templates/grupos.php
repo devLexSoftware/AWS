@@ -166,7 +166,7 @@ var n = 0;
     });
 </script>
 
-<script src="../../../workshop.com/production/components/js/files/grupos/general.js"></script>
+<script src="../../../production/components/js/files/grupos/general.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {

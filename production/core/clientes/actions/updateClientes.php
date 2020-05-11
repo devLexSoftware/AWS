@@ -34,6 +34,6 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
                                     cp = '$cli_cp', ciudad = '$cli_ciudad', municipio = '$cli_municipio', empresa = '$cli_empresa', email = '$cli_email', movil = '$cli_movil', telefono = '$cli_tel', nota = '$cli_nota'
                                     WHERE identificador = '$cli_ref'");
     
-    header("Location: ../../../../../workshop.com/index.php?p=clientesOk");
+    header("Location: ../../../../../index.php?p=clientesOk");
   }
  ?>

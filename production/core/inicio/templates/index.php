@@ -12,23 +12,23 @@
     <title>  Workshop Studio Premiere </title>
 
     <!-- Bootstrap -->
-    <link href="../../../workshop.com/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../../../workshop.com/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../../../workshop.com/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
-    <link href="../../../workshop.com/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
     <!-- bootstrap-progressbar -->
-    <link href="../../../workshop.com/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- JQVMap -->
-    <link href="../../../workshop.com/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <link href="/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
     <!-- bootstrap-daterangepicker -->
-    <link href="../../../workshop.com/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../../../workshop.com/build/css/custom.min.css" rel="stylesheet">
+    <link href="/build/css/custom.min.css" rel="stylesheet">
 
 
     <script type="text/javascript">
@@ -62,7 +62,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="../../../workshop.com/pictures/WorkshopLogo.png" alt="..." class="img-circle profile_img">
+                <img src="/pictures/WorkshopLogo.png" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Bienvenido,</span>
@@ -82,6 +82,7 @@
                 <li><a href="index.php?p=obras">Obras</a></li>
                   <li><a href="index.php?p=clientes"><i class=""></i> Clientes <span class=""></span></a></li>
                   <li><a href="index.php?p=compras"><i class=""></i> Compras <span class=""></span></a></li>
+                  <li><a href="index.php?p=pedidos"><i class=""></i>Pedidos</i></a></li>
                   <li><a href="index.php?p=proveedores"><i class=""></i> Proveedores <span class=""></span></a></li>
                   <li><a href="index.php?p=empleados"><i class=""></i>Empleados <span class=""></span></a></li>
                   <li><a href="index.php?p=grupos"><i class=""></i>Grupos</i></a></li>
@@ -113,7 +114,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="../../../workshop.com/pictures/WorkshopLogo.png" alt="">Arq. Norberto Morales González
+                    <img src="/pictures/WorkshopLogo.png" alt="">Arq. Norberto Morales González
                   </a>
 
                     <li><a href="production/config/salir.php"><i class="pull-right"></i> Log Out</a></li>
@@ -166,52 +167,52 @@
 
 
     <!-- jQuery -->
-    <script src="../../../workshop.com/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="../../../workshop.com/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
-    <script src="../../../workshop.com/vendors/fastclick/lib/fastclick.js"></script>
+    <script src="/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="../../../workshop.com/vendors/nprogress/nprogress.js"></script>
+    <script src="/vendors/nprogress/nprogress.js"></script>
     <!-- Chart.js -->
-    <script src="../../../workshop.com/vendors/Chart.js/dist/Chart.min.js"></script>
+    <script src="/vendors/Chart.js/dist/Chart.min.js"></script>
     <!-- gauge.js -->
-    <script src="../../../workshop.com/vendors/gauge.js/dist/gauge.min.js"></script>
+    <script src="/vendors/gauge.js/dist/gauge.min.js"></script>
     <!-- bootstrap-progressbar -->
-    <script src="../../../workshop.com/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <!-- iCheck -->
-    <script src="../../../workshop.com/vendors/iCheck/icheck.min.js"></script>
+    <script src="/vendors/iCheck/icheck.min.js"></script>
     <!-- Skycons -->
-    <script src="../../../workshop.com/vendors/skycons/skycons.js"></script>
+    <script src="/vendors/skycons/skycons.js"></script>
     <!-- Flot -->
-    <script src="../../../workshop.com/vendors/Flot/jquery.flot.js"></script>
-    <script src="../../../workshop.com/vendors/Flot/jquery.flot.pie.js"></script>
-    <script src="../../../workshop.com/vendors/Flot/jquery.flot.time.js"></script>
-    <script src="../../../workshop.com/vendors/Flot/jquery.flot.stack.js"></script>
-    <script src="../../../workshop.com/vendors/Flot/jquery.flot.resize.js"></script>
+    <script src="/vendors/Flot/jquery.flot.js"></script>
+    <script src="/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="/vendors/Flot/jquery.flot.resize.js"></script>
     <!-- Flot plugins -->
-    <script src="../../../workshop.com/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-    <script src="../../../workshop.com/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-    <script src="../../../workshop.com/vendors/flot.curvedlines/curvedLines.js"></script>
+    <script src="/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="/vendors/flot.curvedlines/curvedLines.js"></script>
     <!-- DateJS -->
-    <script src="../../../workshop.com/vendors/DateJS/build/date.js"></script>
+    <script src="/vendors/DateJS/build/date.js"></script>
     <!-- JQVMap -->
-    <script src="../../../workshop.com/vendors/jqvmap/dist/jquery.vmap.js"></script>
-    <script src="../../../workshop.com/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-    <script src="../../../workshop.com/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <script src="/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
     <!-- bootstrap-daterangepicker -->
-    <script src="../../../workshop.com/vendors/moment/min/moment.min.js"></script>
-    <script src="../../../workshop.com/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="/vendors/moment/min/moment.min.js"></script>
+    <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="../../../workshop.com/build/js/custom.min.js"></script>
+    <script src="/build/js/custom.min.js"></script>
 
     <!-- Navegacion -->
-    <script src="../../../workshop.com/production/components/js/files/General.js"></script>
+    <script src="/production/components/js/files/General.js"></script>
 
-    <script src="../../../workshop.com/vendors/datatables/jquery.dataTables.js"></script>
-    <script src="../../../workshop.com/vendors/datatables/dataTables.bootstrap4.js"></script>
-    <script src="../../../workshop.com/production/components/js/files/compras/general.js"></script>
+    <script src="/vendors/datatables/jquery.dataTables.js"></script>
+    <script src="/vendors/datatables/dataTables.bootstrap4.js"></script>
+    <script src="/production/components/js/files/compras/general.js"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>

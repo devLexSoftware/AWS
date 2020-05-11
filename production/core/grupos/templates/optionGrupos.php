@@ -114,7 +114,7 @@ else {
 </div>
 <!-- /page content -->
 
-<script src="../../../workshop.com/production/components/js/files/grupos/general.js"></script>
+<script src="../../../production/components/js/files/grupos/general.js"></script>
 
 <script>
 $(document).ready(function(){ cargarEmpleados(); })

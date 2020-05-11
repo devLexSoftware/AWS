@@ -27,7 +27,7 @@ for ($i=0 ; $i <  $Grp_cantidad; $i++ ) {
         VALUES('admin','$Grp_Id', '$detalleEmpleado',  '0' )");
   }    
     
-    header("Location: ../../../../../workshop.com/index.php?p=gruposOk");
+    header("Location: ../../../../../index.php?p=gruposOk");
 
   }
  ?>

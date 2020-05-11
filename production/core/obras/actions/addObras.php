@@ -34,6 +34,6 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $result = mysqli_query($con,"INSERT INTO detalles_obras(usuCreacion,avance, comentario, fk_obra)
         VALUES('admin', '$obr_avance', '$obr_nota', '$id')");
 
-header("Location: ../../../../../workshop.com/index.php?p=obras");
+header("Location: ../../../../../index.php?p=obras");
   }
  ?>

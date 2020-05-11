@@ -31,7 +31,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
                                     contacto2 = '$prv_telefono', email = '$prv_email', descripcion = '$prv_descripcion', comentario = '$prv_nota'
                                     WHERE identificador = '$prv_ref'");
     
-    header("Location: ../../../../../workshop.com/index.php?p=proveedoresOk");
+    header("Location: ../../../../../index.php?p=proveedoresOk");
 
   }
  ?>

@@ -40,7 +40,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
                                     comentario = '$com_nota', fk_obra = '$com_obra', fk_clientes = '$com_cliente', fk_proveedor = '$com_proveedor', fechInicial = '$com_fechInicial', fechFinal = '$com_fechFinal'
                                       WHERE id = $com_id");
      
-     header("Location: ../../../../../workshop.com/index.php?p=comprasOk");
+     header("Location: ../../../../../index.php?p=comprasOk");
 
     //header("Location: ../../../../../index.php?p=compras");
   }

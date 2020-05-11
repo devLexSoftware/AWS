@@ -126,7 +126,7 @@
                                 <div class="form-group row">
                                   <div class="col-md-10 col-sm-10 col-xs-10 "></div>
                                     <div class="col-md-2 col-sm-2 col-xs-2 ">
-                                        <button type="submit" class="btn btn-success"> Guardar e Imprimir</button>
+                                        <button type="submit" class="btn btn-success"> Guardar</button>
                                     </div>
                                 </div>
 
@@ -227,4 +227,4 @@ var n = 0;
 
 
 
-<script src="../../../workshop.com/production/components/js/files/cotizaciones/general.js"></script>
+<script src="../../../production/components/js/files/cotizaciones/general.js"></script>

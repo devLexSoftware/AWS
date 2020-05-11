@@ -22,7 +22,6 @@ else {
     $result = mysqli_query($con,"SELECT * FROM grupos WHERE id = $elemento[fk_grupo];");    
     $elemento3 = mysqli_fetch_array($result);   
 
-
 }
 ?>
 
@@ -78,7 +77,7 @@ else {
                                         <div class="col-md-6">
                                         <label >Grupo:</label>                                            
                                                 <select class="form-control" name="obr_grupo" id="obr_grupo">
-                                                <option value="<?php echo($elemento['fk_grupos']); ?>"><?php echo($elemento3['nombre']); ?></option>
+                                                <option value="<?php echo($elemento['fk_grupo']); ?>"><?php echo($elemento3['nombre']); ?></option>
                                                     <?php
                                                         while($elemento2 = mysqli_fetch_array($result2)){
                                                             echo '                                                

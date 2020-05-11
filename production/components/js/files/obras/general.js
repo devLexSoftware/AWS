@@ -1,7 +1,7 @@
 function obtenerObras(valor1, valor2) {
     $.ajax({
         type: 'POST', //aqui puede ser igual get
-        url: '../../../workshop.com/production/core/obras/actions/getDatos.php', //aqui va tu direccion donde esta tu funcion php
+        url: '../../../production/core/obras/actions/getDatos.php', //aqui va tu direccion donde esta tu funcion php
         data: { id: valor1, tabla: valor2 }, //aqui tus datos
         success: function(data) {
             switch (valor2) {

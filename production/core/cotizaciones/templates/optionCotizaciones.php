@@ -143,7 +143,8 @@ else {
                                 <div class="form-group row">
                                   <div class="col-md-10 col-sm-10 col-xs-10 "></div>
                                     <div class="col-md-2 col-sm-2 col-xs-2 ">
-                                        <button type="button" class="btn btn-success">Imprimir</button>
+                                        <!-- <button type="button" class="btn btn-success">Imprimir</button> -->
+                                        <!-- <button type="button" class="btn btn-success">Imprimir</button> -->
                                     </div>
                                 </div>
 
@@ -219,4 +220,4 @@ var n = 0;
 
 
 
-<script src="../../../workshop.com/production/components/js/files/cotizaciones/general.js"></script>
+<script src="../../../production/components/js/files/cotizaciones/general.js"></script>

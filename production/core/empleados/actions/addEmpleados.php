@@ -24,6 +24,6 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $result = mysqli_query($con,"INSERT INTO empleados(usuCreacion, identificador, nombre, rfc, direccion, movil, telefono, email, empresa, giro, nota, estado)
                         VALUES('admin', '$ref', '$emp_nombre', '$emp_rfc', '$emp_direccion', '$emp_movil', '$emp_tel', '$emp_email', '$emp_empresa', '$emp_giro', '$emp_nota', '0')");
 
-header("Location: ../../../../../workshop.com/index.php?p=empleados");
+header("Location: ../../../../../index.php?p=empleados");
   }
  ?>

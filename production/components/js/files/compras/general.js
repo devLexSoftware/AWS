@@ -12,7 +12,7 @@ function actualizar(obra) {
     if (pa3 == "0") {
         pa3 = "";
     }
-    $("#tableCompras").load('../../../workshop.com/production/core/compras/templates/tableCompras.php?ini=' + pa1 + '&fin=' + pa2 + '&obra=' + pa3);
+    $("#tableCompras").load('../../../production/core/compras/templates/tableCompras.php?ini=' + pa1 + '&fin=' + pa2 + '&obra=' + pa3);
 }
 
 
@@ -26,7 +26,7 @@ function obtenerFactura() {
 
     $.ajax({
         type: 'POST', //aqui puede ser igual get
-        url: '../../../workshop.com/production/core/compras/actions/getFactTotal.php', //aqui va tu direccion donde esta tu funcion php
+        url: '../../../production/core/compras/actions/getFactTotal.php', //aqui va tu direccion donde esta tu funcion php
         data: { val2: cliente, val3: obra, val4: fac }, //aqui tus datos
         success: function(data) {
             datos = $.parseJSON(data);

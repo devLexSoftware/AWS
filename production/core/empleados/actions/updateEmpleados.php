@@ -26,7 +26,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
                                     nota = '$emp_nota'
                                     WHERE identificador = '$emp_id'");
 
-header("Location: ../../../../../workshop.com/index.php?p=empleadosOk");
+header("Location: ../../../../../index.php?p=empleadosOk");
 
   }
  ?>

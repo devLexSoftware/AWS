@@ -32,10 +32,10 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
     $result = mysqli_query($con, "UPDATE obras SET nombre = '$obr_nombre', calle = '$obr_calle', numExt = '$obr_numExt', numInt = '$obr_numInt', colonia = '$obr_colonia',
                                     cp = '$obr_cp', ciudad = '$obr_ciudad', municipio = '$obr_municipio', comentario = '$obr_nota', fechInicio = '$obr_fechInicio', fechFin = '$obr_fechFin',
-                                    avance = '$obr_avance', fk_clientes = $obr_cliente, fk_grupo = $obr_grupo
+                                    avance = '$obr_avance', fk_clientes = '$obr_cliente', fk_grupo = '$obr_grupo'
                                     WHERE identificador = '$obr_ref'");
     
-    header("Location: ../../../../../workshop.com/index.php?p=obrasOk");
+    // header("Location: ../../../../../index.php?p=obrasOk");
 
   }
  ?>

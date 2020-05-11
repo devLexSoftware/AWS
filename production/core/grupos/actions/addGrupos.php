@@ -26,6 +26,6 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
           VALUES('admin','$id', '$detalleEmpleado',  '0' )");
     }    
 
-header("Location: ../../../../../workshop.com/index.php?p=grupos");
+header("Location: ../../../../../index.php?p=grupos");
   }
  ?>
