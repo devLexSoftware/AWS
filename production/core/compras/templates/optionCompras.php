@@ -1,4 +1,7 @@
 <?php
+header('content-type: image/jpeg');
+
+
 include("../../../config/conexion.php");
 //error_reporting(E_ALL);
 //ini_set('display_errors', '1');
@@ -23,11 +26,17 @@ else {
 }
 ?>
 
+
     <!--Title page -->
     <div class="page-title">
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-6">
             <h3>C O M P R A </h3>
+        </div>
+        <div class="col-md-2">
+            <input type="button" class="form-control btn btn-info" value="Mostrar recibo" data-toggle="modal" data-target="#reciboModal">
+        </div>
+        <div class="col-md-2">
         </div>
         <div class="col-md-2">
             <input type="submit" class="form-control btn btn-danger" value="Borrar" data-toggle="modal" data-target="#deleteModal">
@@ -210,6 +219,23 @@ else {
         </div>
       </div>
     </div>
+
+
+    <div class="modal fade" id="reciboModal">
+      <div class=" modal-dialog modal-dialog-scrollable"  role="document">
+        <div class="modal-content" >
+          <div class="modal-header">
+            <h3 class="modal-title" id="reciboModalLabel">Recibo de compra</h5>
+          </div>
+          <div class="modal-body row">
+            <div class="form-group col-md-12"  style=" overflow: auto;">                
+                <img src="<?php echo ($elemento['foto']); ?> " class="img-rounded" />;
+            </div>
+          </div>          
+        </div>
+      </div>
+    </div>
+
 
 
     <script src="../../../../production/components/js/files/compras/general.js"></script>

@@ -74,8 +74,8 @@
                                 <input type="text" name="cli_empresa" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el nombre de la empresa">
                             </div>
                             <div class="col-md-2">
-                                <label >Correo:</label>                            
-                                <input type="email" name="cli_email" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el correo">
+                                <label >Correo:<span class="required">*</span></label>                            
+                                <input type="email" require name="cli_email" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el correo">
                             </div>
                             <div class="col-md-3">
                                 <label >Teléfono móvil:<span class="required">*</span></label>                            

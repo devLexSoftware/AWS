@@ -28,7 +28,13 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $ref = "CLI-".substr($cli_nombre,0, 3).$cli_movil;
     $result = mysqli_query($con,"INSERT INTO clientes(usuCreacion,identificador,nombre,rfc,calle,numExt,numInt,colonia,cp,ciudad,municipio,empresa,email,movil,telefono,nota, estado)
         VALUES('admin', '$ref', '$cli_nombre', '$cli_rfc', '$cli_calle', '$cli_numExt', '$cli_numInt', '$cli_colonia', '$cli_cp', '$cli_ciudad', '$cli_municipio', '$cli_empresa', '$cli_email', '$cli_movil', '$cli_tel', '$cli_nota', 0)");   
+    $last_id = $con->insert_id;
 
-  header("Location: ../../../../../index.php?p=clientes");
+
+    $result2 = mysqli_query($con, "INSERT INTO users(usuCreacion, usuario, pass, perfil, fk_vinculada)
+        VALUES('admin', '$cli_email', '$cli_movil', 'cliente', '$last_id')");
+
+
+    header("Location: ../../../../../index.php?p=clientes");
   }
  ?>

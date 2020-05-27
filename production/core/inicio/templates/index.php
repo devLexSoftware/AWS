@@ -1,5 +1,7 @@
+
 <?php include("production/config/bloque.php"); ?>
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   	<!--<link rel="icon" href="images/favicon.ico" type="image/ico" />-->
+
 
     <title>  Workshop Studio Premiere </title>
 
@@ -45,6 +48,24 @@
         abrir(vars['p'],vars['ref']);
       };
 </script>
+
+
+
+<style type="text/css">
+#reciboModal {
+  position:fixed;
+  width:100%;
+  height: 100%;  
+  overflow: auto; /* Enable scroll if needed */
+
+}
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+</style>
 
   </head>
 
