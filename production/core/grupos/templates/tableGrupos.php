@@ -17,7 +17,7 @@ else {
         <tr>
             <th>Nombre del grupo</th>
             <th>Nota</th>
-            <th>N° Empleados</th>            
+            <th>N° Empleados</th>                    
             <th>Acciones</th>
         </tr>
     </thead>

@@ -99,21 +99,33 @@
               <div class="menu_section">
                 <h3>Menú</h3>
                 <ul class="nav side-menu">
-                <li ><a href="index.php?p=cotizaciones" >Cotizaciones</a></li>
-                <li><a href="index.php?p=obras">Obras</a></li>
+                  <li><a><i class=""></i> Reportes <span class=""></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php?p=reportesObras">Obras</a></li>
+                      <li><a href="index.php?p=nominas"><i class=""></i>Nominas</i></a></li>
+                      <!-- <li><a href="index.php?p=obras">Listado de Obras</a></li>
+                      <li><a >Historial de Pagos</a></li>
+                      <li><a >Historial de Cobros</a></li> -->
+                    </ul>
+                  </li>
+                  <li ><a href="index.php?p=cotizaciones" >Cotizaciones</a></li>
+                  <li><a href="index.php?p=obras">Obras</a></li>
                   <li><a href="index.php?p=clientes"><i class=""></i> Clientes <span class=""></span></a></li>
                   <li><a href="index.php?p=compras"><i class=""></i> Compras <span class=""></span></a></li>
                   <li><a href="index.php?p=pedidos"><i class=""></i>Pedidos</i></a></li>
                   <li><a href="index.php?p=proveedores"><i class=""></i> Proveedores <span class=""></span></a></li>
+                  <li><a href="index.php?p=contratistas"><i class=""></i>Contratistas</i></a></li>
                   <li><a href="index.php?p=empleados"><i class=""></i>Empleados <span class=""></span></a></li>
                   <li><a href="index.php?p=grupos"><i class=""></i>Grupos</i></a></li>
+                  <li><a href="index.php?p=asistencias"><i class=""></i>Asistencias</i></a></li>                  
+                  <li><a href="index.php?p=inventario"><i class=""></i>Inventario</i></a></li>                  
+                  <li><a href="index.php?p=usuarios"><i class=""></i>Usuarios</i></a></li>                                  
                 </ul>
               </div>
 
               <div class="menu_section">
                 <h3>About Us</h3>
-                <ul class="nav side-menu">
-                  <li><a ><i class=""></i> Version <span class=""></span></a></li>
+                <ul class="nav side-menu">                  
 
                   <li><a href="index.php?p=soporte" ><i class=""></i> Soporte <span class=""></span></a></li>
                 </ul>

@@ -9,9 +9,10 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
   else {
 
     //--Datos de usuario
-    $Grp_Nombre        = $_POST['Grp_Nombre'];    
-    $Grp_Nota         = $_POST['Grp_Nota'];   
+    $Grp_Nombre         = $_POST['Grp_Nombre'];    
+    $Grp_Nota           = $_POST['Grp_Nota'];   
     $Grp_cantidad       = $_POST['detalleCantidad'];
+    $Grp_cantidad2      = $_POST['detalleCantidad2'];
 
     //--Insertar nuevo proveedor
     $ref = "GRP-".substr($Grp_Nombre,0, 5);
@@ -24,7 +25,16 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
       
       $result = mysqli_query($con,"INSERT INTO grupos_empleados(usuCreacion, fk_grupo, fk_empleado, estado)
           VALUES('admin','$id', '$detalleEmpleado',  '0' )");
-    }    
+    }  
+
+    for ($i=0 ; $i <  $Grp_cantidad2; $i++ ) {
+      $detalleContratistas           = $_POST['detalleContratista'.$i];      
+      
+      $result = mysqli_query($con,"INSERT INTO grupos_contratistas(usuCreacion, fk_grupo, fk_contratista, estado)
+          VALUES('admin','$id', '$detalleContratistas',  '0' )");
+    }   
+
+
 
 header("Location: ../../../../../index.php?p=grupos");
   }

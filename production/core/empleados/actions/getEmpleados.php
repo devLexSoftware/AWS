@@ -7,6 +7,24 @@
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
     else {                
+        $id = $_POST["id"];
+
+        if($id == "todos")
+        {
+            $result = mysqli_query($con,"SELECT e.id, e.nombre, e.email from empleados e
+                                    order by nombre");               
+
+            while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+            $myArray[] = $row;
+            }
+            echo json_encode($myArray);
+        }
+        else
+        {
+            $result = mysqli_query($con,"SELECT * FROM users WHERE fk_vinculada = $id and perfil = 'empleado'");   
+            $elemento = mysqli_fetch_array($result);
+            echo json_encode($elemento);
+        }
         /*$result = mysqli_query($con,"SELECT * FROM empleados");      
         $html = "";
         while($elemento = mysqli_fetch_array($result)){

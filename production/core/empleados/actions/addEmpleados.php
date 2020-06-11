@@ -18,11 +18,12 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $emp_tel        = $_POST['Empl_OficinaEmpleado'];
     $emp_movil      = $_POST['Empl_CelEmpleado'];    
     $emp_nota       = $_POST['Empl_nota'];
+    $emp_salario       = $_POST['Empl_Salario'];
 
     //--Insertar nuevo proveedor
     $ref = "EMP-".substr($emp_nombre,0, 4).$emp_movil;
-    $result = mysqli_query($con,"INSERT INTO empleados(usuCreacion, identificador, nombre, rfc, direccion, movil, telefono, email, empresa, giro, nota, estado)
-                        VALUES('admin', '$ref', '$emp_nombre', '$emp_rfc', '$emp_direccion', '$emp_movil', '$emp_tel', '$emp_email', '$emp_empresa', '$emp_giro', '$emp_nota', '0')");
+    $result = mysqli_query($con,"INSERT INTO empleados(usuCreacion, identificador, nombre, rfc, direccion, movil, telefono, email, empresa, giro, salario, nota, estado)
+                        VALUES('admin', '$ref', '$emp_nombre', '$emp_rfc', '$emp_direccion', '$emp_movil', '$emp_tel', '$emp_email', '$emp_empresa', '$emp_giro', '$emp_salario' ,'$emp_nota', '0')");
 
 header("Location: ../../../../../index.php?p=empleados");
   }

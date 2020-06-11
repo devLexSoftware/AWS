@@ -11,7 +11,7 @@ function showall(o) {
         $("#divallalerts").load('../default/allalerts.php');
     }
 }
-proveedoresIngresado
+
 
 function abrir(archivo, ref) {
     switch (archivo) {
@@ -127,6 +127,68 @@ function abrir(archivo, ref) {
             $("#divContenido").load('production/core/soporte/templates/soporte.php');
             break;
 
+        case "inventario":
+            $("#divContenido").load('production/core/inventarios/templates/inventario.php');
+            break;
+        case "optionInventario":
+            $("#divContenido").load('production/core/inventarios/templates/optioninventarios.php?ref=' + ref);
+            break;
+        case "inventarioOk":
+            $("#divContenido").load('production/core/inventarios/templates/inventario.php');
+            break;
+        case "inventariosDel":
+            $("#divContenido").load('production/core/inventarios/templates/inventario.php');
+            break;
+
+
+        case "contratistas":
+            $("#divContenido").load('production/core/contratistas/templates/contratistas.php');
+            break;
+        case "optionContratistas":
+            $("#divContenido").load('production/core/contratistas/templates/optionContratistas.php?ref=' + ref);
+            break;
+        case "contratistasOk":
+            $("#divContenido").load('production/core/contratistas/templates/contratistas.php');
+            break;
+        case "contratistasDel":
+            $("#divContenido").load('production/core/contratistas/templates/contratistas.php');
+            break;
+
+
+        case "asistencias":
+            $("#divContenido").load('production/core/asistencias/templates/asistencias.php');
+            break;
+        case "optionAsistencias":
+            $("#divContenido").load('production/core/asistencias/templates/optionAsistencias.php?ref=' + ref);
+            break;
+        case "asistenciasOk":
+            $("#divContenido").load('production/core/asistencias/templates/asistencias.php');
+            break;
+        case "asistenciasDel":
+            $("#divContenido").load('production/core/asistencias/templates/asistencias.php');
+            break;
+
+        case "usuarios":
+            $("#divContenido").load('production/core/usuarios/templates/usuarios.php');
+            break;
+        case "optionUsuarios":
+            $("#divContenido").load('production/core/usuarios/templates/optionUsuarios.php?ref=' + ref);
+            break;
+        case "usuariosOk":
+            $("#divContenido").load('production/core/usuarios/templates/usuarios.php');
+            break;
+        case "usuariosDel":
+            $("#divContenido").load('production/core/usuarios/templates/usuarios.php');
+            break;
+
+
+        case "nominas":
+            $("#divContenido").load('production/core/nominas/templates/nominas.php');
+            break; 
+            
+        case "reportesObras":
+            $("#divContenido").load('production/core/obras/templates/reportes.php');
+            break;
 
 
         default:

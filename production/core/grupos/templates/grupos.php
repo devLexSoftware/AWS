@@ -8,6 +8,7 @@ echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->c
 }
 else {        
     $result = mysqli_query($con,"SELECT * FROM empleados where estado = 0");    
+    $result2 = mysqli_query($con,"SELECT * FROM contratistas where estado = 0");    
 }
 ?>
 
@@ -38,71 +39,110 @@ else {
                     <div class="x_content" id="target" style="display: none;">
                         <br/>
                         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="production/core/grupos/actions/addGrupos.php">
-                        <div class="form-group row">
-                              <div class="col-md-6">
-                                  <label>Nombre del grupo:<span class="required">*</span></label>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label>Nombre del grupo:<span class="required">*</span></label>
                                     <input type="text" required="required" id="Grp_Nombre" name="Grp_Nombre" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el nombre del grupo">
                                 </div>    
                                 <div class="col-md-6">
-                                  
+                                    <label >Notas:</label>
+                                    <textarea class="form-control" name="Grp_Nota" id="Grp_Nota" rows="1" cols="50"></textarea>  
                                 </div>                                
-                            </div>                            
-                            <div class="form-group row">
-                                <div class="col-md-10">
-                                <label >Notas:</label>
-                                <textarea class="form-control" name="Grp_Nota" id="Grp_Nota" rows="1" cols="50"></textarea>
-                                </div>
-                               
-                            </div>
+                            </div>                                                        
                             <div class="row">
-                        <div class="col-md-12 col-xs-12">
-                            <div class="x_content">
-                                <div class="from-group row">
-                                  <div class="col-md-3">
-                                  <h2>Empleados</h2>
-                                  </div>
-                                  </div>
-                                  <div class="from-group row">
-                                  <div class="col-md-7">
-                                  <select name="empleados" id="empleados" class="form-control"> 
-                                        <?php 
-                                            while($elemento = mysqli_fetch_array($result)){
-                                            echo '<option value="'.$elemento["id"].'">'.$elemento["nombre"].'</option>';
-                                        }                                                
-                                        ?>
-                                        </select>
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="x_content">
+                                        <div class="from-group row">
+                                            <div class="col-md-3">
+                                                <h2>Empleados</h2>
+                                            </div>
                                         </div>
-                                  <div class="col-md-1">
-                                    <button type="button" onclick="addDetalles()" class="btn btn-success"> Agregar</button>
-                                  </div>
-                                  <div class="col-md-1">
-                                    <input id="detalleCantidad" name="detalleCantidad" readonly class="form-control" value="0">
-                                  </div>
-                                </div>
-                                <br>
-                                <div style="overflow-x:auto;">
-                                <table id="tableDetalles" class="table table-striped table-bordered" >
-                                <thead>
-                                    <tr>
-                                        <th>Empleado</th>            
-                                        <th>Seleccionado</th>                                                    
-                                    </tr>
-                                </thead>
-                                <tbody style="">                                    
-                                </tbody>
-                                </table>
-                                </div>
-                                <br>
-                                <div class="form-group row">
-                                  <div class="col-md-10 col-sm-10 col-xs-10 "></div>
-                                    <div class="col-md-2 col-sm-2 col-xs-2 ">
-                                        <button type="submit" class="btn btn-success"> Guardar</button>
+                                        <div class="from-group row">
+                                            <div class="col-md-7">
+                                                <select name="empleados" id="empleados" class="form-control"> 
+                                                <?php 
+                                                    while($elemento = mysqli_fetch_array($result)){
+                                                    echo '<option value="'.$elemento["id"].'">'.$elemento["nombre"].'</option>';
+                                                }                                                
+                                                ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <button type="button" onclick="addDetalles('empleados')" class="btn btn-success"> Agregar</button>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <input id="detalleCantidad" name="detalleCantidad" readonly class="form-control" value="0">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div style="overflow-x:auto;">
+                                            <table id="tableDetalles" class="table table-striped table-bordered" >
+                                                <thead>
+                                                    <tr>
+                                                        <th>Empleado</th>            
+                                                        <th>Seleccionado</th>                                                    
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="">                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <br>                                     
                                     </div>
-                                </div>
-
+                                </div>  
                             </div>
-                        </div>
-                    </div>
+
+
+
+
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="x_content">
+                                        <div class="from-group row">
+                                            <div class="col-md-3">
+                                                <h2>Contratistas</h2>
+                                            </div>
+                                        </div>
+                                        <div class="from-group row">
+                                            <div class="col-md-7">
+                                                <select name="contratistas" id="contratistas" class="form-control"> 
+                                                <?php 
+                                                    while($elemento2 = mysqli_fetch_array($result2)){
+                                                    echo '<option value="'.$elemento2["id"].'">'.$elemento2["identificador"].'</option>';
+                                                }                                                
+                                                ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <button type="button" onclick="addDetalles('contratistas')" class="btn btn-success"> Agregar</button>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <input id="detalleCantidad2" name="detalleCantidad2" readonly class="form-control" value="0">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div style="overflow-x:auto;">
+                                            <table id="tableDetalles2" class="table table-striped table-bordered" >
+                                                <thead>
+                                                    <tr>
+                                                        <th>Contratista</th>            
+                                                        <th>Seleccionado</th>                                                    
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="">                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <div class="col-md-10 col-sm-10 col-xs-10 "></div>
+                                            <div class="col-md-2 col-sm-2 col-xs-2 ">
+                                                <button type="submit" class="btn btn-success"> Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
                         </form>
                     </div>
 
