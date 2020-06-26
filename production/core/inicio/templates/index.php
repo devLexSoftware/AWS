@@ -101,8 +101,10 @@
                 <ul class="nav side-menu">
                   <li><a><i class=""></i> Reportes <span class=""></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.php?p=reportesObras">Obras</a></li>
+                      <li><a href="index.php?p=reportesObras">Avances Obras</a></li>
                       <li><a href="index.php?p=nominas"><i class=""></i>Nominas</i></a></li>
+                      <li><a href="index.php?p=materiales"><i class=""></i>Materiales</i></a></li>
+                      <li><a href="index.php?p=totalObra"><i class=""></i>Total Obra</i></a></li>
                       <!-- <li><a href="index.php?p=obras">Listado de Obras</a></li>
                       <li><a >Historial de Pagos</a></li>
                       <li><a >Historial de Cobros</a></li> -->

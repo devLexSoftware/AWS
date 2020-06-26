@@ -31,8 +31,8 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $last_id = $con->insert_id;
 
 
-    $result2 = mysqli_query($con, "INSERT INTO users(usuCreacion, usuario, pass, perfil, fk_vinculada)
-        VALUES('admin', '$cli_email', '$cli_movil', 'cliente', '$last_id')");
+    // $result2 = mysqli_query($con, "INSERT INTO users(usuCreacion, usuario, pass, perfil, fk_vinculada)
+    //     VALUES('admin', '$cli_email', '$cli_movil', 'cliente', '$last_id')");
 
 
     header("Location: ../../../../../index.php?p=clientes");

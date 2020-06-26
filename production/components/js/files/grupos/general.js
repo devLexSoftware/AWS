@@ -63,7 +63,7 @@ function deleteDetalle(item, numero) {
         });
 
         document.getElementById("tableDetalles").deleteRow(numero + 1);
-        updateDetalle("empleado", numero);
+        updateDetalle(0, numero);
         detalle = detalle - 1;
         document.getElementById('detalleCantidad').value = detalle;
     }    
@@ -76,13 +76,14 @@ function deleteDetalle(item, numero) {
         });
 
         document.getElementById("tableDetalles2").deleteRow(numero + 1);
-        updateDetalle("contratista", numero);
+        updateDetalle(1, numero);
         detalle2 = detalle2 - 1;
         document.getElementById('detalleCantidad2').value = detalle2;
     }
 }
 
 function updateDetalle(item, numero) {
+    debugger;
     var i = 0;
     if(item == 0)
     {

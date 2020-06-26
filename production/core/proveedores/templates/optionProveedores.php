@@ -9,7 +9,7 @@ echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->c
 else {
 
     $id = $_GET["ref"];    
-    $result = mysqli_query($con,"SELECT * FROM proveedores WHERE identificador = '$id';");    
+    $result = mysqli_query($con,"SELECT * FROM proveedores WHERE id = '$id';");    
     $elemento = mysqli_fetch_array($result);    
 }
 ?>
@@ -46,6 +46,7 @@ else {
                         <div class="col-md-3">
                         <label for="RFC-Client">Referencia:</label>
                         <input type="text"  name="prv_referencia" id="prv_referencia" class="form-control col-md-7 col-xs-12" placeholder="Ingrse el RFC del cliente"  readonly="readonly"   value="<?php echo($elemento['identificador']); ?>">
+                        <input type="hidden"  name="prv_id" id="prv_id" value="<?php echo($elemento['id']); ?>">
                         </div>
                     </div>
 

@@ -9,6 +9,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
   else {
 
     //--Datos de usuario
+    $prv_id        = $_POST['prv_id'];
     $prv_ref        = $_POST['prv_referencia'];
     $prv_proveedor    = $_POST['prv_proveedor'];
     $prv_rfc          = $_POST['prv_rfc'];
@@ -29,7 +30,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
     $result = mysqli_query($con, "UPDATE proveedores SET proveedor = '$prv_proveedor', rfc = '$prv_rfc', empresa = '$prv_nombre', direccion = '$prv_direccion', contacto1 = '$prv_celular', 
                                     contacto2 = '$prv_telefono', email = '$prv_email', descripcion = '$prv_descripcion', comentario = '$prv_nota'
-                                    WHERE identificador = '$prv_ref'");
+                                    WHERE id = '$prv_id'");
     
     header("Location: ../../../../../index.php?p=proveedoresOk");
 

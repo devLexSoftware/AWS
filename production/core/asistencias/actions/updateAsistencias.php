@@ -28,14 +28,50 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     // echo $count_empleados;
     for ($i=0 ; $i <  $count_empleados; $i++ ) {
         $idEmpleado           = $_POST['empleado_'.$i];     
-        $lunes                = isset($_POST['empleado_dia_1_'.$idEmpleado]) ? 1 : 0;
-        $martes                = isset($_POST['empleado_dia_2_'.$idEmpleado]) ? 1 : 0;
-        $miercoles                = isset($_POST['empleado_dia_3_'.$idEmpleado]) ? 1 : 0;
-        $jueves                = isset($_POST['empleado_dia_4_'.$idEmpleado]) ? 1 : 0;
-        $viernes                = isset($_POST['empleado_dia_5_'.$idEmpleado]) ? 1 : 0;
-        $sabado                = isset($_POST['empleado_dia_6_'.$idEmpleado]) ? 1 : 0;
-        echo $idEmpleado.'-';
-        echo $lunes.'+';
+        // $lunes                = isset($_POST['empleado_dia_1_'.$idEmpleado]) ? 1 : 0;
+        // $martes                = isset($_POST['empleado_dia_2_'.$idEmpleado]) ? 1 : 0;
+        // $miercoles                = isset($_POST['empleado_dia_3_'.$idEmpleado]) ? 1 : 0;
+        // $jueves                = isset($_POST['empleado_dia_4_'.$idEmpleado]) ? 1 : 0;
+        // $viernes                = isset($_POST['empleado_dia_5_'.$idEmpleado]) ? 1 : 0;
+        // $sabado                = isset($_POST['empleado_dia_6_'.$idEmpleado]) ? 1 : 0;
+
+        if(isset($_POST['empleado_dia_1_'.$idEmpleado])){
+          $lunes = $_POST['empleado_dia_1_'.$idEmpleado];
+        }
+        else{
+          $lunes = 0;
+        }      
+        if(isset($_POST['empleado_dia_2_'.$idEmpleado])){
+          $martes = $_POST['empleado_dia_2_'.$idEmpleado];
+        }
+        else{
+          $martes = 0;
+        }
+        if(isset($_POST['empleado_dia_3_'.$idEmpleado])){
+          $miercoles = $_POST['empleado_dia_3_'.$idEmpleado];
+        }
+        else{
+          $miercoles = 0;
+        }
+        if(isset($_POST['empleado_dia_4_'.$idEmpleado])){
+          $jueves = $_POST['empleado_dia_4_'.$idEmpleado];
+        }
+        else{
+          $jueves = 0;
+        }
+        if(isset($_POST['empleado_dia_5_'.$idEmpleado])){
+          $viernes = $_POST['empleado_dia_5_'.$idEmpleado];
+        }
+        else{
+          $viernes = 0;
+        }
+        if(isset($_POST['empleado_dia_6_'.$idEmpleado])){
+          $sabado = $_POST['empleado_dia_6_'.$idEmpleado];
+        }
+        else{
+          $sabado = 0;
+        }
+        
         
         $result = mysqli_query($con,"INSERT INTO asistencias_empleados(usuCreacion, lunes, martes, miercoles, jueves, viernes, sabado, domingo, monto, fk_empleado, fk_asistencia, estado)
             VALUES('admin','$lunes', '$martes', '$miercoles', '$jueves', '$viernes', '$sabado', '0',  '400', '$idEmpleado', '$idAsistencia', '0' )");

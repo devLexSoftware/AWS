@@ -9,7 +9,7 @@ echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->c
 else {
 
     $idCliente = $_GET["ref"];    
-    $result = mysqli_query($con,"SELECT * FROM clientes WHERE identificador = '$idCliente';");    
+    $result = mysqli_query($con,"SELECT * FROM clientes WHERE id = '$idCliente';");    
     $elemento = mysqli_fetch_array($result);    
 }
 ?>
@@ -43,6 +43,8 @@ else {
                 <div class="col-md-3">
                     <label for="RFC-Client">Referencia:</label>                            
                     <input type="text" name="cli_ref" id="cli_ref" class="form-control col-md-7 col-xs-12" placeholder="Ingrse el RFC del cliente" readonly="readonly"  value="<?php echo($elemento['identificador']); ?>">                                                      
+                    <input type="hidden" name="cli_id" id="cli_id"  value="<?php echo($elemento['id']); ?>">                                                      
+
                 </div>
             </div>
 
@@ -75,8 +77,8 @@ else {
                     <input type="text" name="cli_ciudad" id="cli_ciudad" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la ciudad" value="<?php echo($elemento['ciudad']); ?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="Municipio-Client">Municipio:</label>                            
-                    <input type="text" name="cli_municipio" id="cli_municipio" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el municipio" value="<?php echo($elemento['municipio']); ?>">
+                    <label for="Municipio-Client">Estado:</label>                            
+                    <input type="text" name="cli_municipio" id="cli_municipio" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el estado" value="<?php echo($elemento['municipio']); ?>">
                 </div>
             </div>
 

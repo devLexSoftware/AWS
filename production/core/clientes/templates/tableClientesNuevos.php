@@ -41,7 +41,7 @@ else {
             <td>'.$elemento[empresa].'</td>
             <td>'.$elemento[rfc].'</td>            
             <td><button type="button" id="mostrar" name="boton1"  class="btn btn-primary btn-sm">
-            <a style="text-decoration: none; text-align:center; color: white; " href="index.php?p=optionClientes&ref='.$elemento[identificador].'"> Editar</a>
+            <a style="text-decoration: none; text-align:center; color: white; " href="index.php?p=optionClientes&ref='.$elemento[id].'"> Editar</a>
         </button>
     </td>   
         </tr>        

@@ -23,17 +23,20 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $obr_avance         = $_POST['obr_avance'];
     $obr_nota           = $_POST['obr_nota'];
     $obr_grupo          = $_POST['obr_grupo'];
+    $obr_costo          = $_POST['obr_costoTotal'];
+    $obr_porcentaje     = $_POST['obr_porcentaje'];
+    $obr_superficie     = $_POST['obr_superficie'];
 
 
     //--Insertar nuevo proveedor
-    $ref = "OBR-".$obr_cliente."-".$obr_nombre;
-    $result = mysqli_query($con,"INSERT INTO obras(usuCreacion,identificador, nombre, calle, numExt, numInt, colonia, cp, ciudad, municipio, fechInicio, fechFin, avance, comentario, fk_clientes, estado, fk_grupo)
-        VALUES('admin', '$ref', '$obr_nombre', '$obr_calle', '$obr_numExt', '$obr_numInt', '$obr_colonia', '$obr_cp', '$obr_ciudad', '$obr_municipio', '$obr_fechInicio', '$obr_fechFin', '$obr_avance', '$obr_nota', '$obr_cliente', 0, '$obr_grupo')");
+    $ref = "OBR-".$obr_nombre;
+    $result = mysqli_query($con,"INSERT INTO obras(usuCreacion,identificador, nombre, calle, numExt, numInt, colonia, cp, ciudad, municipio, fechInicio, fechFin, avance, comentario, fk_clientes, estado, fk_grupo, costoTotal, porcentajeGanancia, superficie)
+        VALUES('admin', '$ref', '$obr_nombre', '$obr_calle', '$obr_numExt', '$obr_numInt', '$obr_colonia', '$obr_cp', '$obr_ciudad', '$obr_municipio', '$obr_fechInicio', '$obr_fechFin', '$obr_avance', '$obr_nota', '$obr_cliente', 0, '$obr_grupo', '$obr_costo', '$obr_porcentaje', '$obr_superficie')");
     $id = mysqli_insert_id($con);
 
-    $result = mysqli_query($con,"INSERT INTO detalles_obras(usuCreacion,avance, comentario, fk_obra)
-        VALUES('admin', '$obr_avance', '$obr_nota', '$id')");
+    // $result = mysqli_query($con,"INSERT INTO detalles_obras(usuCreacion,avance, comentario, fk_obra)
+    //     VALUES('admin', '$obr_avance', '$obr_nota', '$id')");
 
-header("Location: ../../../../../index.php?p=obras");
+    header("Location: ../../../../../index.php?p=obras");
   }
  ?>

@@ -185,9 +185,17 @@ function abrir(archivo, ref) {
         case "nominas":
             $("#divContenido").load('production/core/nominas/templates/nominas.php');
             break; 
+
+        case "materiales":
+            $("#divContenido").load('production/core/compras/templates/reportes.php');
+            break; 
             
         case "reportesObras":
             $("#divContenido").load('production/core/obras/templates/reportes.php');
+            break;
+
+        case "totalObra":
+            $("#divContenido").load('production/core/obras/templates/totalObra.php');
             break;
 
 

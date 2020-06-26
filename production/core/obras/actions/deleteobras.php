@@ -12,7 +12,7 @@ else {
         
     $result = mysqli_query($con,"SET SQL_SAFE_UPDATES = 0;");
     $result = mysqli_query($con,"SET FOREIGN_KEY_CHECKS=0;");
-    $result = mysqli_query($con, "UPDATE obras SET estado = 1 WHERE identificador = '$ref';");    
+    $result = mysqli_query($con, "UPDATE obras SET estado = 1 WHERE id = '$ref';");    
    // $result = mysqli_query($con,"DELETE FROM obras WHERE identificador = '$ref';");    
     $result = mysqli_query($con,"SET FOREIGN_KEY_CHECKS=1;");
     $result = mysqli_query($con,"SET SQL_SAFE_UPDATES = 1;");

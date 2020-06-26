@@ -20,26 +20,7 @@ else {
                             where o.id = $elemento[fk_obra];");                              
     $elemento3 = mysqli_fetch_array($result3);
                             
-                               
-    while($row = $result2->fetch_array(MYSQLI_ASSOC)) 
-        $el2[] = $row;                       
       
-
-    function fuNomina($el2) {
-
-        foreach ($el2 as $elemento02) {
-
-            $seguro = $elemento02[salario] * 0.31;                        
-            $count = $elemento02["lunes"] + $elemento02["martes"] + $elemento02["miercoles"] + $elemento02["jueves"] + $elemento02["viernes"] + $elemento02["sabado"];            
-            $importeLibre = ($elemento02[salario]/6) * $count;
-            $importeSeguro = $importeLibre + $seguro;
-
-            $GLOBALS['totNomi'] = $GLOBALS['totNomi'] + $importeSeguro;
-        }        
-
-    }
-
-    fuNomina($el2);
 
 }
 
@@ -47,12 +28,12 @@ else {
 
 <page style="font-size: 14px">
     
-    <table width=1440 height=150>
+    <table border="1" bordercolor="#007" width=1440 >
         <tr align="center" >
-            <th style="width:100%; height:120px;"><h1> WorkShop Studio Premier</h1>Architecture + 3D Visualization</th>            
-        </tr>        
+            <th style="width:100%; font-size: 30px">WorkShop</th>
+        </tr>
     </table>
-    <table border=0.5   bordercolor="#73879ca3" width=1440 >
+    <table    bordercolor="#007" width=1440 >
         <tr>            
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:200px;" >Cliente</td>
             <td style="width:520px;" ><?php echo $elemento3[cliente] ?></td>
@@ -62,9 +43,9 @@ else {
         
         <tr>            
             <td style="text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:100px;" >Frente</td>
-            <td style="width:100px;"></td>
+            <td style="width:100px;">000</td>
             <td style="text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:100px;">Fecha impresión</td>
-            <td style="width:100px;"><?php echo date("d/m/Y"); ?></td>
+            <td style="width:100px;">25/02/2020</td>
         </tr>
 
       
@@ -73,39 +54,38 @@ else {
             <td colspan="2" style="text-align: center; padding: 5px 2px; background-color: #BFCCD7;">Lista Nominal</td>
             
             <td style="width: 100px; background-color: #BFCCD7;">Total Nomina Obra</td>
-            <td style="width: 100px;">$<?php echo round($totNomi,2); ?></td>
+            <td style="width: 100px;">$202000</td>
         </tr>        
         
     </table>
     <table bordercolor="#007"  style="font-size: 11px; width:100%; " >           
             <tr style="background-color: #1E8EC6; color:#333333; text-align: center;">
                 <th style=" padding: 3px 2px; width: 25px; ">Sem </th>
-                <th style="width: 150px;">Periodo </th>
-                <th style="width: 250px;">Nombre</th>
-                <th style="width: 150px;">Puesto</th>
-                <th style="width: 150px;">Categoría</th>
+                <th style="width: 120px;">Periodo </th>
+                <th style="width: 160px;">Nombre</th>
+                <th style="width: 70px;">Puesto</th>
+                <th style="width: 120px;">Categoría</th>
                 <th style="width: 100px;">N.S.S</th>            
-                <th style="width: 20px; text-align: center; ">Lu</th>
-                <th style="width: 20px; text-align: center; ">Ma</th>
-                <th style="width: 20px; text-align: center; ">Mi</th>
-                <th style="width: 20px; text-align: center; ">Ju</th>
-                <th style="width: 20px; text-align: center; ">Vi</th>
-                <th style="width: 20px; text-align: center; ">Sa</th>
+                <th style="width: 17px; text-align: center; ">Lu</th>
+                <th style="width: 17px; text-align: center; ">Ma</th>
+                <th style="width: 17px; text-align: center; ">Mi</th>
+                <th style="width: 17px; text-align: center; ">Ju</th>
+                <th style="width: 17px; text-align: center; ">Vi</th>
+                <th style="width: 17px; text-align: center; ">Sa</th>
                 <th style="width: 55px;">D. Labo</th>
                 <th style="width: 80px;">Seguro</th>
                 <th style="width: 70px;">Pago</th>
                 <th style="width: 75px;">Imp. Libre</th>
-                <th style="width: 75px;">Imp. Segu</th>                
-                <th style="width: 90px;">Coment</th>
+                <th style="width: 75px;">Imp. Segu</th>
+                <th style="width: 80px;">Tot. Libre</th>
+                <th style="width: 80px;">Tot. Segu</th>
+                <th style="width: 80px;">Tot. Cat</th>
+                <th style="width: 84px;">Coment</th>
             </tr>
             <tr style="color:black;">
                 <?php
                 $bandera = true;
-                $totalSemanaLibre = 0;
-                $totalSemanaSeguro = 0;
-                $totalCategoria = 0; 
-
-                foreach ($el2 as $elemento2) {                
+                    while($elemento2 = mysqli_fetch_array($result2)){
                         $count = 0;
                         $seguro = $elemento2[salario] * 0.31;                        
                         
@@ -118,8 +98,8 @@ else {
                                 <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento2[categoria].'</td>            
                                 <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento2[nssi].'</td>            
                                 <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[lunes] == 1){$count++; echo 'x'; } else if($elemento2[lunes] == 0.5){$count = $count + 0.5; echo '1/2'; }  echo'</td>
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[martes] == 1){ $count++; echo 'x'; } else if($elemento2[martes] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[miercoles] == 1){ $count++; echo 'x'; } else if($elemento2[miercoles] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[miercoles] == 1){ $count++; echo 'x'; } else if($elemento2[martes] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[martes] == 1){ $count++; echo 'x'; } else if($elemento2[miercoles] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
                                 <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[jueves] == 1){ $count++; echo 'x'; } else if($elemento2[jueves] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
                                 <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[viernes] == 1){ $count++; echo 'x'; } else if($elemento2[viernes] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
                                 <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[sabado] == 1){ $count++; echo 'x'; } else if($elemento2[sabado] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
@@ -132,40 +112,26 @@ else {
 
 
                                 echo '
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.round($importeLibre,2).'</td>       
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.round($importeSeguro,2).'</td>                                       
-                                <td style="border-bottom: 1px solid #B4B5B0;">'.$elemento2[comentario].'</td>       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.$importeLibre.'</td>       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.$importeSeguro.'</td>       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">'.$elemento2[monto].'</td>       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">'.$elemento2[monto].'</td>       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">'.$elemento2[monto].'</td>       
+                                <td style="border-bottom: 1px solid #B4B5B0;">'.$elemento2[monto].'</td>       
                             </tr>
                         ';                        
                         if($bandera == false)
                             $bandera = true;
                         else
                             $bandera = false;
-
-                        $totalSemanaLibre = $totalSemanaLibre + $importeLibre;
-                        $totalSemanaSeguro = $totalSemanaSeguro + $importeSeguro;
-
                     }      
                     ?>
             </tr>        
         </table>
 
-    <br><br>
 
 
-    <table  border="1"  style="font-size: 14px; width:100%; " >           
-        <tr style=" color:#333333; text-align: center;">
-            <th style="background-color: #5aa3e2; color:white; padding: 3px 2px; width: 200px; ">Total Semana Libre </th>
-            <th style="width: 150px;">$<?php echo round($totalSemanaLibre,2); ?> </th>
-        </tr>
-        <tr style=" color:#333333; text-align: center;">
-            <th style="background-color: #5aa3e2; color:white; padding: 3px 2px; width: 200px; ">Total Semana con Seguro </th>
-            <th style="width: 150px;">$<?php echo round($totalSemanaSeguro,2); ?> </th>
-        </tr>
-    </table>
-
-    
-    <br>
+    <br><br><br>
 
 
 </page>

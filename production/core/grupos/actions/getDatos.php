@@ -47,6 +47,7 @@
                                                     <th>Jueves</th>              
                                                     <th>Viernes</th>    
                                                     <th>Sábado</th>    
+                                                    <th>Opción</th>    
                                                 </tr>
                                             </thead>                                            
                                             <tbody> 
@@ -56,12 +57,33 @@
                                                             <tr>
                                                                 <td style="display: none;"><input name="empleado_'.$count.'" id="empleado_'.$count.'" type="text" value="'.$elemento2[id].'" /></td>            
                                                                 <td>'.$elemento2[nombre].'</td>            
-                                                                <td><input name="empleado_dia_1_'.$elemento2[id].'"  type="checkbox" id="empleado_dia_1_'.$elemento2[id].'" ></td>
-                                                                <td><input name="empleado_dia_2_'.$elemento2[id].'"  type="checkbox" id="empleado_dia_2_'.$elemento2[id].'" ></td>
-                                                                <td><input name="empleado_dia_3_'.$elemento2[id].'" type="checkbox" id="empleado_dia_3_'.$elemento2[id].'" ></td>
-                                                                <td><input name="empleado_dia_4_'.$elemento2[id].'" type="checkbox" id="empleado_dia_4_'.$elemento2[id].'" ></td>
-                                                                <td><input name="empleado_dia_5_'.$elemento2[id].'" type="checkbox" id="empleado_dia_5_'.$elemento2[id].'" ></td>
-                                                                <td><input name="empleado_dia_6_'.$elemento2[id].'" type="checkbox" id="empleado_dia_6_'.$elemento2[id].'" ></td>
+                                                                <td>
+                                                                    <input value="1" name="empleado_dia_1_'.$elemento2[id].'"  type="radio" id="empleado_dia_1_'.$elemento2[id].'" > día 
+                                                                    <input value="0.5" name="empleado_dia_1_'.$elemento2[id].'"  type="radio" id="empleado_dia_1_'.$elemento2[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input value="1" name="empleado_dia_2_'.$elemento2[id].'"  type="radio" id="empleado_dia_2_'.$elemento2[id].'" > día
+                                                                    <input value="0.5" name="empleado_dia_2_'.$elemento2[id].'"  type="radio" id="empleado_dia_2_'.$elemento2[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input value="1" name="empleado_dia_3_'.$elemento2[id].'" type="radio" id="empleado_dia_3_'.$elemento2[id].'" > día
+                                                                    <input value="0.5" name="empleado_dia_3_'.$elemento2[id].'" type="radio" id="empleado_dia_3_'.$elemento2[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input value="1" name="empleado_dia_4_'.$elemento2[id].'" type="radio" id="empleado_dia_4_'.$elemento2[id].'" > día
+                                                                    <input value="0.5" name="empleado_dia_4_'.$elemento2[id].'" type="radio" id="empleado_dia_4_'.$elemento2[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input value="1" name="empleado_dia_5_'.$elemento2[id].'" type="radio" id="empleado_dia_5_'.$elemento2[id].'" > día
+                                                                    <input value="0.5" name="empleado_dia_5_'.$elemento2[id].'" type="radio" id="empleado_dia_5_'.$elemento2[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input value="1" name="empleado_dia_6_'.$elemento2[id].'" type="radio" id="empleado_dia_6_'.$elemento2[id].'" > día
+                                                                    <input value="0.5" name="empleado_dia_6_'.$elemento2[id].'" type="radio" id="empleado_dia_6_'.$elemento2[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input value="limpiar" onclick="limpiarCampos('.$elemento2[id].')" name="limpiar" type="button" id="limpiar" >                                                                    
+                                                                </td>
                                                             </tr>
                                                         ';
                                                         $count++;
@@ -85,7 +107,7 @@
         {            
 
 
-            $result3 = mysqli_query($con,"SELECT  e.id, e.nombre, ae.lunes, ae.martes, ae.miercoles, ae.jueves, ae.viernes  FROM empleados e 
+            $result3 = mysqli_query($con,"SELECT distinct(e.id), e.nombre, ae.lunes, ae.martes, ae.miercoles, ae.jueves, ae.viernes  FROM empleados e 
                                             INNER JOIN grupos_empleados ge on e.id = ge.fk_empleado
                                             INNER JOIN asistencias_empleados ae on ge.fk_empleado = ae.fk_empleado
                                             WHERE ae.fk_asistencia = $id;");   
@@ -129,6 +151,7 @@
                                                     <th>Jueves</th>              
                                                     <th>Viernes</th>    
                                                     <th>Sábado</th>    
+                                                    <th>Opción</th>    
                                                 </tr>
                                             </thead>                                            
                                             <tbody> 
@@ -138,12 +161,33 @@
                                                             <tr>
                                                                 <td style="display: none;"><input name="empleado_'.$count.'" id="empleado_'.$count.'" type="text" value="'.$elemento3[id].'" /></td>            
                                                                 <td>'.$elemento3[nombre].'</td>            
-                                                                <td><input '; if($elemento3[lunes] == 1){ echo 'checked'; } echo ' name="empleado_dia_1_'.$elemento3[id].'"  type="checkbox" id="empleado_dia_1_'.$elemento3[id].'" ></td>
-                                                                <td><input '; if($elemento3[martes] == 1){ echo 'checked'; } echo ' name="empleado_dia_2_'.$elemento3[id].'"  type="checkbox" id="empleado_dia_2_'.$elemento3[id].'" ></td>
-                                                                <td><input '; if($elemento3[miercoles] == 1){ echo 'checked'; } echo ' name="empleado_dia_3_'.$elemento3[id].'" type="checkbox" id="empleado_dia_3_'.$elemento3[id].'" ></td>
-                                                                <td><input '; if($elemento3[jueves] == 1){ echo 'checked'; } echo ' name="empleado_dia_4_'.$elemento3[id].'" type="checkbox" id="empleado_dia_4_'.$elemento3[id].'" ></td>
-                                                                <td><input '; if($elemento3[viernes] == 1){ echo 'checked'; } echo ' name="empleado_dia_5_'.$elemento3[id].'" type="checkbox" id="empleado_dia_5_'.$elemento3[id].'" ></td>
-                                                                <td><input '; if($elemento3[sabado] == 1){ echo 'checked'; } echo ' dname="empleado_dia_6_'.$elemento3[id].'" type="checkbox" id="empleado_dia_6_'.$elemento3[id].'" ></td>
+                                                                <td>
+                                                                    <input value="1" '; if($elemento3[lunes] == 1){ echo 'checked'; } echo ' name="empleado_dia_1_'.$elemento3[id].'"  type="radio" id="empleado_dia_1_'.$elemento3[id].'" > día
+                                                                    <input value="0.5" '; if($elemento3[lunes] == 0.5){ echo 'checked'; } echo ' name="empleado_dia_1_'.$elemento3[id].'"  type="radio" id="empleado_dia_1_'.$elemento3[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input value="1" '; if($elemento3[martes] == 1){ echo 'checked'; } echo ' name="empleado_dia_2_'.$elemento3[id].'"  type="radio" id="empleado_dia_2_'.$elemento3[id].'" > día
+                                                                    <input value="0.5" '; if($elemento3[martes] == 0.5){ echo 'checked'; } echo ' name="empleado_dia_2_'.$elemento3[id].'"  type="radio" id="empleado_dia_2_'.$elemento3[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input value="1" '; if($elemento3[miercoles] == 1){ echo 'checked'; } echo ' name="empleado_dia_3_'.$elemento3[id].'" type="radio" id="empleado_dia_3_'.$elemento3[id].'" > día
+                                                                    <input value="0.5" '; if($elemento3[miercoles] == 0.5){ echo 'checked'; } echo ' name="empleado_dia_3_'.$elemento3[id].'" type="radio" id="empleado_dia_3_'.$elemento3[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input value="1" '; if($elemento3[jueves] == 1){ echo 'checked'; } echo ' name="empleado_dia_4_'.$elemento3[id].'" type="radio" id="empleado_dia_4_'.$elemento3[id].'" > día
+                                                                    <input value="0.5" '; if($elemento3[jueves] == 0.5){ echo 'checked'; } echo ' name="empleado_dia_4_'.$elemento3[id].'" type="radio" id="empleado_dia_4_'.$elemento3[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input value="1" '; if($elemento3[viernes] == 1){ echo 'checked'; } echo ' name="empleado_dia_5_'.$elemento3[id].'" type="radio" id="empleado_dia_5_'.$elemento3[id].'" > día
+                                                                    <input value="0.5" '; if($elemento3[viernes] == 0.5){ echo 'checked'; } echo ' name="empleado_dia_5_'.$elemento3[id].'" type="radio" id="empleado_dia_5_'.$elemento3[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input value="1" '; if($elemento3[sabado] == 1){ echo 'checked'; } echo ' dname="empleado_dia_6_'.$elemento3[id].'" type="radio" id="empleado_dia_6_'.$elemento3[id].'" > día
+                                                                    <input value="0.5" '; if($elemento3[sabado] == 0.5){ echo 'checked'; } echo ' dname="empleado_dia_6_'.$elemento3[id].'" type="radio" id="empleado_dia_6_'.$elemento3[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input value="limpiar" onclick="limpiarCampos2('.$elemento3[id].')" name="limpiar" type="button" id="limpiar" >                                                                    
+                                                                </td>
                                                             </tr>
                                                         ';
                                                         $count++;

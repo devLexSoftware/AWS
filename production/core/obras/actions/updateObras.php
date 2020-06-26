@@ -9,6 +9,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
   else {
 
     //--Datos de usuario
+    $obr_id            = $_POST['obr_id'];
     $obr_ref            = $_POST['obr_ref'];
     $obr_nombre         = $_POST['obr_nombre'];
     $obr_cliente        = $_POST['obr_cliente'];
@@ -24,6 +25,10 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $obr_avance         = $_POST['obr_avance'];
     $obr_nota           = $_POST['obr_nota'];
     $obr_grupo          = $_POST['obr_grupo'];
+    $obr_costo          = $_POST['obr_costoTotal'];
+    $obr_porcentaje     = $_POST['obr_porcentaje'];
+    $obr_superficie     = $_POST['obr_superficie'];
+
 
     //--Insertar nuevo proveedor
     //$ref = "CLI-".substr($cli_nombre,0, 4).$cli_rfc."-".$cli_email;    
@@ -32,10 +37,10 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
     $result = mysqli_query($con, "UPDATE obras SET nombre = '$obr_nombre', calle = '$obr_calle', numExt = '$obr_numExt', numInt = '$obr_numInt', colonia = '$obr_colonia',
                                     cp = '$obr_cp', ciudad = '$obr_ciudad', municipio = '$obr_municipio', comentario = '$obr_nota', fechInicio = '$obr_fechInicio', fechFin = '$obr_fechFin',
-                                    avance = '$obr_avance', fk_clientes = '$obr_cliente', fk_grupo = '$obr_grupo'
-                                    WHERE identificador = '$obr_ref'");
+                                    avance = '$obr_avance', fk_clientes = '$obr_cliente', fk_grupo = '$obr_grupo', costoTotal ='$obr_costo', porcentajeGanancia = '$obr_porcentaje', superficie = '$obr_superficie'
+                                    WHERE id = '$obr_id'");
     
-    // header("Location: ../../../../../index.php?p=obrasOk");
+    header("Location: ../../../../../index.php?p=obrasOk");
 
   }
  ?>

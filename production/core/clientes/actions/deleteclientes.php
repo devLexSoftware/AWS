@@ -11,7 +11,7 @@ else {
     $pag = $_POST["pagina"];
         
     $result = mysqli_query($con,"SET SQL_SAFE_UPDATES = 0;");
-    $result = mysqli_query($con, "UPDATE clientes SET estado = 1 WHERE identificador = '$ref';");
+    $result = mysqli_query($con, "UPDATE clientes SET estado = 1 WHERE id = '$ref';");
     //$result = mysqli_query($con,"DELETE FROM clientes WHERE identificador = '$ref';");    
     $result = mysqli_query($con,"SET SQL_SAFE_UPDATES = 1;");
 }

@@ -34,8 +34,16 @@ else {
             <h3>C O M P R A </h3>
         </div>
         <div class="col-md-2">
-            <input type="button" class="form-control btn btn-info" value="Mostrar recibo" data-toggle="modal" data-target="#reciboModal">
-        </div>
+        <?php if($elemento["foto"] != null)
+        {   
+        ?>     
+            
+                <input type="button" class="form-control btn btn-info" value="Mostrar recibo" data-toggle="modal" data-target="#reciboModal">
+            
+        <?php 
+        }   
+        ?>  
+        </div>   
         <div class="col-md-2">
         </div>
         <div class="col-md-2">
@@ -90,7 +98,7 @@ else {
                             </div>
                             <div class="col-md-2">
                                 <label for="Periodo_Reporte">Fecha de compra:<span class="required">*</span></label>
-                                <input type="date" id="fecha_Reporte" name="fecha_Reporte" required="required" class="form-control col-md-2 col-xs-12" placeholder="Ingresa el inicio de periodo" value="<?php echo($elemento['fecha']); ?>"><br><br>
+                                <input type="text" id="fecha_Reporte" name="fecha_Reporte" required="required" class="form-control col-md-2 col-xs-12" placeholder="Ingresa el inicio de periodo" value="<?php echo($elemento['fecha']); ?>"><br><br>
                             </div>                            
                             <div class="col-md-3">
                                 <label >Periodo Inicial: </label><span>Solo días lunes</span>
@@ -276,6 +284,11 @@ else {
         daysOfWeekDisabled: "1,2,3,4,5,6",
         format: 'dd-mm-yyyy'//check change
     });
+    $('#fecha_Reporte').datepicker({
+        autoclose: true,        
+        format: 'dd-mm-yyyy'//check change
+    });
+    
 });
 </script>
 

@@ -88,7 +88,7 @@ else {
                             </div>
                             <div class="col-md-2">
                                 <label for="Periodo_Reporte">Fecha de compra:<span class="required">*</span></label>
-                                <input type="date" id="fecha_Reporte" name="fecha_Reporte" required="required" class="form-control col-md-2 col-xs-12" placeholder="Ingresa el inicio de periodo"><br><br>
+                                <input type="text" id="fecha_Reporte" name="fecha_Reporte" required="required" placeholder="DD/MM/YYYY" class="form-control col-md-2 col-xs-12" placeholder="Ingresa el inicio de periodo"><br><br>
                             </div>                            
                             <div class="col-md-3">
                                 <label >Periodo Inicial: </label><span>Solo días lunes</span>
@@ -97,7 +97,7 @@ else {
                             </div>
                             <div class="col-md-3">
                                 <label >Periodo Final: </label><span>Solo días domingo</span>
-                                <input required class="form-control" id="fechFinal_Reporte" name="fechFinal_Reporte" placeholder="DD/MM/YYYY" type="text"/>
+                                <input required readonly class="form-control" id="fechFinal_Reporte" name="fechFinal_Reporte" placeholder="DD/MM/YYYY" type="text"/>
                             </div>
                          </div>
 
@@ -375,6 +375,10 @@ $(document).ready(function() {
     $('#fechFinal_Reporte').datepicker({
         autoclose: true,
         daysOfWeekDisabled: "1,2,3,4,5,6",
+        format: 'dd-mm-yyyy'//check change
+    });
+    $('#fecha_Reporte').datepicker({
+        autoclose: true,        
         format: 'dd-mm-yyyy'//check change
     });
 });

@@ -17,7 +17,7 @@ else {
 
         <div class="page-title">
             <div class="title_left">
-                <h3>N O M I N A</h3>
+                <h3>C O M P R A S</h3>
             </div>
         </div>
 
@@ -25,7 +25,7 @@ else {
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_title form-group row">
                     <div class="col-md-2">
-                        <h2>Checar nomina</h2>
+                        <h2>Checar compras</h2>
                     </div>                    
                 </div>
 
@@ -42,7 +42,7 @@ else {
                                         </div>
                                         <div class="from-group row">
                                             <div class="col-md-6">
-                                                <select name="asis_obra" id="asis_obra" class="form-control" onchange="obtenerAsistencia(this.value,'asistenciasNominas')"> 
+                                                <select name="asis_obra" id="asis_obra" class="form-control" > 
                                                 <option>Selecciona la obra</option>
                                                 <?php 
                                                     while($elemento = mysqli_fetch_array($result)){
@@ -61,7 +61,7 @@ else {
                                 <div class="col-md-12 col-xs-12">
                                     <div class="x_content">                                        
                                         <div class="from-group row">
-                                            <div class="col-md-2">
+                                            <!-- <div class="col-md-2">
                                                 <label for="Semana_Reporte">Semana:<span class="required">*</span></label>                                                
                                                 <select name="asis_semana" id="asis_semana" class="form-control" onchange="obtenerListaEmpleados(this.value,'asistenciasListaNominas')"> 
                                                 <option>Selecciona la semana</option>                                                
@@ -77,11 +77,11 @@ else {
                                                 <input readonly  id="asis_id" name="asis_id" type="hidden"/>
                                             </div>
                                             <div class="col-md-2">
-                                            </div>
+                                            </div> -->
                                             <div class="col-md-2">
                                                 <label for="Semana_Reporte">Opciones</label>
                                                 
-                                                <input onclick="imprimirNomina()" class="form-control btn btn-info" value="Imprimir">
+                                                <input onclick="imprimirReporte()" class="form-control btn btn-info" value="Imprimir">
                                                 
                                             </div>                                
                                         </div>                                                                                
@@ -112,7 +112,7 @@ else {
 
 
 
-<script src="../../../production/components/js/files/asistencias/general.js"></script>
+<script src="../../../production/components/js/files/compras/general.js"></script>
 
 
 <script>

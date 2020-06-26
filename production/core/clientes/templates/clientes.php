@@ -63,8 +63,8 @@
                                 <input type="text" name="cli_ciudad" id="cli_ciudad" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la ciudad">
                             </div>
                             <div class="col-md-3">
-                                <label for="Municipio-Client">Municipio:</label>                            
-                                <input type="text" name="cli_municipio" id="cli_municipio" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el municipio">
+                                <label for="Municipio-Client">Estado:</label>                            
+                                <input type="text" name="cli_municipio" id="cli_municipio" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el estado">
                             </div>
                         </div>
 

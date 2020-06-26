@@ -9,8 +9,27 @@
     else {
         $id = $_POST["id"];
         $tabla = $_POST["tabla"];
-        $result = mysqli_query($con,"SELECT * FROM $tabla WHERE id = $id and estado = 0;");   
-        $elemento = mysqli_fetch_array($result);
-        echo json_encode($elemento);
+
+        if($tabla == "comprasObra")
+        {
+
+            $myArray  = null;
+            $result = mysqli_query($con,"SELECT c.nombre, c.descripcion, c.fecha, c.frente, c.semana, c.cantidad, c.unidad, c.factura, p.proveedor, c.subtotal, c.importe, c.costo from compras c
+                                inner join proveedores p on c.fk_proveedor = p.id
+                                where o.fk_obra = $id;");                           
+            
+
+            while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+            $myArray[] = $row;
+            }
+            echo json_encode($myArray);
+        }
+        else{
+            $id = $_POST["id"];
+            $tabla = $_POST["tabla"];
+            $result = mysqli_query($con,"SELECT * FROM $tabla WHERE id = $id and estado = 0;");   
+            $elemento = mysqli_fetch_array($result);
+            echo json_encode($elemento);
+        }        
     }
  ?>

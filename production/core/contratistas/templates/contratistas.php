@@ -60,7 +60,7 @@ else {
                         <div class="form-group row">
                             <div class="col-md-4">
                                 <label>Móvil:<span class="required">*</span></label>
-                                <input type="text" name="con_movil" required="required" class="form-control col-md-7 col-xs-12" placeholder="Nombre del Encargado">
+                                <input type="text" name="con_movil" required="required" class="form-control col-md-7 col-xs-12" placeholder="Móvil">
                             </div>
                             <div class="col-md-4">
                                 <label>Correo:<span class="required">*</span></label>

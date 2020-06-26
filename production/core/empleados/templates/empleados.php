@@ -35,6 +35,23 @@
                                   </div>
                             </div>
 
+
+                            
+                            <div class="form-group row">
+                              <div class="col-md-6">
+                                <label >Empresa:</label>
+                                    <input type="text" id="Empl_EmpresaEmpleado" name="Empl_EmpresaEmpleado" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el nombre de la empresa">
+                                </div>
+                                <div class="col-md-3">
+                                  <label >Giro:</label>
+                                      <input type="text" id="Empl_GiroEmpleado" name="Empl_GiroEmpleado" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el giro de la empresa">
+                                  </div>     
+                                  <div class="col-md-3">
+                                  <label >Salario:</label>
+                                      <input type="number" id="Empl_Salario" name="Empl_Salario" class="form-control col-md-7 col-xs-12" placeholder="Salario del empleado">
+                                  </div>                                  
+                            </div>
+
                             <div class="form-group row">
                               <div class="col-md-6">
                                   <label >Dirección:</label>
@@ -54,20 +71,6 @@
                                   </div>
                             </div>
 
-                            <div class="form-group row">
-                              <div class="col-md-6">
-                                <label >Empresa:</label>
-                                    <input type="text" id="Empl_EmpresaEmpleado" name="Empl_EmpresaEmpleado" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el nombre de la empresa">
-                                </div>
-                                <div class="col-md-3">
-                                  <label >Giro:</label>
-                                      <input type="text" id="Empl_GiroEmpleado" name="Empl_GiroEmpleado" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el giro de la empresa">
-                                  </div>     
-                                  <div class="col-md-3">
-                                  <label >Salario:</label>
-                                      <input type="number" id="Empl_Salario" name="Empl_Salario" class="form-control col-md-7 col-xs-12" placeholder="Salario del empleado">
-                                  </div>                                  
-                            </div>
 
                             <div class="form-group row">
                                 <div class="col-md-10">
@@ -125,6 +128,28 @@
 
 <!-- /page content -->
 
+
+
+ <!-- Modal de satisfactorio -->
+ <div class="modal fade" id="modalDel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="">Exito</h3>          
+        </div>
+        <div class="modal-body row">
+          <div class="form-group col-md-12">
+            <h4 class="sMargen">Se borro el empleado seleccionado</h4>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" type="button" data-dismiss="modal">Aceptar</button>          
+        </div>
+      </div>
+    </div>
+  </div>
+ <!-- /Modal de satisfactorio -->
+
 <script type="text/javascript">
 var n = 0;
  $(document).ready(function() {
@@ -157,7 +182,7 @@ var n = 0;
        if(vars['p'] == "empleadosOk"){
            $('#modal').modal('show');
        }
-       else if(vars['p'] == "clientesDel"){
+       else if(vars['p'] == "empleadosDel"){
            $('#modalDel').modal('show');
        }
      });

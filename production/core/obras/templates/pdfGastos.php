@@ -1,7 +1,7 @@
 <?php
 include("production/config/conexion.php");
-//error_reporting(E_ALL);
-//ini_set('display_errors', '1');
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 if (mysqli_connect_errno()) {
 echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
@@ -19,27 +19,27 @@ else {
                             inner join clientes c on o.fk_clientes = c.id    
                             where o.id = $elemento[fk_obra];");                              
     $elemento3 = mysqli_fetch_array($result3);
-                            
-                               
-    while($row = $result2->fetch_array(MYSQLI_ASSOC)) 
-        $el2[] = $row;                       
-      
+
 
     function fuNomina($el2) {
 
-        foreach ($el2 as $elemento02) {
+        while($elemento2 = mysqli_fetch_array($el2)){
 
-            $seguro = $elemento02[salario] * 0.31;                        
-            $count = $elemento02["lunes"] + $elemento02["martes"] + $elemento02["miercoles"] + $elemento02["jueves"] + $elemento02["viernes"] + $elemento02["sabado"];            
-            $importeLibre = ($elemento02[salario]/6) * $count;
+
+            $seguro = $elemento2[salario] * 0.31;                        
+            $count = $elemento2["lunes"] + $elemento2["martes"] + $elemento2["miercoles"] + $elemento2["jueves"] + $elemento2["viernes"] + $elemento2["sabado"];            
+            $importeLibre = ($elemento2[salario]/6) * $count;
             $importeSeguro = $importeLibre + $seguro;
 
-            $GLOBALS['totNomi'] = $GLOBALS['totNomi'] + $importeSeguro;
-        }        
+            // $GLOBALS['totNomi'] = 11;
+        }
+        $GLOBALS['totNomi'] = 11;
 
     }
 
-    fuNomina($el2);
+    fuNomina($result2);
+                            
+      
 
 }
 
@@ -61,10 +61,10 @@ else {
         </tr>
         
         <tr>            
-            <td style="text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:100px;" >Frente</td>
-            <td style="width:100px;"></td>
+            <td style="text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:100px;" ></td>
+            <td style="width:100px;">000</td>
             <td style="text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:100px;">Fecha impresión</td>
-            <td style="width:100px;"><?php echo date("d/m/Y"); ?></td>
+            <td style="width:100px;">25/02/2020</td>
         </tr>
 
       
@@ -73,7 +73,7 @@ else {
             <td colspan="2" style="text-align: center; padding: 5px 2px; background-color: #BFCCD7;">Lista Nominal</td>
             
             <td style="width: 100px; background-color: #BFCCD7;">Total Nomina Obra</td>
-            <td style="width: 100px;">$<?php echo round($totNomi,2); ?></td>
+            <td style="width: 100px;">$<?php echo $totNomi;  ?></td>
         </tr>        
         
     </table>
@@ -104,8 +104,7 @@ else {
                 $totalSemanaLibre = 0;
                 $totalSemanaSeguro = 0;
                 $totalCategoria = 0; 
-
-                foreach ($el2 as $elemento2) {                
+                    while($elemento2 = mysqli_fetch_array($result2)){
                         $count = 0;
                         $seguro = $elemento2[salario] * 0.31;                        
                         
@@ -118,8 +117,8 @@ else {
                                 <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento2[categoria].'</td>            
                                 <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento2[nssi].'</td>            
                                 <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[lunes] == 1){$count++; echo 'x'; } else if($elemento2[lunes] == 0.5){$count = $count + 0.5; echo '1/2'; }  echo'</td>
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[martes] == 1){ $count++; echo 'x'; } else if($elemento2[martes] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[miercoles] == 1){ $count++; echo 'x'; } else if($elemento2[miercoles] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[miercoles] == 1){ $count++; echo 'x'; } else if($elemento2[martes] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[martes] == 1){ $count++; echo 'x'; } else if($elemento2[miercoles] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
                                 <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[jueves] == 1){ $count++; echo 'x'; } else if($elemento2[jueves] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
                                 <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[viernes] == 1){ $count++; echo 'x'; } else if($elemento2[viernes] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
                                 <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[sabado] == 1){ $count++; echo 'x'; } else if($elemento2[sabado] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
@@ -132,8 +131,8 @@ else {
 
 
                                 echo '
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.round($importeLibre,2).'</td>       
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.round($importeSeguro,2).'</td>                                       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.$importeLibre.'</td>       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.$importeSeguro.'</td>                                       
                                 <td style="border-bottom: 1px solid #B4B5B0;">'.$elemento2[comentario].'</td>       
                             </tr>
                         ';                        
@@ -156,11 +155,11 @@ else {
     <table  border="1"  style="font-size: 14px; width:100%; " >           
         <tr style=" color:#333333; text-align: center;">
             <th style="background-color: #5aa3e2; color:white; padding: 3px 2px; width: 200px; ">Total Semana Libre </th>
-            <th style="width: 150px;">$<?php echo round($totalSemanaLibre,2); ?> </th>
+            <th style="width: 150px;">$<?php echo $totalSemanaLibre; ?> </th>
         </tr>
         <tr style=" color:#333333; text-align: center;">
             <th style="background-color: #5aa3e2; color:white; padding: 3px 2px; width: 200px; ">Total Semana con Seguro </th>
-            <th style="width: 150px;">$<?php echo round($totalSemanaSeguro,2); ?> </th>
+            <th style="width: 150px;">$<?php echo $totalSemanaSeguro; ?> </th>
         </tr>
     </table>
 

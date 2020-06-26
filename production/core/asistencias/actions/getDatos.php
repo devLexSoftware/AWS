@@ -11,9 +11,9 @@
         $tabla = $_POST["tabla"];
         $count = 0;
         if($tabla == "asistenciasNominas"){
-            $result = mysqli_query($con,"SELECT a.id, a.fk_grupo, a.semana, a.periodoInicial, a.periodoFinal from asistencias a 
+            $result = mysqli_query($con,"SELECT a.id, a.fk_grupo, a.semana, a.periodoInicial, a.periodoFinal, a.estado from asistencias a 
                                         inner join obras o on a.fk_obra = o.id
-                                        where o.id = $id;");               
+                                        where o.id = $id and a.estado = 0;");               
 
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $myArray[] = $row;
@@ -63,12 +63,30 @@
                                                             <tr>
                                                                 <td style="display: none;"><input name="empleado_'.$count.'" id="empleado_'.$count.'" type="text" value="'.$elemento3[id].'" /></td>            
                                                                 <td>'.$elemento3[nombre].'</td>            
-                                                                <td><input '; if($elemento3[lunes] == 1){ echo 'checked'; } echo ' name="empleado_dia_1_'.$elemento3[id].'"  type="checkbox" id="empleado_dia_1_'.$elemento3[id].'" ></td>
-                                                                <td><input '; if($elemento3[martes] == 1){ echo 'checked'; } echo ' name="empleado_dia_2_'.$elemento3[id].'"  type="checkbox" id="empleado_dia_2_'.$elemento3[id].'" ></td>
-                                                                <td><input '; if($elemento3[miercoles] == 1){ echo 'checked'; } echo ' name="empleado_dia_3_'.$elemento3[id].'" type="checkbox" id="empleado_dia_3_'.$elemento3[id].'" ></td>
-                                                                <td><input '; if($elemento3[jueves] == 1){ echo 'checked'; } echo ' name="empleado_dia_4_'.$elemento3[id].'" type="checkbox" id="empleado_dia_4_'.$elemento3[id].'" ></td>
-                                                                <td><input '; if($elemento3[viernes] == 1){ echo 'checked'; } echo ' name="empleado_dia_5_'.$elemento3[id].'" type="checkbox" id="empleado_dia_5_'.$elemento3[id].'" ></td>
-                                                                <td><input '; if($elemento3[sabado] == 1){ echo 'checked'; } echo ' dname="empleado_dia_6_'.$elemento3[id].'" type="checkbox" id="empleado_dia_6_'.$elemento3[id].'" ></td>
+                                                                <td>
+                                                                    <input disabled '; if($elemento3[lunes] == 1){ echo 'checked'; } echo ' name="empleado_dia_1_'.$elemento3[id].'"  type="radio" id="empleado_dia_1_'.$elemento3[id].'" > día
+                                                                    <input disabled '; if($elemento3[lunes] == 0.5){ echo 'checked'; } echo ' name="empleado_dia_1_'.$elemento3[id].'"  type="radio" id="empleado_dia_1_'.$elemento3[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input disabled '; if($elemento3[martes] == 1){ echo 'checked'; } echo ' name="empleado_dia_2_'.$elemento3[id].'"  type="radio" id="empleado_dia_2_'.$elemento3[id].'" > día
+                                                                    <input disabled '; if($elemento3[martes] == 0.5){ echo 'checked'; } echo ' name="empleado_dia_2_'.$elemento3[id].'"  type="radio" id="empleado_dia_2_'.$elemento3[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input disabled '; if($elemento3[miercoles] == 1){ echo 'checked'; } echo ' name="empleado_dia_3_'.$elemento3[id].'" type="radio" id="empleado_dia_3_'.$elemento3[id].'" > día
+                                                                    <input disabled '; if($elemento3[miercoles] == 0.5){ echo 'checked'; } echo ' name="empleado_dia_3_'.$elemento3[id].'" type="radio" id="empleado_dia_3_'.$elemento3[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input disabled '; if($elemento3[jueves] == 1){ echo 'checked'; } echo ' name="empleado_dia_4_'.$elemento3[id].'" type="radio" id="empleado_dia_4_'.$elemento3[id].'" > día
+                                                                    <input disabled '; if($elemento3[jueves] == 0.5){ echo 'checked'; } echo ' name="empleado_dia_4_'.$elemento3[id].'" type="radio" id="empleado_dia_4_'.$elemento3[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input disabled '; if($elemento3[viernes] == 1){ echo 'checked'; } echo ' name="empleado_dia_5_'.$elemento3[id].'" type="radio" id="empleado_dia_5_'.$elemento3[id].'" > día
+                                                                    <input disabled '; if($elemento3[viernes] == 0.5){ echo 'checked'; } echo ' name="empleado_dia_5_'.$elemento3[id].'" type="radio" id="empleado_dia_5_'.$elemento3[id].'" > medio día
+                                                                </td>
+                                                                <td>
+                                                                    <input disabled '; if($elemento3[sabado] == 1){ echo 'checked'; } echo ' dname="empleado_dia_6_'.$elemento3[id].'" type="radio" id="empleado_dia_6_'.$elemento3[id].'" > día
+                                                                    <input disabled '; if($elemento3[sabado] == 0.5){ echo 'checked'; } echo ' dname="empleado_dia_6_'.$elemento3[id].'" type="radio" id="empleado_dia_6_'.$elemento3[id].'" > medio día
+                                                                </td>
                                                             </tr>
                                                         ';
                                                         $count++;

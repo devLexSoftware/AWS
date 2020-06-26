@@ -9,7 +9,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
   else {
 
     //--Datos de usuario
-    $cli_ref        = $_POST['cli_ref'];
+    $cli_ref        = $_POST['cli_id'];
     $cli_nombre     = $_POST['cli_nombre'];
     $cli_rfc        = $_POST['cli_rfc'];
     $cli_calle      = $_POST['cli_calle'];
@@ -32,7 +32,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
     $result = mysqli_query($con, "UPDATE clientes SET nombre = '$cli_nombre', rfc = '$cli_rfc', calle =' $cli_calle', numExt = '$cli_numExt', numInt = '$cli_numInt', colonia = '$cli_colonia',
                                     cp = '$cli_cp', ciudad = '$cli_ciudad', municipio = '$cli_municipio', empresa = '$cli_empresa', email = '$cli_email', movil = '$cli_movil', telefono = '$cli_tel', nota = '$cli_nota'
-                                    WHERE identificador = '$cli_ref'");
+                                    WHERE id = '$cli_ref'");
     
     header("Location: ../../../../../index.php?p=clientesOk");
   }

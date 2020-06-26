@@ -9,7 +9,7 @@ echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->c
 else {
 
     $id = $_GET["ref"];    
-    $result = mysqli_query($con,"SELECT * FROM obras WHERE identificador = '$id';");    
+    $result = mysqli_query($con,"SELECT * FROM obras WHERE id = '$id';");    
     $elemento = mysqli_fetch_array($result);  
     
     $result1 = mysqli_query($con,"SELECT * FROM clientes WHERE estado = 0");        
@@ -53,10 +53,12 @@ else {
                                         <div class="col-md-6">
                                         <label >Código de la obra:</label>
                                             <input name="obr_ref" type="text" class="form-control" readonly="readonly" placeholder="Código de la obra" value="<?php echo($elemento['identificador']); ?>">
+                                            <input name="obr_id" type="hidden" value="<?php echo($elemento['id']); ?>">
                                         </div>
                                         <div class="col-md-6">
                                             <label >Nombre de la obra:</label>
                                             <input name="obr_nombre" type="text" class="form-control" placeholder="Nombre de la obra" value="<?php echo($elemento['nombre']); ?>">
+                                            
                                         </div>
                                     </div>
 
@@ -117,8 +119,8 @@ else {
                                         <input type="text"name="obr_ciudad"class="form-control col-md-7 col-xs-12" placeholder="Ingrese la ciudad" value="<?php echo($elemento['ciudad']); ?>">
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="Municipio-Client">Municipio:<span class="required">*</span></label>
-                                        <input type="text" name="obr_municipio" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el municipio" value="<?php echo($elemento['municipio']); ?>">
+                                        <label for="Municipio-Client">Estado:<span class="required">*</span></label>
+                                        <input type="text" name="obr_municipio" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el estado" value="<?php echo($elemento['municipio']); ?>">
                                     </div>
                                 </div>
 
@@ -134,6 +136,20 @@ else {
                                     <div class="col-md-3">
                                         <label >Avance:</label>
                                         <input type="text" name="obr_avance" class="form-control" placeholder="Avance" value="<?php echo($elemento['avance']); ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <label >Costo total:<span class="required">*</span></label>
+                                        <input name="obr_costoTotal" required="required" type="number" class="form-control" placeholder="Costo de la obra" value="<?php echo($elemento['costoTotal']); ?>">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label >Porcentaje Ganancia:<span class="required">*</span></label>
+                                        <input name="obr_porcentaje" required="required" type="number" class="form-control" placeholder="Porcentaje Ganancia" value="<?php echo($elemento['porcentajeGanancia']); ?>">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label >Superficie m2:<span class="required">*</span></label>
+                                        <input name="obr_superficie" required="required" type="number" class="form-control" placeholder="Superficie" value="<?php echo($elemento['porcentajeGanancia']); ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">

@@ -98,8 +98,8 @@ else {
                                         <input type="text"name="obr_ciudad" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la ciudad">
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="Municipio-Client">Municipio:<span class="required">*</span></label>
-                                        <input type="text" name="obr_municipio" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el municipio">
+                                        <label for="Municipio-Client">Estado:<span class="required">*</span></label>
+                                        <input type="text" name="obr_municipio" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el estado">
                                     </div>
                                 </div>
 
@@ -115,6 +115,20 @@ else {
                                     <div class="col-md-3">
                                         <label >Avance:</label>
                                         <input type="text" name="obr_avance" class="form-control" placeholder="Avance">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <label >Costo total:<span class="required">*</span></label>
+                                        <input name="obr_costoTotal" required="required" type="number" class="form-control" placeholder="Costo de la obra">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label >Porcentaje Ganancia:<span class="required">*</span></label>
+                                        <input name="obr_porcentaje" required="required" type="number" class="form-control" placeholder="Porcentaje Ganancia">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label >Superficie m2:<span class="required">*</span></label>
+                                        <input name="obr_superficie" required="required" type="number" class="form-control" placeholder="Superficie">
                                     </div>
                                 </div>
                                 <div class="form-group row">

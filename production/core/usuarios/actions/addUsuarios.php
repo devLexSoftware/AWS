@@ -38,6 +38,6 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     
     }
 
-    // header("Location: ../../../../../index.php?p=usuariosOk");
+    header("Location: ../../../../../index.php?p=usuariosOk");
   }
  ?>

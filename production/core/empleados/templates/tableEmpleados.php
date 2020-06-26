@@ -19,8 +19,7 @@ else {
             <th>Teléfono Celular</th>
             <th>Teléfono de Oficina</th>
             <th>Correo</th>
-            <th>Empresa / Negocio</th>
-            <th>Grupo</th>
+            <th>Empresa / Negocio</th>            
             <th>Acciones</th>
         </tr>
     </thead>
@@ -35,8 +34,7 @@ else {
             <td>'.$elemento[movil].'</td>
             <td>'.$elemento[telefono].'</td>
             <td>'.$elemento[email].'</td>
-            <td>'.$elemento[empresa].'</td>
-            <td>'.$elemento[grupo].'</td>
+            <td>'.$elemento[empresa].'</td>            
             <td><button type="button" id="mostrar" name="boton1"  class="btn btn-primary btn-sm">
                         <a style="text-decoration: none; text-align:center; color: white; " href="index.php?p=optionEmpleados&ref='.$elemento[id].'"> Editar</a>
                     </button>

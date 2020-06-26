@@ -197,9 +197,33 @@ else {
     }
 </script>
 
-
-
-
-
-
-
+<script type="text/javascript">
+function limpiarCampos2(id)
+{    
+debugger;
+    var lunes = document.getElementsByName('empleado_dia_1_'+id);
+    lunes.forEach(element => {
+        element.checked = false;
+    });
+    var martes = document.getElementsByName('empleado_dia_2_'+id);
+    martes.forEach(element => {
+        element.checked = false;
+    });
+    var miercoles = document.getElementsByName('empleado_dia_3_'+id);
+    miercoles.forEach(element => {
+        element.checked = false;
+    });
+    var jueves = document.getElementsByName('empleado_dia_4_'+id);
+    jueves.forEach(element => {
+        element.checked = false;
+    });
+    var viernes = document.getElementsByName('empleado_dia_5_'+id);
+    viernes.forEach(element => {
+        element.checked = false;
+    });
+    var sabado = document.getElementsByName('empleado_dia_6_'+id);
+    sabado.forEach(element => {
+        element.checked = false;
+    });
+    
+}

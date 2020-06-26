@@ -18,12 +18,13 @@ if (mysqli_connect_errno()) {
 }
 
 else {
-    $result = mysqli_query($con,"SELECT * FROM users WHERE usuario ='$usuario'");
+    $result = mysqli_query($con,"SELECT id, usuario, pass, perfil FROM users WHERE usuario ='$usuario'");
     $elemento = mysqli_fetch_array($result);
-    if($elemento[pass] == $password){
+    if($elemento[pass] == $password && $elemento[perfil] == "administrador"){
         session_start();
         $_SESSION['usuario'] = $usuario;
         $_SESSION['valida'] = "true";
+        $_SESSION['perfil'] = $elemento["perfil"];
         header("location: ../../../../index.php");
     }
     else{

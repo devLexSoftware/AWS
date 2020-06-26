@@ -8,6 +8,7 @@ echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->c
 }
 else {        
     $result = mysqli_query($con,"SELECT * FROM obras where estado = 0");        
+    $result4 = mysqli_query($con,"SELECT * FROM obras where estado = 0");        
 
     $result0 = mysqli_query($con,"SELECT imagen from fotos_detalles_obras
     where fk_detalle_obra = 1;");  
@@ -82,9 +83,8 @@ else {
                                             <div class="col-md-2">
                                             </div>
                                             <div class="col-md-2">
-                                                <label for="Semana_Reporte">Opciones:<span class="required">*</span></label>
-                                                <button type="button" onclick="imprimirReporte()" id="mostrar" name="boton1"  class="btn btn-info">                                                    
-                                                Imprimir</utton>
+                                                <label for="Semana_Reporte">Opciones</label>
+                                                <input onclick="imprimirReporte()" id="mostrar" name="boton1" value="Imprimir"  class="btn btn-info">                                                                                                    
                                             </div>
                                         </div>                                                                                
                                         <br>                                     
@@ -93,17 +93,6 @@ else {
                             </div>
 
 
-                            <div class="row" id="tablaAsistencas">
-                                       <?php
-                                            while($row = $result0->fetch_array(MYSQLI_ASSOC)) {
-                                             print_r($row);
-                                             echo '<img  width="400"  src="data:image/jpeg;base64,'.base64_encode( $row[imagen] ).'"/>';
-                                             echo '<img src="'.$row[imagen].'"/>';
-                                            }
-
-                                       ?>
-                            </div>
-                            
                     </div>
                     
 
@@ -111,6 +100,11 @@ else {
                 </div>
             </div>
         </div>
+
+        <hr>
+
+        
+
     </div>
 </div>
 
