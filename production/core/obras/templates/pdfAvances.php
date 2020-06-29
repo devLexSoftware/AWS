@@ -46,16 +46,16 @@ else {
     </head>
     <body>
         <div>
-            <table style="width: 100%;border: solid 3px #5544DD" >
+            <table style="width: 100%;" >
                 <tr>            
-                    <td style="width: 40%; text-align: center;"><br><i>légende</i></td>
+                    <td style="width: 40%; text-align: center;"><br><i>Logo</i></td>
                     <td style="width: 60%; text-align: center; ">
-                        <table style="width: 100%;border: solid 3px #5544DD" >
+                        <table style="width: 100%;" >
                             <tr>
-                                <td style="width: 100%; text-align: center;"><b>Semana: </b><?php echo $myArray[0][periodoInicial].' al '.$myArray[0][periodoFinal]; ?></td>            
+                                <td style="width: 100%; font-size:18px; text-align: center;"><b>Semana: </b><?php echo $myArray[0][periodoInicial].' al '.$myArray[0][periodoFinal]; ?></td>            
                             </tr>
                             <tr>
-                                <td style="width: 100%; text-align: center;"><b>Proyecto: </b><?php echo $myArray[0][nombre]; ?></td>            
+                                <td style="width: 100%; font-size:18px; text-align: center;"><b>Proyecto: </b><?php echo $myArray[0][nombre]; ?></td>            
                             </tr>
                         </table>
                     </td>            
@@ -68,6 +68,7 @@ else {
 
         <?php
 
+            //---PAra los dias
             foreach ($myArray as $value) {                    
 
                 $new_date = date("d-m-Y",strtotime($value[fechCreacion]));                
@@ -76,38 +77,60 @@ else {
                 $result2 = mysqli_query($con,"SELECT imagen from fotos_detalles_obras
                             where fk_detalle_obra = $value[id];");  
 
+                // while($row2 = $result2->fetch_array(MYSQLI_ASSOC)) {
+                //     $myArray2[] = $row2;
+                // }
+
                 ?>
+                <br>
+                <br>                
+                <br>
 
-                <table style="width: 100%;border: solid 3px #5544DD; font-size:16px;" >
+
+                <table style=" font-size:16px;" >
                     <tr>            
-                        <td style="width: 100%; text-align: right;"><b>Reporte de obra <?php echo $new_date; ?></b></td>
-                        
+                        <td style=" text-align: right;"><b>Reporte de obra <?php echo $new_date; ?></b></td>                        
                     </tr>    
                     <tr>            
-                        <td style="width: 100%; text-align: justify;"><p><?php echo $value[detalles]; ?></p></td>                        
-                    </tr>    
+                        <td style=" text-align: justify;"><p><?php echo $value[detalles]; ?></p></td>                        
+                    </tr>                        
+                </table>    
+                <br>
+                <br>
 
-                    <tr> 
-                        <?php
-
-                            while($row2 = $result2->fetch_array(MYSQLI_ASSOC)) { 
-
-                                $img_base64_encoded = $row2[imagen];
-                                $imageContent = file_get_contents($img_base64_encoded);
-                                $path = tempnam(sys_get_temp_dir(), 'prefix');
-                                file_put_contents ($path, $imageContent);
-                                echo '                            
-                                            
-                                        <td style="width: 100%; ">
-                                            <img style="width:200px;" src="'.$path.'"/>
-                                        </td>                        
+                <table style=" font-size:16px;" >                                                 
+                    <?php
+//border: solid 3px #5544DD;
+                        $flag = 0;
+                        while($row2 = $result2->fetch_array(MYSQLI_ASSOC)) { 
                             
-                                ';
-                        
-                            }
+                            if($flag == 0)
+                                echo '<tr>';
+                            
+                            $img_base64_encoded = $row2[imagen];
+                            $imageContent = file_get_contents($img_base64_encoded);
+                            $path = tempnam(sys_get_temp_dir(), 'prefix');
+                            file_put_contents ($path, $imageContent);
 
-                        ?>
-                    </tr>   
+                                echo '                                                                    
+                                    <td style="">
+                                        <img style="width:350px;" src="'.$path.'"/>
+                                    </td>                                                    
+                                ';                            
+                            $flag++;
+
+                            if($flag == 2)
+                            {
+                                echo '</tr>';
+                                $flag = 0;
+                            }
+                                
+                    
+                        }
+                        if($flag == 1)
+                            echo '</tr>';
+
+                    ?>                    
 
                 </table>                  
 

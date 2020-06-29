@@ -119,17 +119,22 @@ else {
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-3">
-                                        <label >Costo total:<span class="required">*</span></label>
-                                        <input name="obr_costoTotal" required="required" type="number" class="form-control" placeholder="Costo de la obra">
+                                        <label >Costo Aproximado de la Obra:<span class="required">*</span></label>
+                                        <input name="obr_costoTotal" required="required" type="number" class="form-control" placeholder="Costo Aproximado de la Obra">
                                     </div>
                                     <div class="col-md-3">
                                         <label >Porcentaje Ganancia:<span class="required">*</span></label>
                                         <input name="obr_porcentaje" required="required" type="number" class="form-control" placeholder="Porcentaje Ganancia">
                                     </div>
                                     <div class="col-md-3">
-                                        <label >Superficie m2:<span class="required">*</span></label>
-                                        <input name="obr_superficie" required="required" type="number" class="form-control" placeholder="Superficie">
+                                        <label >Superficie Total del Terreno:<span class="required">*</span></label>
+                                        <input name="obr_superficie" required="required" type="number" class="form-control" placeholder="Superficie Total del Terreno">
                                     </div>
+                                    <div class="col-md-3">
+                                        <label >Superficie a Construir:<span class="required">*</span></label>
+                                        <input name="obr_superficieConstruir" required="required" type="number" class="form-control" placeholder="Superficie a Construir">
+                                    </div>
+                                    
                                 </div>
                                 <div class="form-group row">
                             <div class="col-md-10">

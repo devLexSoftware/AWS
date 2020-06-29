@@ -38,7 +38,7 @@ else {
                 </div>
                 <div class="col-md-3">
                     <label for="RFC-Client">RFC:</label>                            
-                    <input type="text" name="cli_rfc" id="cli_rfc" class="form-control col-md-7 col-xs-12" placeholder="Ingrse el RFC del cliente" value="<?php echo($elemento['rfc']); ?>">                                                      
+                    <input type="text"  maxlength="13" minlength="13" name="cli_rfc" id="cli_rfc" class="form-control col-md-7 col-xs-12" placeholder="Ingrse el RFC del cliente" value="<?php echo($elemento['rfc']); ?>">                                                      
                 </div>
                 <div class="col-md-3">
                     <label for="RFC-Client">Referencia:</label>                            

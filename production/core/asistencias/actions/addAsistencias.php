@@ -25,6 +25,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     // echo $count_empleados;
     for ($i=0 ; $i <  $count_empleados; $i++ ) {
       $idEmpleado           = $_POST['empleado_'.$i];           
+      $salarioEmpleado           = $_POST['empleado_salario_'.$i];           
       // $lunes                = isset($_POST['empleado_dia_1_'.$idEmpleado]) ? 1 : 0;
       if(isset($_POST['empleado_dia_1_'.$idEmpleado])){
         $lunes = $_POST['empleado_dia_1_'.$idEmpleado];
@@ -72,7 +73,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
       // echo $lunes.'+';
       
       $result = mysqli_query($con,"INSERT INTO asistencias_empleados(usuCreacion, lunes, martes, miercoles, jueves, viernes, sabado, domingo, monto, fk_empleado, fk_asistencia, estado)
-          VALUES('admin','$lunes', '$martes', '$miercoles', '$jueves', '$viernes', '$sabado', '0',  '400', '$idEmpleado', '$id', '0' )");
+          VALUES('admin','$lunes', '$martes', '$miercoles', '$jueves', '$viernes', '$sabado', '0',  '$salarioEmpleado', '$idEmpleado', '$id', '0' )");
     }  
 
 

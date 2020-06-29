@@ -14,7 +14,7 @@
             $result = mysqli_query($con,"SELECT g.id, g.nombre FROM obras o INNER JOIN grupos g on o.fk_grupo = g.id WHERE o.id = $id;");   
             $elemento = mysqli_fetch_array($result);
 
-            $result2 = mysqli_query($con,"SELECT e.id, e.nombre FROM empleados e INNER JOIN grupos_empleados ge on e.id = ge.fk_empleado WHERE ge.fk_grupo = $elemento[id];");   
+            $result2 = mysqli_query($con,"SELECT e.id, e.nombre, e.salario FROM empleados e INNER JOIN grupos_empleados ge on e.id = ge.fk_empleado WHERE ge.fk_grupo = $elemento[id];");   
             // $elemento2 = mysqli_fetch_array($result2);
             echo '
                 <div class="col-md-12 col-xs-12">
@@ -55,7 +55,8 @@
                                                     while($elemento2 = mysqli_fetch_array($result2)){                                                                                                                
                                                         echo '
                                                             <tr>
-                                                                <td style="display: none;"><input name="empleado_'.$count.'" id="empleado_'.$count.'" type="text" value="'.$elemento2[id].'" /></td>            
+                                                                <td style="display: none;"><input name="empleado_'.$count.'" id="empleado_'.$count.'" type="text" value="'.$elemento2[id].'" />
+                                                                <input name="empleado_salario_'.$count.'" id="empleado_salario_'.$count.'" type="text" value="'.$elemento2[salario].'" /></td>            
                                                                 <td>'.$elemento2[nombre].'</td>            
                                                                 <td>
                                                                     <input value="1" name="empleado_dia_1_'.$elemento2[id].'"  type="radio" id="empleado_dia_1_'.$elemento2[id].'" > día 
@@ -107,7 +108,7 @@
         {            
 
 
-            $result3 = mysqli_query($con,"SELECT distinct(e.id), e.nombre, ae.lunes, ae.martes, ae.miercoles, ae.jueves, ae.viernes  FROM empleados e 
+            $result3 = mysqli_query($con,"SELECT distinct(e.id), e.nombre, ae.lunes, ae.martes, ae.miercoles, ae.jueves, ae.viernes, ae.sabado  FROM empleados e 
                                             INNER JOIN grupos_empleados ge on e.id = ge.fk_empleado
                                             INNER JOIN asistencias_empleados ae on ge.fk_empleado = ae.fk_empleado
                                             WHERE ae.fk_asistencia = $id;");   
@@ -159,7 +160,8 @@
                                                     while($elemento3 = mysqli_fetch_array($result3)){                                                                                                                
                                                         echo '
                                                             <tr>
-                                                                <td style="display: none;"><input name="empleado_'.$count.'" id="empleado_'.$count.'" type="text" value="'.$elemento3[id].'" /></td>            
+                                                                <td style="display: none;"><input name="empleado_'.$count.'" id="empleado_'.$count.'" type="text" value="'.$elemento3[id].'" />
+                                                                <input name="empleado_salario_'.$count.'" id="empleado_salario_'.$count.'" type="text" value="'.$elemento3[salario].'" /></td>           
                                                                 <td>'.$elemento3[nombre].'</td>            
                                                                 <td>
                                                                     <input value="1" '; if($elemento3[lunes] == 1){ echo 'checked'; } echo ' name="empleado_dia_1_'.$elemento3[id].'"  type="radio" id="empleado_dia_1_'.$elemento3[id].'" > día
@@ -182,8 +184,8 @@
                                                                     <input value="0.5" '; if($elemento3[viernes] == 0.5){ echo 'checked'; } echo ' name="empleado_dia_5_'.$elemento3[id].'" type="radio" id="empleado_dia_5_'.$elemento3[id].'" > medio día
                                                                 </td>
                                                                 <td>
-                                                                    <input value="1" '; if($elemento3[sabado] == 1){ echo 'checked'; } echo ' dname="empleado_dia_6_'.$elemento3[id].'" type="radio" id="empleado_dia_6_'.$elemento3[id].'" > día
-                                                                    <input value="0.5" '; if($elemento3[sabado] == 0.5){ echo 'checked'; } echo ' dname="empleado_dia_6_'.$elemento3[id].'" type="radio" id="empleado_dia_6_'.$elemento3[id].'" > medio día
+                                                                    <input value="1" '; if($elemento3[sabado] == 1){ echo 'checked'; } echo ' name="empleado_dia_6_'.$elemento3[id].'" type="radio" id="empleado_dia_6_'.$elemento3[id].'" > día
+                                                                    <input value="0.5" '; if($elemento3[sabado] == 0.5){ echo 'checked'; } echo ' name="empleado_dia_6_'.$elemento3[id].'" type="radio" id="empleado_dia_6_'.$elemento3[id].'" > medio día
                                                                 </td>
                                                                 <td>
                                                                     <input value="limpiar" onclick="limpiarCampos2('.$elemento3[id].')" name="limpiar" type="button" id="limpiar" >                                                                    

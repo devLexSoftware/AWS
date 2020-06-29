@@ -24,7 +24,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     //--Insertar nuevo proveedor
     $ref = "PRV-".substr($prv_nombre,0, 3).$prv_celular;
     $result = mysqli_query($con,"INSERT INTO proveedores(usuCreacion,identificador,empresa,proveedor,descripcion,rfc,contacto1,contacto2,email,direccion,comentario, estado)
-        VALUES('admin', '$ref', '$prv_nombre', '$prv_proveedor','$prv_descripcion', '$prv_rfc', '$prv_telefono', '$prv_celular', '$prv_email','$prv_direccion', '$prv_nota', 0)");   
+        VALUES('admin', '$ref', '$prv_nombre', '$prv_proveedor','$prv_descripcion', '$prv_rfc', '$prv_celular', '$prv_telefono', '$prv_email','$prv_direccion', '$prv_nota', 0)");   
 
 header("Location: ../../../../../index.php?p=proveedores");
   }

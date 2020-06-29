@@ -140,16 +140,20 @@ else {
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-3">
-                                        <label >Costo total:<span class="required">*</span></label>
-                                        <input name="obr_costoTotal" required="required" type="number" class="form-control" placeholder="Costo de la obra" value="<?php echo($elemento['costoTotal']); ?>">
+                                        <label >Costo Aproximado de la Obra:<span class="required">*</span></label>
+                                        <input name="obr_costoTotal" required="required" type="number" class="form-control" placeholder="Costo Aproximado de la Obra" value="<?php echo($elemento['costoTotal']); ?>">
                                     </div>
                                     <div class="col-md-3">
                                         <label >Porcentaje Ganancia:<span class="required">*</span></label>
                                         <input name="obr_porcentaje" required="required" type="number" class="form-control" placeholder="Porcentaje Ganancia" value="<?php echo($elemento['porcentajeGanancia']); ?>">
                                     </div>
                                     <div class="col-md-3">
-                                        <label >Superficie m2:<span class="required">*</span></label>
-                                        <input name="obr_superficie" required="required" type="number" class="form-control" placeholder="Superficie" value="<?php echo($elemento['porcentajeGanancia']); ?>">
+                                        <label >Superficie Total del Terreno:<span class="required">*</span></label>
+                                        <input name="obr_superficie" required="required" type="number" class="form-control" placeholder="Superficie Total del Terreno" value="<?php echo($elemento['superficie']); ?>">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label >Superficie a Construir:<span class="required">*</span></label>
+                                        <input name="obr_superficieConstruir" required="required" type="number" class="form-control" placeholder="Superficie a Construir" value="<?php echo($elemento['superficieConstruir']); ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">

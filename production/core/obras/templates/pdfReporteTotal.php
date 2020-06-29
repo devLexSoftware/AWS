@@ -118,8 +118,8 @@ else {
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:200px;">Obra</td>
             <td style="width:520px;"><?php echo $elemento3["obra"] ?></td>            
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:200px;" >No. Control</td>
-            <td style="width:200px;" >otros</td>            
-            <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:264px;" >Cliente</td>            
+            <td style="width:200px;" ></td>            
+            <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:264px;" ></td>            
         </tr>
         
         <tr>            
@@ -137,7 +137,7 @@ else {
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:520px;">Relación Materiales, Equipo, Maquinaria y Personal -> <b>Costo M2</b></td>
             <td style="width:150px;">$<?php echo round($costom2,2)?></td>            
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:200px;" ><b>Total Directo</b></td>
-            <td style="width:150px;" >otros</td>            
+            <td style="width:150px;" >$<?php echo round($totconHono,2)?></td>            
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:206px;" ><b>Total con Honorarios <?php echo $elemento3["porcentajeGanancia"] ?> %</b></td>
             <td style="width:150px;" >$<?php echo round($totconHono,2);?></td>            
             

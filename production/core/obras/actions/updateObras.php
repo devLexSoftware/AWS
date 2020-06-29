@@ -28,6 +28,8 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $obr_costo          = $_POST['obr_costoTotal'];
     $obr_porcentaje     = $_POST['obr_porcentaje'];
     $obr_superficie     = $_POST['obr_superficie'];
+    $obr_superficieCon  = $_POST['obr_superficieConstruir'];
+
 
 
     //--Insertar nuevo proveedor
@@ -37,7 +39,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
     $result = mysqli_query($con, "UPDATE obras SET nombre = '$obr_nombre', calle = '$obr_calle', numExt = '$obr_numExt', numInt = '$obr_numInt', colonia = '$obr_colonia',
                                     cp = '$obr_cp', ciudad = '$obr_ciudad', municipio = '$obr_municipio', comentario = '$obr_nota', fechInicio = '$obr_fechInicio', fechFin = '$obr_fechFin',
-                                    avance = '$obr_avance', fk_clientes = '$obr_cliente', fk_grupo = '$obr_grupo', costoTotal ='$obr_costo', porcentajeGanancia = '$obr_porcentaje', superficie = '$obr_superficie'
+                                    avance = '$obr_avance', fk_clientes = '$obr_cliente', fk_grupo = '$obr_grupo', costoTotal ='$obr_costo', porcentajeGanancia = '$obr_porcentaje', superficie = '$obr_superficie', superficieConstruir = '$obr_superficieCon'
                                     WHERE id = '$obr_id'");
     
     header("Location: ../../../../../index.php?p=obrasOk");

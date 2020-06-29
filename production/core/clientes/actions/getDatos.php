@@ -12,7 +12,7 @@
         if($id == "todos")
         {
             $result = mysqli_query($con,"SELECT e.id, e.nombre, e.email from clientes e
-                                    order by nombre");               
+                                    where estado = 0 order by nombre");               
 
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {
             $myArray[] = $row;

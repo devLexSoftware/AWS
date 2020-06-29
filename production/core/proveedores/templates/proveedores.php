@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-md-6">
                                 <label for="RFC-Client">RFC:</label>
-                                <input type="text"  name="prv_rfc" id="prv_rfc" class="form-control col-md-7 col-xs-12" placeholder="Ingrse el RFC del cliente">
+                                <input  maxlength="13" minlength="13" type="text"  name="prv_rfc" id="prv_rfc" class="form-control col-md-7 col-xs-12" placeholder="Ingrse el RFC del cliente">
                                 </div>
                             </div>
 

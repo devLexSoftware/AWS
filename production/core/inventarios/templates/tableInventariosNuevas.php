@@ -13,7 +13,7 @@ else {
 
 
 <!--Table begin-->
-  <table id="datatable" class="table table-striped table-bordered">
+  <table id="" class="table table-striped table-bordered">
       <thead>
           <tr>
                 <th>Nombre</th>                

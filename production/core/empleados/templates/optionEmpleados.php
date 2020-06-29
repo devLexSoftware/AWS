@@ -42,11 +42,12 @@ else {
                                 </div>
                                 <div class="col-md-3">
                                   <label  for="RFC-Client">RFC:</label>
-                                      <input type="text" id="RFCClient" id="Empl_RFCEmpleado" name="Empl_RFCEmpleado" class="form-control col-md-7 col-xs-12" value="<?php echo($elemento['rfc']); ?>" placeholder="Ingrse el RFC del cliente">
+                                      <input type="text"  maxlength="13" minlength="13" id="RFCClient" id="Empl_RFCEmpleado" name="Empl_RFCEmpleado" class="form-control col-md-7 col-xs-12" value="<?php echo($elemento['rfc']); ?>" placeholder="Ingrese el RFC del cliente">
                                   </div>
                                   <div class="col-md-3">
-                                    <label  for="RFC-Client">Referencia:</label>
-                                        <input type="text" readonly id="Empl_Referencia" name="Empl_Referencia" class="form-control col-md-7 col-xs-12" value="<?php echo($elemento['identificador']); ?>" placeholder="">
+                                    <label  for="RFC-Client">N.S.S:</label>
+                                        <input type="text"  id="Empl_nss" name="Empl_nss" class="form-control col-md-7 col-xs-12" value="<?php echo($elemento['nssi']); ?>" placeholder="Ingrese el N.S.S">
+                                        <input type="hidden"  id="Empl_Referencia" name="Empl_Referencia" class="form-control col-md-7 col-xs-12" value="<?php echo($elemento['id']); ?>" placeholder="">
                                     </div>
                             </div>                           
 

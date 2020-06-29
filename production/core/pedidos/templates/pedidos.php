@@ -75,7 +75,7 @@ else {
 
                         <div class="form-group row">
                             <div class="col-md-6">
-                              <label >Notas:</label>
+                              <label >Descripción:</label>
                               <textarea class="form-control" name="pedido_nota" id="pedido_nota" rows="1" cols="50"></textarea>
                             </div>
                             <div class="col-md-4">
