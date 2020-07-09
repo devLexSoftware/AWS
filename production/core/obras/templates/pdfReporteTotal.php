@@ -23,28 +23,46 @@ else {
                 where c.fk_obra = $id and c.estado = 0 order by c.semana;");      
 
 
-    $result3 = mysqli_query($con,"SELECT o.porcentajeGanancia, o.costoTotal, c.nombre as cliente, o.nombre as obra, o.superficie  from obras o
+    $result3 = mysqli_query($con,"SELECT o.porcentajeGanancia, o.costoTotal, c.nombre as cliente, o.nombre as obra, o.superficie, o.superficieConstruir  from obras o
                 inner join clientes c on o.fk_clientes = c.id    
                 where o.id = $id;");                              
     
+
+
+
+
+    $result4 = mysqli_query($con, "SELECT a.semana, c.id, c.empresa, c.categoria, ac.lunes, ac.martes, ac.miercoles, ac.jueves, ac.viernes, ac.sabado, ac.monto, ac.totalpagar, ac.abono
+                from asistencias_contratistas ac
+                inner join contratistas c on ac.fk_contratista = c.id
+                inner join asistencias a on ac.fk_asistencia = a.id
+                where a.fk_obra = $id;");
+
   
     while($row = $result->fetch_array(MYSQLI_ASSOC)) 
         $elemento[] = $row;                            
     while($row = $result2->fetch_array(MYSQLI_ASSOC)) 
-        $elemento2[] = $row;                       
-    
+        $elemento2[] = $row;                 
     $elemento3 = mysqli_fetch_array($result3);
+    while($row = $result4->fetch_array(MYSQLI_ASSOC)) 
+        $elemento4[] = $row;
         
 
     $maxE1 = max(array_column($elemento, "semana"));
     $maxE2 = max(array_column($elemento2, "semana"));
+    // $maxE4 = max(array_column($elemento4, "semana"));
 
     $max = $maxE1 > $maxE2 ? $maxE1 : $maxE2;
+    // $max = $max > $maxE4 ? $max : $maxE4;
 
     $semanas = 0;    
 
 
-    function foo($el1, $el2, $el3, $max) {
+
+
+
+
+
+    function foo($el1, $el2, $el3, $max, $el4) {
 
         for ($i=1; $i <= $max; $i++) { 
 
@@ -64,11 +82,16 @@ else {
             foreach ($el2 as $key) {
                 if($key["semana"] == $i)
                 {                                                        
-                    $material = $material + $key["importe"];
-                    // $seguro = $key["salario"] * 0.31;                        
-                    // $importeSeguro = $importeLibre + $seguro;                                                                                                                                                                                                                                                    
+                    $material = $material + $key["importe"];                    
                 }
             }
+
+            // foreach ($el4 as $key) {
+            //     if($key["semana"] == $i)
+            //     {                                                        
+            //         $material = $material + $key["importe"];                    
+            //     }
+            // }
 
             $honorariosMo = $manoObra * ($el3["porcentajeGanancia"] / 100);
             $totalMano = $honorariosMo + $manoObra;
@@ -82,14 +105,14 @@ else {
 
             $GLOBALS['totconHono'] = $GLOBALS['totconHono'] + ($totalMano + $totalMate);
 
-            $GLOBALS['costom2'] = $GLOBALS['totconHono'] / $el3[superficie];
+            $GLOBALS['costom2'] = $GLOBALS['totconHono'] / $el3[superficieConstruir];
 
         }
 
         // $GLOBALS['postresquefaltaran']         
     }
 
-    foo($elemento, $elemento2, $elemento3, $max);
+    foo($elemento, $elemento2, $elemento3, $max, $elemento4);
       
 }
 
@@ -99,10 +122,16 @@ else {
 
 <page style="font-size: 14px">
     
-    <table width=1440 height=150>
+    <table bordercolor="#73879ca3" width=1440 height=150>    
         <tr align="center" >
+            <th style="width:550px;" ></th>
+            <th >
+            <img style="width:300px;" src="production/components/images/logo2.png"> 
+            </th>            
+        </tr>    
+        <!-- <tr align="center" >
             <th style="width:100%; height:120px;"><h1> WorkShop Studio Premier</h1>Architecture + 3D Visualization</th>            
-        </tr>        
+        </tr>         -->
     </table>
 
     <table border=0.5   bordercolor="#73879ca3" width=1440 >
@@ -158,14 +187,13 @@ else {
     <table bordercolor="#007"  style="font-size: 11px; width:100%; " >           
             <tr style="background-color: #48b4d4; color:#333333; text-align: center;">
                 <th style=" padding: 3px 2px; width: 25px; ">Sem </th>
-                <th style="width: 130px;">Periodo </th>
+                <th style="width: 140px;">Periodo </th>
                 <th style="width: 110px;">Mano Obra</th>
                 <th style="width: 110px;">M.O. Honorarios</th>
                 <th style="width: 110px;">Total Mano Obra</th>
                 <th style="width: 110px;">Material</th>
                 <th style="width: 110px;">Mat. Hono.</th>
-                <th style="width: 110px;">Total Materiales</th>
-                <th style="width: 10px;"></th>
+                <th style="width: 110px;">Total Materiales</th>                
                 <th style="width: 110px;">Total Semana</th>
                 <th style="width: 110px;">Total Hono</th>
                 <th style="width: 110px;">Total con Hono</th>
@@ -198,8 +226,11 @@ else {
                             if($key["semana"] == $i)
                             {                                                        
                                 $material = $material + $key["importe"];
-                                // $seguro = $key["salario"] * 0.31;                        
-                                // $importeSeguro = $importeLibre + $seguro;                                                                                                                                                                                                                                                    
+                                if($semanaDato == "")          
+                                {
+                                    $semanaDato = $key["fechInicial"]." al ".$key["fechFinal"];                                                        
+
+                                }
                             }
                         }
 
@@ -217,8 +248,7 @@ else {
                                 <td>$'.round($totalMano,2).'</td>                                                                     
                                 <td>$'.round($material,2).'</td>                                                                     
                                 <td>$'.round($honorariosMa,2).'</td>                                                                     
-                                <td>$'.round($totalMate,2).'</td>                                                                     
-                                <td></td>                                                                     
+                                <td>$'.round($totalMate,2).'</td>                                                                                                                                                               
                                 <td>$'.round(($material + $manoObra),2).'</td>                                                                     
                                 <td>$'.round(($honorariosMo + $honorariosMa),2).'</td>
                                 <td>$'.round(($totalMano + $totalMate),2).'</td> 
@@ -234,7 +264,7 @@ else {
                             $bandera = false;
                     }                                 
 
-                ?>
+                ?>                
             </tr>        
         </table>
 

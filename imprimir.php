@@ -30,6 +30,8 @@ try {
         $html2pdf = new HTML2PDF('P', 'A4', 'es', true, 'UTF-8');
     }
     else if($archivo == "pageNomina"){
+        $cateem = $_GET["cateem"];    
+        $cateco = $_GET["cateco"];    
         $width_in_mm = 10 * 25.4; 
         $height_in_mm = 15  * 25.4;
         include dirname(__FILE__).'/production/core/nominas/templates/pdfNominas.php';
@@ -46,6 +48,11 @@ try {
     }
 
     else if($archivo == "pageCompras"){
+
+        $sem = $_GET["semana"];
+        $pro = $_GET["producto"];
+        $prv = $_GET["proveedor"];
+        $ctr = $_GET["contratista"];
         $width_in_mm = 10 * 25.4; 
         $height_in_mm = 15  * 25.4;
         include dirname(__FILE__).'/production/core/compras/templates/pdfCompras.php';

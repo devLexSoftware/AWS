@@ -8,41 +8,88 @@ echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->c
 }
 else {        
 
-    $result = mysqli_query($con,"SELECT factura, sum(importe) as suma from compras
-                                where fk_obra = $id  group by(factura);");                            
-    // $elemento = mysqli_fetch_array($result);
+    
+    //--- Filtrado 1 para sumatorio total
+    $query1 = "SELECT factura, sum(importe) as suma from compras
+                where fk_obra = $id";
 
-    $result2 = mysqli_query($con,"SELECT c.nombre, c.descripcion, c.fecha, c.frente, c.semana, c.cantidad, c.unidad, c.factura, p.proveedor, c.subtotal, c.importe, c.costo, c.fechInicial, c.fechFinal from compras c
-                            inner join proveedores p on c.fk_proveedor = p.id
-                            where c.fk_obra = $id and c.estado = 0 order by semana;");             
+    if($sem != "Todas")
+        $query1 = $query1 . " and semana = '$sem'";
+    if($pro != "Todos")
+        $query1 = $query1 . " and descripcion = '$pro'";
+    if($prv != "Todos")
+        $query1 = $query1 . " and fk_proveedor = '$prv'";
+    if($ctr != "Todos")
+        $query1 = $query1 . " and fk_contratista = '$ctr'";
+                
+    $query1 = $query1 . " and estado = 0 group by(factura);";
+    $result = mysqli_query($con,$query1);     
+    while($row = $result->fetch_array(MYSQLI_ASSOC)) 
+        $el[] = $row;                       
+    
+    
+    //--- Filtrado 2 para la tabla de compras
+    $query2 = "SELECT c.nombre, c.descripcion, c.fecha, c.frente, c.semana, c.cantidad, c.unidad, c.factura, p.empresa, c.subtotal, c.iva, c.importe, c.costo, c.fechInicial, c.fechFinal from compras c
+                inner join proveedores p on c.fk_proveedor = p.id
+                where c.fk_obra = $id";
 
+    if($sem != "Todas")
+        $query2 = $query2 . " and c.semana = '$sem'";
+    if($pro != "Todos")
+        $query2 = $query2 . " and c.descripcion = '$pro'";
+    if($prv != "Todos")
+        $query2 = $query2 . " and c.fk_proveedor = '$prv'";
+    if($ctr != "Todos")
+        $query2 = $query2 . " and c.fk_contratista = '$ctr'";
+
+    $query2 = $query2. " and c.estado = 0 order by semana;";
+    $result2 = mysqli_query($con,$query2);             
+    
+
+    while($row2 = $result2->fetch_array(MYSQLI_ASSOC)) 
+        $el2[] = $row2;   
+
+
+
+    //--- Datos de la obra
     $result3 = mysqli_query($con,"SELECT c.nombre as cliente, o.nombre as obra from obras o
                             inner join clientes c on o.fk_clientes = c.id    
                             where o.id = $id;");                              
     $elemento3 = mysqli_fetch_array($result3);
 
-    $result4 = mysqli_query($con,"SELECT semana, sum(importe) as suma from compras  
-                                where fk_obra = $id group by(semana);");                            
 
+    //--- Sumatoria de facturas
+    $query4 = "SELECT semana, sum(importe) as suma ";
+    $query4f = " and estado = 0 ";
 
-                            
-                               
-    while($row = $result2->fetch_array(MYSQLI_ASSOC)) 
-        $el2[] = $row;                       
-      
-    while($row2 = $result->fetch_array(MYSQLI_ASSOC)) 
-        $el[] = $row2;
-        
-    while($row4 = $result4->fetch_array(MYSQLI_ASSOC)) 
-        $el4[] = $row4;
-    
-    $totalFrente = 0;                                
-    foreach ($el as $valor) {                
-        $totalFrente = $totalFrente + $valor[suma];
+    if($sem != "Todas"){        
+        $query4f = $query4f . " and semana = '$sem'";
+    }
+    if($pro != "Todos"){
+        $query4d = $query4d . ", descripcion";
+        $query4f = $query4f . " and descripcion = '$pro'";
+    }
+    if($prv != "Todos"){
+        $query4d = $query4d . ", fk_proveedor";
+        $query4f = $query4f . " and fk_proveedor = '$prv'";
+    }
+    if($ctr != "Todos"){
+        $query4d = $query4d . ", fk_contratista";
+        $query4f = $query4f . " and fk_contratista = '$ctr'";
     }
 
+    $query4g = "  group by semana". $query4d;
 
-
+    $query4 = $query4 . $query4d ." from compras where fk_obra = $id";        
+    $query04 = $query4.$query4f.$query4g;   
+    $result4 = mysqli_query($con, $query04);                            
+    while($row4 = $result4->fetch_array(MYSQLI_ASSOC)) 
+        $el4[] = $row4;
+                            
+    $totalFrente = 0;                                
+    foreach ($el as $valor)
+        $totalFrente = $totalFrente + $valor[suma];
+ 
 }
 
 ?>
@@ -51,7 +98,10 @@ else {
     
     <table width=1440 height=150>
         <tr align="center" >
-            <th style="width:100%; height:120px;"><h1> WorkShop Studio Premier</h1>Architecture + 3D Visualization</th>            
+        <th style="width:550px;" ></th>
+            <th >
+            <img style="width:300px;" src="production/components/images/logo2.png"> 
+            </th>            
         </tr>        
     </table>
     <table border=0.5   bordercolor="#73879ca3" width=1440 >
@@ -86,15 +136,18 @@ else {
                 <th style="width: 40px;">Cant</th>
                 <th style="width: 250px;">Descripcion</th>
                 <th style="width: 90px;">Unidad</th>
-                <th style="width: 150px;">Frente</th>
+                <th style="width: 110px;">Frente</th>
                 <th style="width: 70px;">Fecha</th>            
-                <th style="width: 70px;">Factura</th>    
-                <th style="width: 116px;">Proveedor</th>    
-                <th style="width: 90px;">SubTotal</th>    
-                <th style="width: 90px;">Importe</th>    
-                <th style="width: 90px;">Costo Uni</th>    
-                <th style="width: 90px;">Total Sem</th>                    
-                <th style="width: 90px;">Total Fac</th>                    
+                <th style="width: 35px;">Fac.</th>    
+                <th style="width: 145px;">Proveedor</th>    
+                <th style="width: 70px;">SubTotal</th>    
+                <th style="width: 70px;">IVA</th>   
+                <th style="width: 70px;">Importe</th>    
+                <th style="width: 70px;">Costo Uni</th>  
+                <th style="width: 70px;">Total Fac</th>  
+                <th style="width: 70px;">Total Fre</th>                    
+                <th style="width: 70px;">Total Sem</th>                    
+                                   
 
 
             </tr>
@@ -118,12 +171,14 @@ else {
                                 <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento2[frente].'</td>            
                                 <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento2[fecha].'</td>            
                                 <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento2[factura].'</td>            
-                                <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento2[proveedor].'</td>            
-                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.$elemento2[subtotal].'</td>            
-                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.$elemento2[importe].'</td>            
-                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.$elemento2[costo].'</td>                                                                            
-                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.$el[$totFac][suma].'</td>                                                                            
-                                <td style="border-bottom: 1px solid #B4B5B0;">$'.$el[$totFac][suma].'</td>       
+                                <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento2[empresa].'</td>            
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($elemento2[subtotal],2).'</td>            
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($elemento2[iva],2).'</td>            
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($elemento2[importe],2).'</td>            
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($elemento2[costo],2).'</td>   
+                                <td style="border-bottom: 1px solid #B4B5B0;">$'.round($el[$totFac][suma],2).'</td>                                                                                                                
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($totalFrente,2).'</td>                                                                            
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($el[$totFac][suma],2).'</td>                                                                                                            
                             </tr>
                         ';                        
                         if($bandera == false)

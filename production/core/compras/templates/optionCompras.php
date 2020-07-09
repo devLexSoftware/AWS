@@ -15,14 +15,24 @@ else {
     $elemento = mysqli_fetch_array($result0);
     $result1 = mysqli_query($con,"SELECT * FROM clientes WHERE estado = 0;");
     $result2 = mysqli_query($con,"SELECT * FROM obras;");
-    $result3 = mysqli_query($con,"SELECT * FROM proveedores;");
+    $result3 = mysqli_query($con,"SELECT empresa, id FROM proveedores;");
+    $result04 = mysqli_query($con,"SELECT empresa, id FROM contratistas;");
+
 
     $result4 = mysqli_query($con,"SELECT * FROM clientes WHERE id = $elemento[fk_clientes];");
     $elemento4 = mysqli_fetch_array($result4);
     $result5 = mysqli_query($con,"SELECT * FROM obras WHERE fk_clientes = $elemento[fk_clientes];");
     $elemento5 = mysqli_fetch_array($result5);
+        
     $result6 = mysqli_query($con,"SELECT * FROM proveedores WHERE id = $elemento[fk_proveedor];");
     $elemento6 = mysqli_fetch_array($result6);
+    if($elemento6[id] == null)
+    {
+        $result7 = mysqli_query($con,"SELECT * FROM contratistas WHERE id = $elemento[fk_contratista];");
+        $elemento7 = mysqli_fetch_array($result7);
+    }
+    
+
 }
 ?>
 
@@ -129,10 +139,12 @@ else {
                                     <option value="Camion">Camión</option>
                                     <option value="Kilo">Kilo</option>
                                     <option value="Litros">Litros</option>
+                                    <option value="Lote">Lote</option>
                                     <option value="Metros">Metros</option>
                                     <option value="Pieza">Pieza</option>
                                     <option value="Pipa">Pipa</option>
                                     <option value="Tonelada">Tonelada</option>
+
                                 </select>
                             </div>
                             <div class="col-md-3">
@@ -148,18 +160,36 @@ else {
                                     <option value="Pintura">Pintura</option>
                                     <option value="Piso y Azulejo">Piso y Azulejo</option>
                                     <option value="Redes">Redes</option>
+                                    <option value="Tabla Roca">Tabla Roca</option>
                                     <option value="Yeso">Yeso</option>
                                 </select>
                             </div>
                            
                             <div class="col-md-3">
                             <label  for="Proveedor_Reporte">Proveedor:<span class="required">*</span></label>
-                                <select class="form-control" name="Proveedor_Reporte" id="Proveedor_Reporte" onchange="actualizar(this.value,'proveedores')">
-                                    <option value="<?php echo($elemento['fk_proveedor']); ?>"><?php echo($elemento6['proveedor']); ?></option>
+                                <select class="form-control" name="Proveedor_Reporte" id="Proveedor_Reporte" onchange="actualizar(this.value,'proveedores')">                                    
                                     <?php
+                                        if($elemento6[id] != null)
+                                        {                                            
+                                            echo '
+                                                <option id="prv_'.$elemento6[id].'" value="prv_'.$elemento6[id].'">'.$elemento6[empresa].'</option>
+                                            ';
+                                        }
+                                        else if($elemento7[id] != null)
+                                        {
+                                            echo '
+                                                <option id="ctr_'.$elemento7[id].'" value="ctr_'.$elemento7[id].'">'.$elemento7[empresa].'</option>
+                                            ';
+                                        }
                                             while($elemento3 = mysqli_fetch_array($result3)){
                                                 echo '
-                                                    <option id="'.$elemento3[id].'" value="'.$elemento3[id].'">'.$elemento3[proveedor].'</option>
+                                                    <option id="prv_'.$elemento3[id].'" value="prv_'.$elemento3[id].'">'.$elemento3[empresa].'</option>
+                                                ';
+                                            }
+
+                                            while($elemento04 = mysqli_fetch_array($result04)){
+                                                echo '
+                                                    <option id="ctr_'.$elemento04[id].'" value="ctr_'.$elemento04[id].'">'.$elemento04[empresa].'</option>
                                                 ';
                                             }
                                         ?>
@@ -299,4 +329,11 @@ else {
       fecha.setDate(fecha.getDate() + 6);
       $("#fechFinal_Reporte").datepicker("setDate", fecha);
     }
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('#datatable3').DataTable();
+    } );
 </script>

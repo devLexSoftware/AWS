@@ -9,7 +9,7 @@ echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->c
 else {
     $result =  mysqli_query($con,"SELECT compras.id, compras.descripcion, compras.fecha, compras.frente, compras.semana,
     compras.numero, compras.unidad, compras.factura, compras.costo, compras.cantidad, compras.importe, compras.subtotal, compras.iva, compras.fechInicial, compras.fechFinal,
-    compras.comentario, proveedores.proveedor FROM compras INNER JOIN proveedores on proveedores.id = compras.fk_proveedor order by compras.id desc;");
+    compras.comentario FROM compras order by compras.id desc;");
 
 
 }
@@ -26,8 +26,7 @@ else {
             <th>Unidad</th>
             <th>Frente</th>
             <th>Fecha compra</th>
-            <th>Factura</th>
-            <th>Proveedor</th>
+            <th>Factura</th>            
             <th>Subtotal</th>
             <th>IVA</th>
             <th>Importe</th>
@@ -52,7 +51,7 @@ else {
             <td>'.$elemento[frente].'</td>
             <td>'.$elemento[fecha].'</td>
             <td>'.$elemento[factura].'</td>
-            <td>'.$elemento[proveedor].'</td>
+            
             <td>'.$elemento[subtotal].'</td>
             <td>'.$elemento[iva].'</td>
             <td>'.$elemento[importe].'</td>

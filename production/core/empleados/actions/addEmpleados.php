@@ -20,11 +20,12 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $emp_nota       = $_POST['Empl_nota'];
     $emp_salario       = $_POST['Empl_Salario'];
     $emp_nss       = $_POST['Empl_nss'];
+    $emp_categoria       = $_POST['Empl_Categoria'];
 
     //--Insertar nuevo proveedor
     $ref = "EMP-".substr($emp_nombre,0, 4).$emp_movil;
-    $result = mysqli_query($con,"INSERT INTO empleados(usuCreacion, identificador, nombre, rfc, direccion, movil, telefono, email, empresa, giro, nssi, salario, nota, estado)
-                        VALUES('admin', '$ref', '$emp_nombre', '$emp_rfc', '$emp_direccion', '$emp_movil', '$emp_tel', '$emp_email', '$emp_empresa', '$emp_giro', '$emp_nss', '$emp_salario' ,'$emp_nota', '0')");
+    $result = mysqli_query($con,"INSERT INTO empleados(usuCreacion, identificador, nombre, rfc, direccion, movil, telefono, email, empresa, giro, nssi, salario, nota, estado, categoria)
+                        VALUES('admin', '$ref', '$emp_nombre', '$emp_rfc', '$emp_direccion', '$emp_movil', '$emp_tel', '$emp_email', '$emp_empresa', '$emp_giro', '$emp_nss', '$emp_salario' ,'$emp_nota', '0', '$emp_categoria')");
 
 header("Location: ../../../../../index.php?p=empleados");
   }

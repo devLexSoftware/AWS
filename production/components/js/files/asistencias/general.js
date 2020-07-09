@@ -42,30 +42,30 @@ function obtenerListaEmpleados(valor1, valor2){
         
 
     }
-    if(exito == true)
-    {
-        $.ajax({
-            type: 'POST', //aqui puede ser igual get
-            url: '../../../production/core/asistencias/actions/getDatos.php', //aqui va tu direccion donde esta tu funcion php
-            data: { id: id, tabla: valor2 }, //aqui tus datos
-            success: function(data) {               
-                // arrayDatos = $.parseJSON(data);
+    // if(exito == true)
+    // {
+    //     $.ajax({
+    //         type: 'POST', //aqui puede ser igual get
+    //         url: '../../../production/core/asistencias/actions/getDatos.php', //aqui va tu direccion donde esta tu funcion php
+    //         data: { id: id, tabla: valor2 }, //aqui tus datos
+    //         success: function(data) {               
+    //             // arrayDatos = $.parseJSON(data);
     
-                // $('#asis_semana').empty().append('<option>Selecciona la semana</option>');            
-                // for(var i = 0; i < arrayDatos.length; i++)
-                // {
-                //     var valor = arrayDatos[i].id;
-                //     var text = arrayDatos[i].semana;
-                //     var option = new Option(text, valor );                
-                //     $("#asis_semana").append(option);
-                // }            
-                $('#tablaAsistencas').html(data).fadeIn();
-            },
-            error: function(data) {
-                alert("error");
-            }
-        });
-    }
+    //             // $('#asis_semana').empty().append('<option>Selecciona la semana</option>');            
+    //             // for(var i = 0; i < arrayDatos.length; i++)
+    //             // {
+    //             //     var valor = arrayDatos[i].id;
+    //             //     var text = arrayDatos[i].semana;
+    //             //     var option = new Option(text, valor );                
+    //             //     $("#asis_semana").append(option);
+    //             // }            
+    //             $('#tablaAsistencas').html(data).fadeIn();
+    //         },
+    //         error: function(data) {
+    //             alert("error");
+    //         }
+    //     });
+    // }
 
 }
 
@@ -73,5 +73,7 @@ function obtenerListaEmpleados(valor1, valor2){
 function imprimirNomina()
 {
     var id = $('#asis_id').val();
-    window.open("../imprimir.php?id="+id+"&archivo=pageNomina", '_blank');
+    var cateem = $('#asis_cateem').val();
+    var cateco = $('#asis_cateco').val();
+    window.open("../imprimir.php?id="+id+"&archivo=pageNomina&cateem="+cateem+"&cateco="+cateco, '_blank');
 }

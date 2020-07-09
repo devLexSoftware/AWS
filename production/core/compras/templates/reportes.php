@@ -8,6 +8,7 @@ echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->c
 }
 else {        
     $result = mysqli_query($con,"SELECT * FROM obras where estado = 0");        
+    // $result2 = mysqli_query($con,"SELECT distinct descripcion FROM compras where estado = 0");        
 }
 ?>
 
@@ -42,7 +43,7 @@ else {
                                         </div>
                                         <div class="from-group row">
                                             <div class="col-md-6">
-                                                <select name="asis_obra" id="asis_obra" class="form-control" > 
+                                                <select name="asis_obra" id="asis_obra" class="form-control" onchange="obtenerCompras(this.value,'comprasObra')"> 
                                                 <option>Selecciona la obra</option>
                                                 <?php 
                                                     while($elemento = mysqli_fetch_array($result)){
@@ -61,9 +62,39 @@ else {
                                 <div class="col-md-12 col-xs-12">
                                     <div class="x_content">                                        
                                         <div class="from-group row">
-                                            <!-- <div class="col-md-2">
+                                            <div class="col-md-2">
+                                                <label for="Semana_Reporte">Producto:<span class="required">*</span></label>                                                
+                                                <select name="asis_producto" id="asis_producto" class="form-control" onchange="deshabilitar(this.value,'producto')"> 
+                                                <option>Selecciona el producto</option>                                                                                                
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="Semana_Reporte">Proveedor:<span class="required">*</span></label>                                                
+                                                <select name="asis_proveedor" id="asis_proveedor" class="form-control" onchange="deshabilitar(this.value, 'proveedor')"> 
+                                                <option>Selecciona el proveedor</option>                                                
+                                               
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="Semana_Reporte">Contratista:<span class="required">*</span></label>                                                
+                                                <select name="asis_contratista" id="asis_contratista" class="form-control" onchange="deshabilitar(this.value, 'contratista')"> 
+                                                <option>Selecciona el contratista</option>                                                
+                                               
+                                                </select>
+                                            </div>                                        
+                                        </div>                                                                                
+                                        <br>                                     
+                                    </div>
+                                </div>  
+                            </div>
+
+                            <div class="row" div="divInformacionNominas">
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="x_content">                                        
+                                        <div class="from-group row">
+                                            <div class="col-md-2">
                                                 <label for="Semana_Reporte">Semana:<span class="required">*</span></label>                                                
-                                                <select name="asis_semana" id="asis_semana" class="form-control" onchange="obtenerListaEmpleados(this.value,'asistenciasListaNominas')"> 
+                                                <select name="asis_semana" id="asis_semana" class="form-control" onchange="ajustarSemana(this.value,'asistenciasListaNominas')"> 
                                                 <option>Selecciona la semana</option>                                                
                                                 </select>
                                             </div>
@@ -73,16 +104,13 @@ else {
                                             </div>
                                             <div class="col-md-2">
                                                 <label for="Semana_Reporte">Periodo Final:<span class="required">*</span></label>
-                                                <input readonly class="form-control" id="fechFinal_Reporte" name="fechFinal_Reporte" placeholder="DD/MM/YYYY" type="text"/>
-                                                <input readonly  id="asis_id" name="asis_id" type="hidden"/>
+                                                <input readonly class="form-control" id="fechFinal_Reporte" name="fechFinal_Reporte" placeholder="DD/MM/YYYY" type="text"/>                                                
                                             </div>
                                             <div class="col-md-2">
-                                            </div> -->
+                                            </div>
                                             <div class="col-md-2">
-                                                <label for="Semana_Reporte">Opciones</label>
-                                                
-                                                <input onclick="imprimirReporte()" class="form-control btn btn-info" value="Imprimir">
-                                                
+                                                <label for="Semana_Reporte">Opciones</label>                                                
+                                                <input onclick="imprimirReporte()" class="form-control btn btn-info" value="Imprimir">                                                
                                             </div>                                
                                         </div>                                                                                
                                         <br>                                     

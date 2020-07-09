@@ -48,8 +48,11 @@ else {
         <div>
             <table style="width: 100%;" >
                 <tr>            
-                    <td style="width: 40%; text-align: center;"><br><i>Logo</i></td>
-                    <td style="width: 60%; text-align: center; ">
+                    <td style="width: 20%; text-align: center;">
+                        <img style="width:250px;" src="production/components/images/logo2.png"> 
+                    
+                    </td>
+                    <td style="width: 50%; text-align: center; ">
                         <table style="width: 100%;" >
                             <tr>
                                 <td style="width: 100%; font-size:18px; text-align: center;"><b>Semana: </b><?php echo $myArray[0][periodoInicial].' al '.$myArray[0][periodoFinal]; ?></td>            

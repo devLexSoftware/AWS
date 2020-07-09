@@ -117,6 +117,7 @@
                   <li><a href="index.php?p=pedidos"><i class=""></i>Pedidos</i></a></li>
                   <li><a href="index.php?p=proveedores"><i class=""></i> Proveedores <span class=""></span></a></li>
                   <li><a href="index.php?p=contratistas"><i class=""></i>Contratistas</i></a></li>
+                  <li><a href="index.php?p=frentes"><i class=""></i>Frentes</i></a></li>
                   <li><a href="index.php?p=empleados"><i class=""></i>Empleados <span class=""></span></a></li>
                   <li><a href="index.php?p=grupos"><i class=""></i>Grupos</i></a></li>
                   <li><a href="index.php?p=asistencias"><i class=""></i>Asistencias</i></a></li>                  

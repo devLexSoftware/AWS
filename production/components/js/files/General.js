@@ -181,6 +181,19 @@ function abrir(archivo, ref) {
             $("#divContenido").load('production/core/usuarios/templates/usuarios.php');
             break;
 
+        case "frentes":
+            $("#divContenido").load('production/core/frentes/templates/frentes.php');
+            break;
+        case "optionFrentes":
+            $("#divContenido").load('production/core/frentes/templates/optionFrentes.php?ref=' + ref);
+            break;
+        case "frentesOk":
+            $("#divContenido").load('production/core/frentes/templates/frentes.php');
+            break;
+        case "frentesDel":
+            $("#divContenido").load('production/core/frentes/templates/frentes.php');
+            break; 
+
 
         case "nominas":
             $("#divContenido").load('production/core/nominas/templates/nominas.php');

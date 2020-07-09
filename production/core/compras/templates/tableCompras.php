@@ -36,7 +36,7 @@ else {
 ?>
 
 <h5>Total de la obra: $ <?php echo $elemento5[total];?></h5>
-<table id="datatable2" class="table table-striped table-bordered" >
+<table id="datatable3" class="table table-striped table-bordered" >
     <thead>
         <tr>
             <th>Opciones</th>
@@ -202,9 +202,3 @@ else {
     </tbody>
 </table>
 
-
-<script type="text/javascript">
-    $(document).ready(function() {
-      $('#datatable2').DataTable();
-    } );
-</script>

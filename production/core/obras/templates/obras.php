@@ -198,7 +198,7 @@ else {
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-warning" type="button" data-dismiss="modal">Aceptar</button>          
+          <button class="btn btn-warning" tabindex="1" type="button" data-dismiss="modal">Aceptar</button>          
         </div>
       </div>
     </div>

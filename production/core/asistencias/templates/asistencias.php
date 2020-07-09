@@ -28,7 +28,7 @@ else {
                         <h2>Nueva Asistencia</h2>
                     </div>
                     <div class="col-md-2">
-                    <button type="button" id="mostrar" name="boton1"  class="btn btn-info">Mostrar formulario</button>
+                    <button type="button" id="mostrar" name="boton1"  class="btn btn-info">Nueva Relación de Asistencias</button>
                     </div>
                 </div>
 
@@ -71,11 +71,11 @@ else {
                                             </div>
                                             <div class="col-md-2">
                                                 <label for="Semana_Reporte">Periodo Inicial:<span class="required">*</span></label>
-                                                <input onchange="asignarFinal()" required class="form-control" id="fechInicial_Reporte" name="fechInicial_Reporte" placeholder="DD/MM/YYYY" type="text"/>
+                                                <input autocomplete="off" onchange="asignarFinal()" required class="form-control" id="fechInicial_Reporte" name="fechInicial_Reporte" placeholder="DD/MM/YYYY" type="text"/>
                                             </div>
                                             <div class="col-md-2">
                                                 <label for="Semana_Reporte">Periodo Final:<span class="required">*</span></label>
-                                                <input required readonly class="form-control" id="fechFinal_Reporte" name="fechFinal_Reporte" placeholder="DD/MM/YYYY" type="text"/>
+                                                <input autocomplete="off" required readonly class="form-control" id="fechFinal_Reporte" name="fechFinal_Reporte" placeholder="DD/MM/YYYY" type="text"/>
                                             </div>
                                         </div>                                                                                
                                         <br>                                     
@@ -84,11 +84,8 @@ else {
                             </div>
 
 
-                            <div class="row" id="tablaAsistencas">
-                                
-                               
-
-                            </div>
+                            <div class="row" id="tablaAsistencas">                                
+                            </div>                            
 
 
                             <div class="form-group row">
@@ -253,33 +250,67 @@ var n = 0;
 
 
 <script type="text/javascript">
-function limpiarCampos(id)
+function limpiarCampos(id, tipo)
 {    
+    debugger;
+    if(tipo == 1)
+    {
+        var lunes = document.getElementsByName('empleado_dia_1_'+id);
+        lunes.forEach(element => {
+            element.checked = false;
+        });
+        var martes = document.getElementsByName('empleado_dia_2_'+id);
+        martes.forEach(element => {
+            element.checked = false;
+        });
+        var miercoles = document.getElementsByName('empleado_dia_3_'+id);
+        miercoles.forEach(element => {
+            element.checked = false;
+        });
+        var jueves = document.getElementsByName('empleado_dia_4_'+id);
+        jueves.forEach(element => {
+            element.checked = false;
+        });
+        var viernes = document.getElementsByName('empleado_dia_5_'+id);
+        viernes.forEach(element => {
+            element.checked = false;
+        });
+        var sabado = document.getElementsByName('empleado_dia_6_'+id);
+        sabado.forEach(element => {
+            element.checked = false;
+        });
 
-    var lunes = document.getElementsByName('empleado_dia_1_'+id);
-    lunes.forEach(element => {
-        element.checked = false;
-    });
-    var martes = document.getElementsByName('empleado_dia_2_'+id);
-    martes.forEach(element => {
-        element.checked = false;
-    });
-    var miercoles = document.getElementsByName('empleado_dia_3_'+id);
-    miercoles.forEach(element => {
-        element.checked = false;
-    });
-    var jueves = document.getElementsByName('empleado_dia_4_'+id);
-    jueves.forEach(element => {
-        element.checked = false;
-    });
-    var viernes = document.getElementsByName('empleado_dia_5_'+id);
-    viernes.forEach(element => {
-        element.checked = false;
-    });
-    var sabado = document.getElementsByName('empleado_dia_6_'+id);
-    sabado.forEach(element => {
-        element.checked = false;
-    });
+    }
+    else if(tipo == 2)
+    {
+        var lunes = document.getElementsByName('contratista_dia_1_'+id);
+        lunes.forEach(element => {
+            element.checked = false;
+        });
+        var martes = document.getElementsByName('contratista_dia_2_'+id);
+        martes.forEach(element => {
+            element.checked = false;
+        });
+        var miercoles = document.getElementsByName('contratista_dia_3_'+id);
+        miercoles.forEach(element => {
+            element.checked = false;
+        });
+        var jueves = document.getElementsByName('contratista_dia_4_'+id);
+        jueves.forEach(element => {
+            element.checked = false;
+        });
+        var viernes = document.getElementsByName('contratista_dia_5_'+id);
+        viernes.forEach(element => {
+            element.checked = false;
+        });
+        var sabado = document.getElementsByName('contratista_dia_6_'+id);
+        sabado.forEach(element => {
+            element.checked = false;
+        });
+
+    }
+
+    
     
 }
 </script>

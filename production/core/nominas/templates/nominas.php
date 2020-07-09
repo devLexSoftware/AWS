@@ -8,6 +8,8 @@ echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->c
 }
 else {        
     $result = mysqli_query($con,"SELECT * FROM obras where estado = 0");        
+    $result02 = mysqli_query($con,"SELECT distinct categoria FROM empleados ");        
+    $result03 = mysqli_query($con,"SELECT distinct categoria FROM contratistas");        
 }
 ?>
 
@@ -75,14 +77,32 @@ else {
                                                 <label for="Semana_Reporte">Periodo Final:<span class="required">*</span></label>
                                                 <input readonly class="form-control" id="fechFinal_Reporte" name="fechFinal_Reporte" placeholder="DD/MM/YYYY" type="text"/>
                                                 <input readonly  id="asis_id" name="asis_id" type="hidden"/>
-                                            </div>
+                                            </div>                                            
                                             <div class="col-md-2">
-                                            </div>
+                                                <label for="Semana_Reporte">Categoría Empleado:</label>
+                                                <select name="asis_cateem" id="asis_cateem" class="form-control"> 
+                                                <option value="todos">Todos</option>
+                                                <?php 
+                                                    while($elemento02 = mysqli_fetch_array($result02)){
+                                                    echo '<option value="'.$elemento02["categoria"].'">'.$elemento02["categoria"].'</option>';
+                                                }                                                
+                                                ?>                                                
+                                                </select>
+                                            </div>                                               
                                             <div class="col-md-2">
-                                                <label for="Semana_Reporte">Opciones</label>
-                                                
-                                                <input onclick="imprimirNomina()" class="form-control btn btn-info" value="Imprimir">
-                                                
+                                                <label for="Semana_Reporte">Categoría Contratista:</label>
+                                                <select name="asis_cateco" id="asis_cateco" class="form-control"> 
+                                                <option value="todos">Todos</option>
+                                                <?php 
+                                                    while($elemento03 = mysqli_fetch_array($result03)){
+                                                    echo '<option value="'.$elemento03["categoria"].'">'.$elemento03["categoria"].'</option>';
+                                                }                                                
+                                                ?>
+                                                </select>
+                                            </div>                                               
+                                            <div class="col-md-2">
+                                                <label for="Semana_Reporte">Opciones</label>                                                
+                                                <input onclick="imprimirNomina()" class="form-control btn btn-info" value="Imprimir">                                                
                                             </div>                                
                                         </div>                                                                                
                                         <br>                                     

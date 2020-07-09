@@ -83,8 +83,7 @@
                                                 <th>Total Mano de Obra</th>              
                                                 <th>Material</th>    
                                                 <th>Mat. Hono.</th>    
-                                                <th>Total Honorarios</th>    
-                                                <th></th>    
+                                                <th>Total Honorarios</th>                                                    
                                                 <th>Total Semana</th>    
                                                 <th>Total Honorarios</th>    
                                                 <th>Total con Honorarios</th>    
@@ -103,9 +102,9 @@
                                                     {
                                                         $count = $key["lunes"] + $key["martes"] + $key["miercoles"] + $key["jueves"] + $key["viernes"] + $key["sabado"];
                                                         $importeLibre = ($key["salario"]/6) * $count;
-                                                        // $seguro = $key["salario"] * 0.31;                        
-                                                        // $importeSeguro = $importeLibre + $seguro;                                                                                                                
-                                                        $manoObra = $manoObra + $importeLibre;
+                                                        $seguro = $key["salario"] * 0.31;                        
+                                                        $importeSeguro = $importeLibre + $seguro;                                                                                                                
+                                                        $manoObra = $manoObra + $importeSeguro;
                     
                                                         $semanaDato = $key["periodoInicial"]." al ".$key["periodoFinal"];                                                        
                                                     }
@@ -115,9 +114,12 @@
                                                 foreach ($elemento2 as $key) {
                                                     if($key["semana"] == $i)
                                                     {                                                        
-                                                        $material = $material + $key["importe"];
-                                                        // $seguro = $key["salario"] * 0.31;                        
-                                                        // $importeSeguro = $importeLibre + $seguro;                                                                                                                                                                                                                                                    
+                                                        $material = $material + $key["importe"];                                                        
+                                                        if($semanaDato == "")          
+                                                        {
+                                                            $semanaDato = $key["fechInicial"]." al ".$key["fechFinal"];                                                        
+
+                                                        }                                                                                                                                                                                                                                      
                                                     }
                                                 }
 
@@ -135,8 +137,7 @@
                                                         <td>$'.round($totalMano,2).'</td>                                                                     
                                                         <td>$'.round($material,2).'</td>                                                                     
                                                         <td>$'.round($honorariosMa,2).'</td>                                                                     
-                                                        <td>$'.round($totalMate,2).'</td>                                                                     
-                                                        <td></td>                                                                     
+                                                        <td>$'.round($totalMate,2).'</td>                                                                                                                                                                                                 
                                                         <td>$'.round(($material + $manoObra),2).'</td>                                                                     
                                                         <td>$'.round(($honorariosMo + $honorariosMa),2).'</td>
                                                         <td>$'.round(($totalMano + $totalMate),2).'</td> 

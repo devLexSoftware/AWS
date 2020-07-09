@@ -21,12 +21,14 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $emp_nota       = $_POST['Empl_nota'];
     $emp_salario       = $_POST['Empl_Salario'];
     $emp_nss       = $_POST['Empl_nss'];
+    $emp_categoria       = $_POST['Empl_Categoria'];
+
     
 
 
     $result = mysqli_query($con, "UPDATE empleados SET nombre = '$emp_nombre', rfc = '$emp_rfc', direccion = '$emp_direccion', giro = '$emp_giro',
                                     empresa = '$emp_empresa', email = '$emp_email', movil = '$emp_movil', telefono = '$emp_tel',
-                                    nota = '$emp_nota', salario = '$emp_salario', nssi = '$emp_nss'
+                                    nota = '$emp_nota', salario = '$emp_salario', nssi = '$emp_nss', categoria = '$emp_categoria'
                                     WHERE id = '$emp_id'");
 
 header("Location: ../../../../../index.php?p=empleadosOk");

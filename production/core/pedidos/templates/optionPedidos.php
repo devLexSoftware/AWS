@@ -64,6 +64,7 @@ else {
                     <option value="Pintura">Pintura</option>
                     <option value="Piso y Azulejo">Piso y Azulejo</option>
                     <option value="Redes">Redes</option>
+                    <option value="Tabla Roca">Tabla Roca</option>
                     <option value="Yeso">Yeso</option>                                                                        
                 </select>
             </div>

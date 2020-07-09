@@ -15,6 +15,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $fechFinal_Reporte      = $_POST['fechFinal_Reporte'];
     $asis_grupo      = $_POST['asis_grupo'];
     $count_empleados      = $_POST['countEmpleados'];
+    $count_contratista      = $_POST['countContratista'];
 
     //--Insertar asistencia    
     $result = mysqli_query($con,"INSERT INTO asistencias(usuCreacion, periodoInicial, periodoFinal,semana, descripcion, fk_obra, fk_grupo, estado)
@@ -63,17 +64,65 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
       else{
         $sabado = 0;
       }
-      // $lunes                = $_POST['empleado_dia_1_'.$idEmpleado];
-      // $martes                = $_POST['empleado_dia_2_'.$idEmpleado];
-      // $miercoles                = $_POST['empleado_dia_3_'.$idEmpleado];
-      // $jueves                = $_POST['empleado_dia_4_'.$idEmpleado];
-      // $viernes                = $_POST['empleado_dia_5_'.$idEmpleado];
-      // $sabado                = $_POST['empleado_dia_6_'.$idEmpleado];
-      // echo $idEmpleado.'-';
-      // echo $lunes.'+';
+ 
       
       $result = mysqli_query($con,"INSERT INTO asistencias_empleados(usuCreacion, lunes, martes, miercoles, jueves, viernes, sabado, domingo, monto, fk_empleado, fk_asistencia, estado)
           VALUES('admin','$lunes', '$martes', '$miercoles', '$jueves', '$viernes', '$sabado', '0',  '$salarioEmpleado', '$idEmpleado', '$id', '0' )");
+    }  
+
+    for ($i=0 ; $i <  $count_contratista; $i++ ) {
+      $idEmpleado           = $_POST['contratista_'.$i];           
+      
+      // $lunes                = isset($_POST['empleado_dia_1_'.$idEmpleado]) ? 1 : 0;
+      if(isset($_POST['contratista_dia_1_'.$idEmpleado])){
+        $lunes = $_POST['contratista_dia_1_'.$idEmpleado];
+      }
+      else{
+        $lunes = 0;
+      }      
+      if(isset($_POST['contratista_dia_2_'.$idEmpleado])){
+        $martes = $_POST['contratista_dia_2_'.$idEmpleado];
+      }
+      else{
+        $martes = 0;
+      }
+      if(isset($_POST['contratista_dia_3_'.$idEmpleado])){
+        $miercoles = $_POST['contratista_dia_3_'.$idEmpleado];
+      }
+      else{
+        $miercoles = 0;
+      }
+      if(isset($_POST['contratista_dia_4_'.$idEmpleado])){
+        $jueves = $_POST['contratista_dia_4_'.$idEmpleado];
+      }
+      else{
+        $jueves = 0;
+      }
+      if(isset($_POST['contratista_dia_5_'.$idEmpleado])){
+        $viernes = $_POST['contratista_dia_5_'.$idEmpleado];
+      }
+      else{
+        $viernes = 0;
+      }
+      if(isset($_POST['contratista_dia_6_'.$idEmpleado])){
+        $sabado = $_POST['contratista_dia_6_'.$idEmpleado];
+      }
+      else{
+        $sabado = 0;
+      }
+      
+
+      $monto = $_POST['contratista_monto_'.$i];
+      $restante = $_POST['contratista_restante_'.$i];
+      $pago = $_POST['contratista_pago_'.$i];
+
+      $res = $restante - $pago;
+
+      
+      
+      
+      $result = mysqli_query($con,"INSERT INTO asistencias_contratistas(usuCreacion, lunes, martes, miercoles, jueves, viernes, sabado, domingo, monto, fk_contratista, fk_asistencia, estado, abono, totalpagar)
+          VALUES('admin','$lunes', '$martes', '$miercoles', '$jueves', '$viernes', '$sabado', '0',  '$monto', '$idEmpleado', '$id', '0', '$pago', '$res' )");
     }  
 
 

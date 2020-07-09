@@ -28,17 +28,21 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $com_fechInicial = $_POST['fechInicial_Reporte'];
     $com_fechFinal = $_POST['fechFinal_Reporte'];
 
+    $cadena = explode("_",$com_proveedor);
 
-
-    //--Insertar nuevo proveedor
-    //$ref = "COM-".$com_fecha.$com_numero.;
-    //$result = mysqli_query($con,"INSERT INTO compras(usuCreacion,identificador, descripcion, fecha, semana, frente, factura, unidad, costo, cantidad, importe, iva, subtotal, comentario,fk_proveedor, fk_obra, fk_clientes, fechInicial, fechFinal)
-      //  VALUES('eliot', 'ref', '$com_descripcion', '$com_fecha', '$com_semana','$com_frente', '$com_numero', '$com_unidad', '$com_costo', '$com_cantidad', '$com_importe', '$com_iva', '$com_subtotal', '$com_nota', '$com_proveedor', '$com_obra', '$com_cliente', '$com_fechInicial', '$com_fechFinal')");
-
+    if($cadena[0] == "prv"){
       $result = mysqli_query($con, "UPDATE compras SET descripcion = '$com_descripcion', fecha = '$com_fecha', frente = '$com_frente', semana = '$com_semana', unidad = '$com_unidad',
-                                    factura = '$com_numero', costo = '$com_costo', cantidad = '$com_cantidad', importe = '$com_importe', iva = '$com_iva', subtotal = '$com_subtotal',
-                                    comentario = '$com_nota', fk_obra = '$com_obra', fk_clientes = '$com_cliente', fk_proveedor = '$com_proveedor', fechInicial = '$com_fechInicial', fechFinal = '$com_fechFinal'
-                                      WHERE id = $com_id");
+        factura = '$com_numero', costo = '$com_costo', cantidad = '$com_cantidad', importe = '$com_importe', iva = '$com_iva', subtotal = '$com_subtotal',
+        comentario = '$com_nota', fk_obra = '$com_obra', fk_clientes = '$com_cliente', fk_proveedor = '$cadena[1]', fechInicial = '$com_fechInicial', fechFinal = '$com_fechFinal', fk_contratista = null
+        WHERE id = $com_id");
+    }
+    else if($cadena[0] == "ctr"){
+      $result = mysqli_query($con, "UPDATE compras SET descripcion = '$com_descripcion', fecha = '$com_fecha', frente = '$com_frente', semana = '$com_semana', unidad = '$com_unidad',
+        factura = '$com_numero', costo = '$com_costo', cantidad = '$com_cantidad', importe = '$com_importe', iva = '$com_iva', subtotal = '$com_subtotal',
+        comentario = '$com_nota', fk_obra = '$com_obra', fk_clientes = '$com_cliente', fk_proveedor = null, fechInicial = '$com_fechInicial', fechFinal = '$com_fechFinal', fk_contratista = $cadena[1]
+        WHERE id = $com_id");
+    }
+
      
      header("Location: ../../../../../index.php?p=comprasOk");
 

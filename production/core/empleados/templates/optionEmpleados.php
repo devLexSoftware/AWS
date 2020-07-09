@@ -56,11 +56,15 @@ else {
                                 <label >Empresa:</label>
                                     <input type="text" id="Empl_EmpresaEmpleado" name="Empl_EmpresaEmpleado" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el nombre de la empresa" value="<?php echo($elemento['empresa']); ?>">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                   <label >Giro:</label>
-                                      <input type="text" id="Empl_GiroEmpleado" name="Empl_GiroEmpleado" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el giro de la empresa" value="<?php echo($elemento['giro']); ?>">
+                                      <input type="text" id="Empl_GiroEmpleado" name="Empl_GiroEmpleado" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el giro del Empleado" value="<?php echo($elemento['giro']); ?>">
                                   </div>     
-                                  <div class="col-md-3">
+                                  <div class="col-md-2">
+                                  <label >Cagtegoría:</label>
+                                      <input type="text" id="Empl_Categoria" name="Empl_Categoria" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la Categoría del Empleado" value="<?php echo($elemento['categoria']); ?>">
+                                  </div>     
+                                  <div class="col-md-2">
                                   <label >Salario:</label>
                                       <input type="number" id="Empl_Salario" name="Empl_Salario" class="form-control col-md-7 col-xs-12" placeholder="Salario del empleado" value="<?php echo($elemento['salario']); ?>">
                                   </div>                                                              

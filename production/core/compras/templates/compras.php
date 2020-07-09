@@ -9,7 +9,8 @@ echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->c
 else {
     $result1 = mysqli_query($con,"SELECT * FROM clientes WHERE estado = 0;");
     $result2 = mysqli_query($con,"SELECT * FROM obras WHERE estado = 0;;");
-    $result3 = mysqli_query($con,"SELECT * FROM proveedores;");
+    $result3 = mysqli_query($con,"SELECT empresa, id FROM proveedores;");
+    $result4 = mysqli_query($con,"SELECT empresa, id FROM contratistas;");
 }
 ?>
 
@@ -119,6 +120,7 @@ else {
                                     <option value="Camion">Camión</option>
                                     <option value="Kilo">Kilo</option>
                                     <option value="Litros">Litros</option>
+                                    <option value="Lote">Lote</option>
                                     <option value="Metros">Metros</option>
                                     <option value="Pieza">Pieza</option>
                                     <option value="Pipa">Pipa</option>
@@ -138,6 +140,7 @@ else {
                                     <option value="Pintura">Pintura</option>
                                     <option value="Piso y Azulejo">Piso y Azulejo</option>
                                     <option value="Redes">Redes</option>
+                                    <option value="Tabla Roca">Tabla Roca</option>
                                     <option value="Yeso">Yeso</option>
                                 </select>
                             </div>
@@ -146,12 +149,18 @@ else {
                                 <select class="form-control" name="Proveedor_Reporte" id="Proveedor_Reporte" onchange="actualizar(this.value,'proveedores')">
                                     <option value="Default">Selecciona el proveedor</option>
                                     <?php
-                                            while($elemento = mysqli_fetch_array($result3)){
-                                                echo '
-                                                    <option id="'.$elemento[id].'" value="'.$elemento[id].'">'.$elemento[proveedor].'</option>
-                                                ';
-                                            }
-                                        ?>
+                                        while($elemento = mysqli_fetch_array($result3)){
+                                            echo '
+                                                <option id="prv_'.$elemento[id].'" value="prv_'.$elemento[id].'">'.$elemento[empresa].'</option>
+                                            ';
+                                        }
+                                   
+                                        while($elemento4 = mysqli_fetch_array($result4)){
+                                            echo '
+                                                <option id="ctr_'.$elemento4[id].'" value="ctr_'.$elemento4[id].'">'.$elemento4[empresa].'</option>
+                                            ';
+                                        }
+                                    ?>
                                 </select>
                             </div>
                            
@@ -164,7 +173,7 @@ else {
 
                             </div>
                             <div class="col-md-1">
-                            <label for="CostoUnit_Reporte">Iva(16%):</label>
+                            <label for="CostoUnit_Reporte">IVA(16%):</label>
                                 <input onchange="calculos(2)"  step="0.01" type="text" id="Iva_Reporte" readonly name="Iva_Reporte" name="Iva_Reporte" class="form-control col-md-2 col-xs-12" placeholder="0">
                             </div>
                             <div class="col-md-2">
@@ -292,11 +301,14 @@ else {
 
 <script type="text/javascript">
       function calculos(val){
+        debugger;
         var can = document.getElementById("Cantidad_Reporte").value;
         var impor;
         if (val == 1) {
-          document.getElementById("Importe_Reporte").value = "";
-          var sub = document.getElementById("Subtotal_Reporte").value;
+          document.getElementById("Importe_Reporte").value = "";          
+          var sub0 = document.getElementById("Subtotal_Reporte").value;
+          var sub = sub0.replace(/^0+/, ''); 
+          document.getElementById("Subtotal_Reporte").value = sub;
           var iva = sub * 0.16;
           var total = parseFloat(sub) + parseFloat(iva);
           document.getElementById("Iva_Reporte").value = iva;
@@ -318,8 +330,9 @@ $(document).ready(function() {
             type: "POST",
             url: "../../../production/core/compras/actions/addCompras.php",
             data: $("#form").serialize(),
-            success: function()
+            success: function(data)
             {
+              debugger;
                 $('#modalcrear').modal('show');
                 $('#Cantidad_Reporte').val(0);
                 $('#Descripcion_Reporte').val("");
@@ -330,9 +343,11 @@ $(document).ready(function() {
                 $('#Subtotal_Reporte').val(0);
                 $('#Iva_Reporte').val(0);
                 $('#Importe_Reporte').val(0);
-                $('#NomFactura_Reporte').val(0);
+                // $('#NomFactura_Reporte').val(0);
                 $('#Notas_Reporte').val("");
                 $("#divTable").load('production/core/compras/templates/tableComprasHistorial.php');
+                debugger;
+                obtenerFactura()
             },
             error: function() {
                 $('#modalError').modal('show');

@@ -7,39 +7,79 @@ if (mysqli_connect_errno()) {
 echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 else {        
+
+    
+
+
     $result = mysqli_query($con,"SELECT a.periodoInicial, a.periodoFinal, a.semana, a.fk_obra from asistencias a
                                 where id = $id;");
     $elemento = mysqli_fetch_array($result);
 
-    $result2 = mysqli_query($con,"SELECT e.nombre, e.salario, e.categoria, e.rol, e.giro, ae.lunes, ae.martes, ae.miercoles, ae.jueves, ae.viernes, ae.sabado, ae.monto, e.nssi from asistencias_empleados ae
-                            inner join empleados e on ae.fk_empleado = e.id
-                            where ae.fk_asistencia = $id;");  
+
+
+
+    $q2 = "SELECT e.nombre, e.salario, e.categoria, e.rol, e.giro, ae.lunes, ae.martes, ae.miercoles, ae.jueves, ae.viernes, ae.sabado, ae.monto, e.nssi from asistencias_empleados ae
+    inner join empleados e on ae.fk_empleado = e.id";
+
+    if($cateem != "todos")
+        $q2 = $q2. " where ae.fk_asistencia = $id and e.categoria = '$cateem' ";
+    else    
+        $q2 = $q2. " where ae.fk_asistencia = $id ";    
+                
+    $result2 = mysqli_query($con,$q2);      
+
+    while($row2 = $result2->fetch_array(MYSQLI_ASSOC)) 
+         $el2[] = $row2; 
+
+    
+         
 
     $result3 = mysqli_query($con,"SELECT c.nombre as cliente, o.nombre as obra from obras o
                             inner join clientes c on o.fk_clientes = c.id    
                             where o.id = $elemento[fk_obra];");                              
     $elemento3 = mysqli_fetch_array($result3);
-                            
+
+
+
+
+    $q4 = "SELECT c.empresa as nombre, c.categoria, ac.lunes, ac.martes, ac.miercoles, ac.jueves, ac.viernes, ac.sabado, ac.monto, ac.abono, ac.totalpagar
+    from asistencias_contratistas ac
+    inner join contratistas c on ac.fk_contratista = c.id";
+
+    if($cateco != "todos")
+        $q4 = $q4. " where ac.fk_asistencia = $id and c.categoria = '$cateco' ";
+    else    
+        $q4 = $q4. " where ac.fk_asistencia = $id ";    
+    $result4 = mysqli_query($con,$q4);                                  
                                
-    while($row = $result2->fetch_array(MYSQLI_ASSOC)) 
-        $el2[] = $row;                       
-      
+    while($row4 = $result4->fetch_array(MYSQLI_ASSOC)) 
+        $el4[] = $row4;          
 
-    function fuNomina($el2) {
+    $el5 = $el2;    
+    
 
+    function fuNomina($el2, $el4) {
         foreach ($el2 as $elemento02) {
-
-            $seguro = $elemento02[salario] * 0.31;                        
             $count = $elemento02["lunes"] + $elemento02["martes"] + $elemento02["miercoles"] + $elemento02["jueves"] + $elemento02["viernes"] + $elemento02["sabado"];            
-            $importeLibre = ($elemento02[salario]/6) * $count;
-            $importeSeguro = $importeLibre + $seguro;
+            if($count > 0)
+            {
+                $seguro = $elemento02[salario] * 0.31;                        
+                $importeLibre = ($elemento02[salario]/6) * $count;
+                $importeSeguro = $importeLibre + $seguro;
+    
+                $GLOBALS['totNomi'] = $GLOBALS['totNomi'] + $importeSeguro;    
+            }
+            
+        }   
+        
+        foreach ($el4 as $elemen4){
+            $GLOBALS['totNomi'] = $GLOBALS['totNomi'] + $elemen4[abono];    
 
-            $GLOBALS['totNomi'] = $GLOBALS['totNomi'] + $importeSeguro;
-        }        
+        }
 
     }
 
-    fuNomina($el2);
+    fuNomina($el2, $el4);
 
 }
 
@@ -49,7 +89,10 @@ else {
     
     <table width=1440 height=150>
         <tr align="center" >
-            <th style="width:100%; height:120px;"><h1> WorkShop Studio Premier</h1>Architecture + 3D Visualization</th>            
+            <th style="width:550px;" ></th>
+            <th >
+            <img style="width:300px;" src="production/components/images/logo2.png"> 
+            </th>            
         </tr>        
     </table>
     <table border=0.5   bordercolor="#73879ca3" width=1440 >
@@ -105,11 +148,13 @@ else {
                 $totalSemanaSeguro = 0;
                 $totalCategoria = 0; 
 
-                foreach ($el2 as $elemento2) {                
+                foreach ($el5 as $elemento2) {                
                         $count = 0;
                         $seguro = $elemento2[salario] * 0.31;                        
-                        
-                        echo '
+                        $asistencia = $elemento2["lunes"] + $elemento2["martes"] + $elemento2["miercoles"] + $elemento2["jueves"] + $elemento2["viernes"] + $elemento2["sabado"];            
+                        if($asistencia > 0)
+                        {
+                            echo '
                             <tr'; if($bandera == false){ echo ' style="background-color: #CFE1F5;"'; } echo '>
                                 <td style=" padding: 4px 2px; border-bottom: 1px solid #B4B5B0; ">'.$elemento[semana].'</td>
                                 <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento[periodoInicial].' al '.$elemento[periodoFinal].'</td>            
@@ -145,6 +190,65 @@ else {
                         $totalSemanaLibre = $totalSemanaLibre + $importeLibre;
                         $totalSemanaSeguro = $totalSemanaSeguro + $importeSeguro;
 
+                        }
+                        
+                    }      
+                    ?>
+            </tr>        
+        </table>
+
+
+        <br>
+        <hr>
+
+        <table bordercolor="#007"  style="font-size: 11px; width:100%; " >           
+            <tr style="background-color: #1E8EC6; color:#333333; text-align: center;">
+                <th style=" padding: 3px 2px; width: 25px; ">Sem </th>
+                <th style="width: 150px;">Periodo </th>
+                <th style="width: 505px;">Empresa Contratista</th>                
+                <th style="width: 150px;">Categoría</th>                
+                <th style="width: 20px; text-align: center; ">Lu</th>
+                <th style="width: 20px; text-align: center; ">Ma</th>
+                <th style="width: 20px; text-align: center; ">Mi</th>
+                <th style="width: 20px; text-align: center; ">Ju</th>
+                <th style="width: 20px; text-align: center; ">Vi</th>
+                <th style="width: 20px; text-align: center; ">Sa</th>
+                <th style="width: 55px;">D. Labo</th>                
+                <th style="width: 150px;">Total a pagar</th>
+                <th style="width: 150px;">Pago</th>
+                <th style="width: 90px;">Restante</th>                                
+            </tr>
+            <tr style="color:black;">
+                <?php
+                $bandera = true;                
+
+                foreach ($el4 as $elemento2) {                
+                        $count = 0;
+                        $seguro = $elemento2[salario] * 0.31;                        
+                        
+                            echo '
+                            <tr'; if($bandera == false){ echo ' style="background-color: #CFE1F5;"'; } echo '>
+                                <td style=" padding: 4px 2px; border-bottom: 1px solid #B4B5B0; ">'.$elemento[semana].'</td>
+                                <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento[periodoInicial].' al '.$elemento[periodoFinal].'</td>            
+                                <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento2[nombre].'</td>                                            
+                                <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento2[categoria].'</td>                                            
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[lunes] == 1){$count++; echo 'x'; } else if($elemento2[lunes] == 0.5){$count = $count + 0.5; echo '1/2'; }  echo'</td>
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[martes] == 1){ $count++; echo 'x'; } else if($elemento2[martes] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[miercoles] == 1){ $count++; echo 'x'; } else if($elemento2[miercoles] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[jueves] == 1){ $count++; echo 'x'; } else if($elemento2[jueves] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[viernes] == 1){ $count++; echo 'x'; } else if($elemento2[viernes] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[sabado] == 1){ $count++; echo 'x'; } else if($elemento2[sabado] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">'.$count.'</td>                                       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.$elemento2[monto].'</td>                                                                       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.$elemento2[abono].'</td>
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.$elemento2[totalpagar].'</td>                                                                 
+                            </tr>
+                        ';                        
+                        if($bandera == false)
+                            $bandera = true;
+                        else
+                            $bandera = false;
+                        
                     }      
                     ?>
             </tr>        
