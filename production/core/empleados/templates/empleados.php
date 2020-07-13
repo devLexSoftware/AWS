@@ -17,7 +17,7 @@
                                       <h2>Nuevo Empleado</h2>
                                   </div>
                                   <div class="col-md-2">
-                                  <button type="button" id="mostrar" name="boton1"  class="btn btn-info">Mostrar formulario</button>
+                                  <button type="button" id="mostrar" name="boton1"  class="btn btn-info">Nuevo Empleado</button>
                                   </div>
                               </div>
 
@@ -35,7 +35,7 @@
                                   </div>
                                   <div class="col-md-3">
                                   <label  for="RFC-Client">N.S.S:</label>
-                                      <input type="text" id="Empl_nss" name="Empl_nss" class="form-control col-md-7 col-xs-12" placeholder="Ingrse el N.S.S">
+                                      <input maxlength="12" type="text" id="Empl_nss" name="Empl_nss" class="form-control col-md-7 col-xs-12" placeholder="Ingrse el N.S.S">
                                   </div>
                             </div>
 
@@ -52,7 +52,22 @@
                                   </div>     
                                   <div class="col-md-2">
                                   <label >Categoría:</label>
-                                      <input type="text" id="Empl_Categoria" name="Empl_Categoria" class="form-control col-md-7 col-xs-12" placeholder="Categoría del empleado">
+                                      <!-- <input type="text" id="Empl_Categoria" name="Empl_Categoria" class="form-control col-md-7 col-xs-12" placeholder="Categoría del empleado"> -->
+                                    <select class="form-control" id="Empl_Categoria" name="Empl_Categoria" >
+                                      <option value="Default">Selecciona la unidad</option>
+                                      <option value="Oficial">Oficial</option>
+                                      <option value="Peón">Peón</option>
+                                      <option value="Sobre Estante">Sobre Estante</option>
+                                      <option value="Herrero">Herrero</option>
+                                      <option value="Carpintero">Carpintero</option>
+                                      <option value="Pintor">Pintor</option>
+                                      <option value="Tablaroquero">Tablaroquero</option>
+                                      <option value="Yesero">Yesero</option>
+                                      <option value="Arquitecto">Arquitecto</option>
+                                      <option value="Electricista">Electricista</option>
+                                      <option value="Plomero">Plomero</option>
+                                    </select>
+
                                   </div>  
                                   <div class="col-md-2">
                                   <label >Salario:</label>
@@ -164,11 +179,11 @@ var n = 0;
         $('#mostrar').click(function() {
             $('#target').slideToggle("fast");
             if(n == 0){
-                $("#mostrar").text("Ocultar formulario");
+                $("#mostrar").text("Ocultar");
                 n = 1;
             }
             else{
-                $("#mostrar").text("Mostrar formulario");
+                $("#mostrar").text("Nuevo Empleado");
                 n = 0;
             }
         });

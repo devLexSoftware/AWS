@@ -12,11 +12,11 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $fre_id                   = $_POST['fre_id'];
 
     $fre_nombre              = $_POST['fre_nombre'];    
-    $fre_contratista         = $_POST['fre_contratista'];
+    // $fre_contratista         = $_POST['fre_contratista'];
     $fre_descripcion         = $_POST['fre_descripcion'];
     
 
-    $result = mysqli_query($con, "UPDATE frentes SET nombre = '$fre_nombre', descripcion = '$fre_descripcion', fk_contratista = '$fre_contratista'                                     
+    $result = mysqli_query($con, "UPDATE frentes SET nombre = '$fre_nombre', descripcion = '$fre_descripcion'
                                     WHERE id = '$fre_id'");
     
     header("Location: ../../../../../index.php?p=frentesOk");

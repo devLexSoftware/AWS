@@ -7,10 +7,14 @@ if (mysqli_connect_errno()) {
 echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 else {
+  $con -> set_charset("utf8");
     $result1 = mysqli_query($con,"SELECT * FROM clientes WHERE estado = 0;");
     $result2 = mysqli_query($con,"SELECT * FROM obras WHERE estado = 0;;");
     $result3 = mysqli_query($con,"SELECT empresa, id FROM proveedores;");
     $result4 = mysqli_query($con,"SELECT empresa, id FROM contratistas;");
+
+    $result10 = mysqli_query($con,"SELECT nombre FROM frentes WHERE estado = 0;");    
+
 }
 ?>
 
@@ -89,16 +93,16 @@ else {
                             </div>
                             <div class="col-md-2">
                                 <label for="Periodo_Reporte">Fecha de compra:<span class="required">*</span></label>
-                                <input type="text" id="fecha_Reporte" name="fecha_Reporte" required="required" placeholder="DD/MM/YYYY" class="form-control col-md-2 col-xs-12" placeholder="Ingresa el inicio de periodo"><br><br>
+                                <input autocomplete="off" type="text" id="fecha_Reporte" name="fecha_Reporte" required="required" placeholder="DD/MM/YYYY" class="form-control col-md-2 col-xs-12" placeholder="Ingresa el inicio de periodo"><br><br>
                             </div>                            
                             <div class="col-md-3">
                                 <label >Periodo Inicial: </label><span>Solo días lunes</span>
-                                <input onchange="asignarFinal()" required class="form-control" id="fechInicial_Reporte" name="fechInicial_Reporte" placeholder="DD/MM/YYYY" type="text"/>
+                                <input autocomplete="off" onchange="asignarFinal()" required class="form-control" id="fechInicial_Reporte" name="fechInicial_Reporte" placeholder="DD/MM/YYYY" type="text"/>
 
                             </div>
                             <div class="col-md-3">
                                 <label >Periodo Final: </label><span>Solo días domingo</span>
-                                <input required readonly class="form-control" id="fechFinal_Reporte" name="fechFinal_Reporte" placeholder="DD/MM/YYYY" type="text"/>
+                                <input autocomplete="off" required readonly class="form-control" id="fechFinal_Reporte" name="fechFinal_Reporte" placeholder="DD/MM/YYYY" type="text"/>
                             </div>
                          </div>
 
@@ -130,18 +134,14 @@ else {
                             <div class="col-md-3">
                                 <label  for="Frente_Reporte">Frente:<span class="required">*</span></label>
                                 <select class="form-control" id="Frente_Reporte" name="Frente_Reporte">
-                                    <option value="Default">Selecciona un frente</option>
-                                    <option value="Albañeeria">Albañería</option>
-                                    <option value="Carpinteria">Carpintería</option>
-                                    <option value="Electricista">Electricista</option>
-                                    <option value="Herreria">Herrería</option>
-                                    <option value="Jardineria">Jardinería</option>
-                                    <option value="Plomeria">Plomería</option>
-                                    <option value="Pintura">Pintura</option>
-                                    <option value="Piso y Azulejo">Piso y Azulejo</option>
-                                    <option value="Redes">Redes</option>
-                                    <option value="Tabla Roca">Tabla Roca</option>
-                                    <option value="Yeso">Yeso</option>
+                                  <option value="Default">Selecciona un frente</option>
+                                    <?php
+                                        while($elemento10 = mysqli_fetch_array($result10)){
+                                            echo '
+                                                <option id="'.$elemento10[nombre].'" value="'.$elemento10[nombre].'">'.$elemento10[nombre].'</option>
+                                            ';
+                                        }
+                                    ?>                                    
                                 </select>
                             </div>
                             <div class="col-md-3">

@@ -1,3 +1,18 @@
+<?php
+include("../../../config/conexion.php");
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
+$con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+if (mysqli_connect_errno()) {
+echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+else {
+    $con -> set_charset("utf8");
+
+    $result1 = mysqli_query($con,"SELECT nombre FROM frentes WHERE estado = 0;");    
+}
+?>
+
 
 <div class="">
 
@@ -34,7 +49,17 @@
                                     </div>
                                 <div class="col-md-6">
                                 <label for="">Frente:<span class="required">*</span></label>
-                                    <input type="text" name="Frente" required="required" class="form-control" placeholder="Ingrese el nombre del frente">
+                                    <!-- <input type="text" name="Frente" required="required" class="form-control" placeholder="Ingrese el nombre del frente"> -->
+                                    <select class="form-control" name="Frente" id="Frente" >
+                                    <option>Selecciona el frente</option>
+                                    <?php
+                                            while($elemento1 = mysqli_fetch_array($result1)){
+                                                echo '
+                                                    <option id="'.$elemento1[nombre].'" value="'.$elemento1[nombre].'">'.$elemento1[nombre].'</option>
+                                                ';
+                                            }
+                                        ?>
+                                </select>
                                 </div>                                
                             </div>
 
@@ -189,7 +214,7 @@ var n = 0;
         $('#mostrar').click(function() {
             $('#target').slideToggle("fast");
             if(n == 0){
-                $("#mostrar").text("Ocultar nueva cotización");
+                $("#mostrar").text("Ocultar");
                 n = 1;
             }
             else{

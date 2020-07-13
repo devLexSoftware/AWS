@@ -52,19 +52,7 @@ else {
                                 <label>Nombre:<span class="required">*</span></label>
                                 <input value="<?php echo($elemento['nombre']); ?>" type="text" name="fre_nombre" required="required" class="form-control col-md-7 col-xs-12" placeholder="Nombre">
                             </div>
-                            <div class="col-md-6">
-                            <label  for="Proveedor_Reporte">Contratista:<span class="required">*</span></label>
-                                <select class="form-control" name="fre_contratista" id="fre_contratista">
-                                    <option value="<?php echo($elemento['fk_contratista']); ?>"><?php echo($elemento['empresa']); ?></option>
-                                    <?php
-                                            while($elemento1 = mysqli_fetch_array($result1)){
-                                                echo '
-                                                    <option id="'.$elemento1[id].'" value="'.$elemento1[id].'">'.$elemento1[empresa].'</option>
-                                                ';
-                                            }
-                                        ?>
-                                </select>
-                            </div>                                                 
+                            
                         </div>
                         
 

@@ -32,7 +32,7 @@ else {
                         <h2>Nuevo Grupo</h2>
                     </div>
                     <div class="col-md-2">
-                    <button type="button" id="mostrar" name="boton1"  class="btn btn-info">Mostrar formulario</button>
+                    <button type="button" id="mostrar" name="boton1"  class="btn btn-info">Nuevo Grupo</button>
                     </div>
                 </div>
 
@@ -199,7 +199,7 @@ var n = 0;
                 n = 1;
             }
             else{
-                $("#mostrar").text("Mostrar formulario");
+                $("#mostrar").text("Nuevo Grupo");
                 n = 0;
             }
         });

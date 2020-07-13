@@ -211,11 +211,11 @@ var n = 0;
         $('#mostrar').click(function() {
             $('#target').slideToggle("fast");
             if(n == 0){
-                $("#mostrar").text("Ocultar formulario");
+                $("#mostrar").text("Ocultar");
                 n = 1;
             }
             else{
-                $("#mostrar").text("Mostrar formulario");
+                $("#mostrar").text("Nueva Relación de Asistencias");
                 n = 0;
             }
         });

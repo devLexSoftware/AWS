@@ -8,6 +8,7 @@ echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->c
 }
 else {
 
+    $con -> set_charset("utf8");
     $idPedido = $_GET["ref"];    
     $result = mysqli_query($con,"SELECT pedidos.id, pedidos.frente, pedidos.descripcion, pedidos.estado,  obras.nombre as obraNombre, obras.id as obraId from pedidos
     inner join obras on pedidos.fk_obra = obras.id where pedidos.id = $idPedido ");        
@@ -15,6 +16,9 @@ else {
 
     $result2 = mysqli_query($con,"SELECT * FROM obras;");
     $elemento2 = mysqli_fetch_array($result2);
+
+    $result10 = mysqli_query($con,"SELECT nombre FROM frentes WHERE estado = 0;");    
+
 }
 ?>
 
@@ -55,17 +59,13 @@ else {
                 <label for="Frente-Client">Frente:</label>                            
                 <select class="form-control" id="pedido_frente" name="pedido_frente">
                     <option value="<?php echo($elemento['frente']); ?>"><?php echo($elemento['frente']); ?></option>                    
-                    <option value="Albañileria">Albañileria</option>
-                    <option value="Carpinteria">Carpinteria</option>
-                    <option value="Electricista">Electricista</option>
-                    <option value="Herreria">Herreria</option>
-                    <option value="Jardineria">Jardineria</option>
-                    <option value="Plomeria">Plomeria</option>
-                    <option value="Pintura">Pintura</option>
-                    <option value="Piso y Azulejo">Piso y Azulejo</option>
-                    <option value="Redes">Redes</option>
-                    <option value="Tabla Roca">Tabla Roca</option>
-                    <option value="Yeso">Yeso</option>                                                                        
+                    <?php
+                        while($elemento10 = mysqli_fetch_array($result10)){
+                            echo '
+                                <option id="'.$elemento10[nombre].'" value="'.$elemento10[nombre].'">'.$elemento10[nombre].'</option>
+                            ';
+                        }
+                    ?>                                                                         
                 </select>
             </div>
         </div>

@@ -116,7 +116,15 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
       $restante = $_POST['contratista_restante_'.$i];
       $pago = $_POST['contratista_pago_'.$i];
 
-      $res = $restante - $pago;
+      if($restante == "")
+      {
+        $res = $monto - $pago;
+      }
+      else
+      {
+        $res = $restante - $pago;
+      }
+      
 
       
       

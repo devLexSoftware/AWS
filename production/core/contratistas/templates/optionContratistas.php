@@ -8,6 +8,7 @@ echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->c
 }
 else {
 
+    $con -> set_charset("utf8");
     $id = $_GET["ref"];    
     $result = mysqli_query($con,"SELECT * FROM contratistas WHERE id = '$id';");    
     $elemento = mysqli_fetch_array($result);      
@@ -57,7 +58,18 @@ else {
                             </div>
                             <div class="col-md-4">
                                 <label>Frente:<span class="required">*</span></label>
-                                <input value="<?php echo($elemento['frente']); ?>" type="tex" name="con_frente" required="required" class="form-control col-md-7 col-xs-12" placeholder="Frente">
+                                
+                                <select class="form-control" id="con_frente" name="con_frente">
+                                <option value="<?php echo($elemento['frente']); ?>"><?php echo($elemento['frente']); ?></option>                    
+                                    
+                                    <?php
+                                        while($elemento10 = mysqli_fetch_array($result10)){
+                                            echo '
+                                                <option id="'.$elemento10[nombre].'" value="'.$elemento10[nombre].'">'.$elemento10[nombre].'</option>
+                                            ';
+                                        }
+                                    ?>                                                                     
+                                </select>
                             </div>                          
                             <div class="col-md-4">
                                 <label>Empresa:<span class="required">*</span></label>

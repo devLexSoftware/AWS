@@ -46,7 +46,7 @@ else {
                                   </div>
                                   <div class="col-md-3">
                                     <label  for="RFC-Client">N.S.S:</label>
-                                        <input type="text"  id="Empl_nss" name="Empl_nss" class="form-control col-md-7 col-xs-12" value="<?php echo($elemento['nssi']); ?>" placeholder="Ingrese el N.S.S">
+                                        <input maxlength="12" type="text"  id="Empl_nss" name="Empl_nss" class="form-control col-md-7 col-xs-12" value="<?php echo($elemento['nssi']); ?>" placeholder="Ingrese el N.S.S">
                                         <input type="hidden"  id="Empl_Referencia" name="Empl_Referencia" class="form-control col-md-7 col-xs-12" value="<?php echo($elemento['id']); ?>" placeholder="">
                                     </div>
                             </div>                           
@@ -61,8 +61,21 @@ else {
                                       <input type="text" id="Empl_GiroEmpleado" name="Empl_GiroEmpleado" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el giro del Empleado" value="<?php echo($elemento['giro']); ?>">
                                   </div>     
                                   <div class="col-md-2">
-                                  <label >Cagtegoría:</label>
-                                      <input type="text" id="Empl_Categoria" name="Empl_Categoria" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la Categoría del Empleado" value="<?php echo($elemento['categoria']); ?>">
+                                  <label >Cagtegoría:</label>                                      
+                                      <select class="form-control" id="Empl_Categoria" name="Empl_Categoria" >
+                                        <option value="<?php echo($elemento['categoria']); ?>"><?php echo($elemento['categoria']); ?></option>                                        
+                                        <option value="Oficial">Oficial</option>
+                                        <option value="Peón">Peón</option>
+                                        <option value="Sobre Estante">Sobre Estante</option>
+                                        <option value="Herrero">Herrero</option>
+                                        <option value="Carpintero">Carpintero</option>
+                                        <option value="Pintor">Pintor</option>
+                                        <option value="Tablaroquero">Tablaroquero</option>
+                                        <option value="Yesero">Yesero</option>
+                                        <option value="Arquitecto">Arquitecto</option>
+                                        <option value="Electricista">Electricista</option>
+                                        <option value="Plomero">Plomero</option>
+                                    </select>
                                   </div>     
                                   <div class="col-md-2">
                                   <label >Salario:</label>

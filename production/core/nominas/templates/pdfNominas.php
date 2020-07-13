@@ -89,7 +89,7 @@ else {
     
     <table width=1440 height=150>
         <tr align="center" >
-            <th style="width:550px;" ></th>
+            <th style="width:550px; height:150px" ></th>
             <th >
             <img style="width:300px;" src="production/components/images/logo2.png"> 
             </th>            

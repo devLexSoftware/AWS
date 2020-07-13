@@ -10,13 +10,13 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
     //--Datos de usuario
     $fre_nombre              = $_POST['fre_nombre'];    
-    $fre_contratista         = $_POST['fre_contratista'];
+    // $fre_contratista         = $_POST['fre_contratista'];
     $fre_descripcion         = $_POST['fre_descripcion'];
     
 
     //--Insertar nuevo proveedor    
     $result = mysqli_query($con,"INSERT INTO frentes(usuCreacion, nombre, descripcion, fk_contratista, estado)
-        VALUES('admin', '$fre_nombre', '$fre_descripcion', '$fre_contratista', 0)");         
+        VALUES('admin', '$fre_nombre', '$fre_descripcion', null, 0)");         
 
 
     header("Location: ../../../../../index.php?p=frentes");

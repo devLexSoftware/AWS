@@ -210,7 +210,7 @@
                                                                 </td>
                                                                 
                                                                 <td>
-                                                                    <input value="limpiar" onclick="limpiarCampos('.$objeto[id].', '.$tipo.')" name="limpiar" type="button" id="limpiar" >                                                                    
+                                                                    <input value="limpiar" onclick="limpiarCampos('.$elemento02[id].', '.$tipo.')" name="limpiar" type="button" id="limpiar" >                                                                    
                                                                 </td>
                                                             </tr>
                                                         ';

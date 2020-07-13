@@ -7,9 +7,13 @@ if (mysqli_connect_errno()) {
 echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 else {
+    $con -> set_charset("utf8");
     // $result1 = mysqli_query($con,"SELECT * FROM clientes WHERE estado = 0;");
     $result1 = mysqli_query($con,"SELECT * FROM obras WHERE estado = 0;");
     // $result3 = mysqli_query($con,"SELECT * FROM proveedores;");
+
+    $result10 = mysqli_query($con,"SELECT nombre FROM frentes WHERE estado = 0;");    
+
 }
 ?>
 
@@ -57,18 +61,14 @@ else {
                             <div class="col-md-6">
                                 <label for="Frente-Client">Frente:</label>                            
                                 <select class="form-control" id="pedido_frente" name="pedido_frente">
-                                    <option disabled>Selecciona frente:</option>
-                                    <option value="Albañileria">Albañileria</option>
-                                    <option value="Carpinteria">Carpinteria</option>
-                                    <option value="Electricista">Electricista</option>
-                                    <option value="Herreria">Herreria</option>
-                                    <option value="Jardineria">Jardineria</option>
-                                    <option value="Plomeria">Plomeria</option>
-                                    <option value="Pintura">Pintura</option>
-                                    <option value="Piso y Azulejo">Piso y Azulejo</option>
-                                    <option value="Redes">Redes</option>
-                                    <option value="Tabla Roca">Tabla Roca</option>
-                                    <option value="Yeso">Yeso</option>                                                                        
+                                    <option >Selecciona frente:</option>
+                                    <?php
+                                        while($elemento10 = mysqli_fetch_array($result10)){
+                                            echo '
+                                                <option id="'.$elemento10[nombre].'" value="'.$elemento10[nombre].'">'.$elemento10[nombre].'</option>
+                                            ';
+                                        }
+                                    ?>                                                                     
                                 </select>
                             </div>
                         </div>
@@ -179,7 +179,7 @@ var n = 0;
         $('#mostrar').click(function() {
             $('#target').slideToggle("fast");
             if(n == 0){
-                $("#mostrar").text("Ocultar nuevo pedido");
+                $("#mostrar").text("Ocultar");
                 n = 1;
             }            
             else{

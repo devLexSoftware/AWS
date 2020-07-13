@@ -138,11 +138,15 @@ function cargarEmpleados() {
 
 
 function obtenerEquipos(valor1, valor2) {    
+    debugger;
+
     $.ajax({
         type: 'POST', //aqui puede ser igual get
         url: '../../../production/core/grupos/actions/getDatos.php', //aqui va tu direccion donde esta tu funcion php
         data: { id: valor1, tabla: valor2 }, //aqui tus datos
         success: function(data) {
+            debugger;
+
             switch (valor2) {
                 case "proveedores":
                     datos = $.parseJSON(data);

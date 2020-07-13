@@ -7,11 +7,15 @@ if (mysqli_connect_errno()) {
 echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 else {
+  $con -> set_charset("utf8");
     $id = $_GET["ref"];
     $result0 = mysqli_query($con,"SELECT * FROM cotizaciones where id = $id;");
     $elemento = mysqli_fetch_array($result0);
     
     $result1 = mysqli_query($con,"SELECT * FROM cotizaciones_detalles where fk_cotizaciones = $id;");
+
+    $result10 = mysqli_query($con,"SELECT nombre FROM frentes WHERE estado = 0;");    
+
 }
 ?>
 
@@ -47,7 +51,17 @@ else {
                                     </div>
                                 <div class="col-md-6">
                                 <label for="">Frente:<span class="required">*</span></label>
-                                    <input value="<?php echo $elemento[frente]; ?>" type="text" name="Frente" required="required" class="form-control" placeholder="Ingrese el nombre del frente">
+                                    <!-- <input value="<?php echo $elemento[frente]; ?>" type="text" name="Frente" required="required" class="form-control" placeholder="Ingrese el nombre del frente"> -->
+                                    <select class="form-control" name="Frente" id="Frente" >
+                                    <option id="<?php echo $elemento[frente]; ?>" value="<?php echo $elemento[frente]; ?>"><?php echo $elemento[frente]; ?></option>
+                                    <?php
+                                            while($elemento10 = mysqli_fetch_array($result10)){
+                                                echo '
+                                                    <option id="'.$elemento10[nombre].'" value="'.$elemento10[nombre].'">'.$elemento10[nombre].'</option>
+                                                ';
+                                            }
+                                        ?>
+                                </select>
                                 </div>                                
                             </div>
 

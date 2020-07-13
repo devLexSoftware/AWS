@@ -26,7 +26,7 @@ else {
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_title form-group row">                
                     <div class="col-md-2">
-                    <button type="button" id="mostrar" name="boton1"  class="btn btn-info">Registrar Frente</button>
+                    <button type="button" id="mostrar" name="boton1"  class="btn btn-info">Nuevo Frente</button>
                     </div>
                 </div>
                 
@@ -40,18 +40,7 @@ else {
                                 <label>Nombre:<span class="required">*</span></label>
                                 <input type="text" name="fre_nombre" required="required" class="form-control col-md-7 col-xs-12" placeholder="Nombre">
                             </div>
-                            <div class="col-md-6">
-                                <label>Contratista:<span class="required">*</span></label>
-
-                                <select name="fre_contratista" id="fre_contratista" class="form-control"> 
-                                <option>Selecciona el contratista</option>
-                                <?php 
-                                    while($elemento = mysqli_fetch_array($result)){
-                                    echo '<option value="'.$elemento["id"].'">'.$elemento["empresa"].'</option>';
-                                }                                                
-                                ?>
-                                </select>
-                            </div>                         
+                                               
                             
                         </div>
                       
@@ -148,11 +137,11 @@ var n = 0;
         $('#mostrar').click(function() {
             $('#target').slideToggle("fast");
             if(n == 0){
-                $("#mostrar").text("Ocultar registro");
+                $("#mostrar").text("Ocultar");
                 n = 1;
             }            
             else{
-                $("#mostrar").text("Registrar Frente");
+                $("#mostrar").text("Nuevo Frente");
                 n = 0;
             }
         });

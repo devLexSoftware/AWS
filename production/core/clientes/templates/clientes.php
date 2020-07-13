@@ -181,7 +181,7 @@ var n = 0;
         $('#mostrar').click(function() {
             $('#target').slideToggle("fast");
             if(n == 0){
-                $("#mostrar").text("Ocultar nuevo cliente");
+                $("#mostrar").text("Ocultar");
                 n = 1;
             }            
             else{

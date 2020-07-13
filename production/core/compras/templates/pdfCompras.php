@@ -98,7 +98,7 @@ else {
     
     <table width=1440 height=150>
         <tr align="center" >
-        <th style="width:550px;" ></th>
+        <th style="width:550px; height:150px" ></th>
             <th >
             <img style="width:300px;" src="production/components/images/logo2.png"> 
             </th>            
@@ -134,15 +134,15 @@ else {
                 <th style=" padding: 3px 2px; width: 25px; ">Sem </th>
                 <th style="width: 140px;">Periodo </th>
                 <th style="width: 40px;">Cant</th>
-                <th style="width: 250px;">Descripcion</th>
-                <th style="width: 90px;">Unidad</th>
+                <th style="width: 240px;">Descripcion</th>
+                <th style="width: 80px;">Unidad</th>
                 <th style="width: 110px;">Frente</th>
-                <th style="width: 70px;">Fecha</th>            
+                <th style="width: 65px;">Fecha</th>            
                 <th style="width: 35px;">Fac.</th>    
                 <th style="width: 145px;">Proveedor</th>    
                 <th style="width: 70px;">SubTotal</th>    
-                <th style="width: 70px;">IVA</th>   
-                <th style="width: 70px;">Importe</th>    
+                <th style="width: 60px;">IVA</th>   
+                <th style="width: 65px;">Importe</th>    
                 <th style="width: 70px;">Costo Uni</th>  
                 <th style="width: 70px;">Total Fac</th>  
                 <th style="width: 70px;">Total Fre</th>                    
