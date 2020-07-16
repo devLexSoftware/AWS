@@ -1,4 +1,6 @@
+
  <?php
+ include("../../../config/bloque.php");
 include("../../../config/conexion.php");
 //error_reporting(E_ALL);
 //ini_set('display_errors', '1');
@@ -17,14 +19,16 @@ else {
 
       <div class="x_content" >
         <ul class="nav nav-pills">
-          <li class="active"><a href="index.php">Home</a></li>
-          <li><a href="index.php?p=cotizaciones">Cotizaciones</a></li>
-          <li><a href="index.php?p=obras">Listado de obras</a></li>                    
-          <li><a href="index.php?p=clientes">Clientes</a></li>
-          <li><a href="index.php?p=compras">Compras</a></li>
-          <li><a href="index.php?p=proveedores">Proveedores</a></li>
-          <li><a href="#">Empleados</a></li>
-          <li><a href="#">Grupos</a></li>
+          <li class="active"><a href="index.php">Home</a></li>            
+              <li><a href="index.php?p=cotizaciones">Cotizaciones</a></li>
+              <?php if ($_SESSION['perfil'] == "administrador") { ?>
+                <li><a href="index.php?p=obras">Obras</a></li>                    
+                <li><a href="index.php?p=clientes">Clientes</a></li>
+                <li><a href="index.php?p=compras">Compras</a></li>
+                <li><a href="index.php?p=empleados">Empleados</a></li>
+              <?php }?>
+
+              <li><a href="index.php?p=proveedores">Proveedores</a></li>                            
         </ul>
       </div>
       <hr>
@@ -38,7 +42,7 @@ else {
             while($elemento = mysqli_fetch_array($result)){
                 echo '<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class=""></i>Compras totales</span>
-                <div class="count">$'.$elemento["total"].'</div>
+                <div class="count">$'.round($elemento["total"],2).'</div>
                 <span class="count_bottom">De la obra: <i class="green">'.$elemento["nombre"].'</i></span>
               </div>';
             }

@@ -73,6 +73,7 @@ else {
         }   
         
         foreach ($el4 as $elemen4){
+            $GLOBALS['totAbono'] = $GLOBALS['totAbono'] + $elemen4[abono];    
             $GLOBALS['totNomi'] = $GLOBALS['totNomi'] + $elemen4[abono];    
 
         }
@@ -91,7 +92,7 @@ else {
         <tr align="center" >
             <th style="width:550px; height:150px" ></th>
             <th >
-            <img style="width:300px;" src="production/components/images/logo2.png"> 
+            <img style="width:300px;" src="production/components/images/logo3.png"> 
             </th>            
         </tr>        
     </table>
@@ -259,12 +260,16 @@ else {
 
     <table  border="1"  style="font-size: 14px; width:100%; " >           
         <tr style=" color:#333333; text-align: center;">
-            <th style="background-color: #5aa3e2; color:white; padding: 3px 2px; width: 200px; ">Total Semana Libre </th>
+            <th style="background-color: #5aa3e2; color:white; padding: 3px 2px; width: 300px; ">Total Sem libre Empleados</th>
             <th style="width: 150px;">$<?php echo round($totalSemanaLibre,2); ?> </th>
+        </tr>        
+        <tr style=" color:#333333; text-align: center;">
+            <th style="background-color: #5aa3e2; color:white; padding: 3px 2px; width: 300px; ">Total Semana con Seguro </th>
+            <th style="width: 150px;">$<?php echo round($totalSemanaSeguro,2); ?> </th>
         </tr>
         <tr style=" color:#333333; text-align: center;">
-            <th style="background-color: #5aa3e2; color:white; padding: 3px 2px; width: 200px; ">Total Semana con Seguro </th>
-            <th style="width: 150px;">$<?php echo round($totalSemanaSeguro,2); ?> </th>
+            <th style="background-color: #5aa3e2; color:white; padding: 3px 2px; width: 300px; ">Total Contratista </th>
+            <th style="width: 150px;">$<?php echo round($totAbono,2); ?> </th>
         </tr>
     </table>
 

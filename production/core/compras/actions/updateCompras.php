@@ -27,18 +27,20 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $com_nota       = $_POST['Notas_Reporte'];
     $com_fechInicial = $_POST['fechInicial_Reporte'];
     $com_fechFinal = $_POST['fechFinal_Reporte'];
+    $com_proceso = $_POST['Proceso_Reporte'];
+
 
     $cadena = explode("_",$com_proveedor);
 
     if($cadena[0] == "prv"){
       $result = mysqli_query($con, "UPDATE compras SET descripcion = '$com_descripcion', fecha = '$com_fecha', frente = '$com_frente', semana = '$com_semana', unidad = '$com_unidad',
-        factura = '$com_numero', costo = '$com_costo', cantidad = '$com_cantidad', importe = '$com_importe', iva = '$com_iva', subtotal = '$com_subtotal',
+        factura = '$com_numero', costo = '$com_costo', cantidad = '$com_cantidad', importe = '$com_importe', iva = '$com_iva', subtotal = '$com_subtotal', proceso = '$com_proceso',
         comentario = '$com_nota', fk_obra = '$com_obra', fk_clientes = '$com_cliente', fk_proveedor = '$cadena[1]', fechInicial = '$com_fechInicial', fechFinal = '$com_fechFinal', fk_contratista = null
         WHERE id = $com_id");
     }
     else if($cadena[0] == "ctr"){
       $result = mysqli_query($con, "UPDATE compras SET descripcion = '$com_descripcion', fecha = '$com_fecha', frente = '$com_frente', semana = '$com_semana', unidad = '$com_unidad',
-        factura = '$com_numero', costo = '$com_costo', cantidad = '$com_cantidad', importe = '$com_importe', iva = '$com_iva', subtotal = '$com_subtotal',
+        factura = '$com_numero', costo = '$com_costo', cantidad = '$com_cantidad', importe = '$com_importe', iva = '$com_iva', subtotal = '$com_subtotal', proceso = '$com_proceso',
         comentario = '$com_nota', fk_obra = '$com_obra', fk_clientes = '$com_cliente', fk_proveedor = null, fechInicial = '$com_fechInicial', fechFinal = '$com_fechFinal', fk_contratista = $cadena[1]
         WHERE id = $com_id");
     }

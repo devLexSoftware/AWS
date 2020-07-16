@@ -107,6 +107,9 @@ else {
 
             $GLOBALS['costom2'] = $GLOBALS['totconHono'] / $el3[superficieConstruir];
 
+            $GLOBALS['deudaActual'] = $el3['costoTotal'] - $GLOBALS['totCobr'];
+
+
         }
 
         // $GLOBALS['postresquefaltaran']         
@@ -126,7 +129,7 @@ else {
         <tr align="center" >
             <th style="width:550px; height:150px" ></th>
             <th >
-            <img style="width:300px;" src="production/components/images/logo2.png"> 
+            <img style="width:300px;" src="production/components/images/logo3.png"> 
             </th>            
         </tr>    
         <!-- <tr align="center" >
@@ -179,8 +182,10 @@ else {
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:150px;" >$<?php echo round($totMaOb,2);?></td>            
             <td style=" text-align: center; width:175px;" ><b>Tot. Materiales </b></td>
             <td style=" text-align: center; width:150px; padding: 5px 2px; background-color: #BFCCD7;" >$<?php echo round($totMate,2);?></td>            
-            <td style=" text-align: center; width:237px;" ><b>Total cobrado</b></td>
-            <td style=" text-align: center; width:190px; padding: 5px 2px; background-color: #BFCCD7;" >$<?php echo round($totCobr,2);?></td>                        
+            <td style=" text-align: center; width:130px;" ><b>Total cobrado</b></td>
+            <td style=" text-align: center; width:143px; padding: 5px 2px; background-color: #BFCCD7;" >$<?php echo round($totCobr,2);?></td>                        
+            <td style=" text-align: center; width:130px;" ><b>Deuda</b></td>
+            <td style=" text-align: center; width:143px; padding: 5px 2px; background-color: #BFCCD7;" >$<?php echo round($deudaActual,2);?></td>                        
         </tr>
     </table>
 

@@ -9,12 +9,11 @@ echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->c
 else {
 
     $id = $_GET["ref"];    
-    $result = mysqli_query($con,"SELECT f.id, f.nombre, f.descripcion, f.fk_contratista, c.empresa from frentes f
-                        inner join contratistas c on f.fk_contratista = c.id 
+    $result = mysqli_query($con,"SELECT f.id, f.nombre, f.descripcion from frentes f                        
                         where f.id = '$id';");    
     $elemento = mysqli_fetch_array($result);   
     
-    $result1 = mysqli_query($con,"SELECT * FROM contratistas where estado = 0;");    
+    
     
 
 }

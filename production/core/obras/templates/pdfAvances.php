@@ -49,7 +49,7 @@ else {
             <table style="width: 100%;" >
                 <tr>            
                     <td style="width: 20%; text-align: center;">
-                        <img style="width:250px;" src="production/components/images/logo2.png"> 
+                        <img style="width:250px;" src="production/components/images/logo3.png"> 
                     
                     </td>
                     <td style="width: 50%; text-align: center; ">
