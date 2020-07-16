@@ -25,13 +25,16 @@ else {
     <tbody>
       <?php
       while($elemento = mysqli_fetch_array($result)){
-        $result2 = mysqli_query($con,"select count(fk_empleado) as count from grupos_empleados where fk_grupo = $elemento[id] and estado = '0';");
+        $result2 = mysqli_query($con,"SELECT count(fk_empleado) as count from grupos_empleados where fk_grupo = $elemento[id] and estado = '0';");
         $elemento2 = mysqli_fetch_array($result2);
+        $result3 = mysqli_query($con,"SELECT count(fk_contratista) as count from grupos_contratistas where fk_grupo = $elemento[id] and estado = '0';");
+        $elemento3 = mysqli_fetch_array($result3);
+        $sum = $elemento2[count] + $elemento3[count];
         echo '
         <tr>
             <td>'.$elemento[nombre].'</td>
             <td>'.$elemento[nota].'</td>
-            <td>'.$elemento2[count].'</td>            
+            <td>'.$sum.'</td>            
             <td><button type="button" id="mostrar" name="boton1"  class="btn btn-primary btn-sm">
                         <a style="text-decoration: none; text-align:center; color: white; " href="index.php?p=optionGrupos&ref='.$elemento[id].'"> Editar</a>
                     </button>

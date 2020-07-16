@@ -23,7 +23,8 @@ function obtenerTipo(valor1) {
         type: 'POST', //aqui puede ser igual get
         url: url,
         data: { id: valor2 }, //aqui tus datos
-        success: function(data) {               
+        success: function(data) {  
+            debugger;             
             arrayDatos = $.parseJSON(data);
 
             $('#usuarios_lista').empty().append('<option>Seleccione</option>');            

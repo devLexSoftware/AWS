@@ -1,5 +1,7 @@
+<?php include("/production/config/bloque.php"); 
+session_start();  
+?>
 
-<?php include("production/config/bloque.php"); ?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -13,6 +15,9 @@
 
 
     <title>  Workshop Studio Premiere </title>
+
+    <link href="/production/components/css/font-awesome.css" rel="stylesheet">
+
 
     <!-- Bootstrap -->
     <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -87,7 +92,7 @@
               </div>
               <div class="profile_info">
                 <span>Bienvenido,</span>
-                <h2>Norberto Morales</h2>
+                
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -98,21 +103,22 @@
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <h3>Menú</h3>
-                <ul class="nav side-menu">
+                <ul class="nav side-menu">                
                   <li><a><i class=""></i> Reportes <span class=""></span></a>
                     <ul class="nav child_menu">
                       <li><a href="index.php?p=reportesObras">Avances Obras</a></li>
                       <li><a href="index.php?p=nominas"><i class=""></i>Nominas</i></a></li>
+                      <li><a href="index.php?p=reportesInventario"><i class=""></i>Inventario</i></a></li>
                       <li><a href="index.php?p=materiales"><i class=""></i>Materiales</i></a></li>
                       <li><a href="index.php?p=totalObra"><i class=""></i>Total Obra</i></a></li>
-                      <!-- <li><a href="index.php?p=obras">Listado de Obras</a></li>
-                      <li><a >Historial de Pagos</a></li>
-                      <li><a >Historial de Cobros</a></li> -->
+                      
                     </ul>
                   </li>
-                  <li ><a href="index.php?p=cotizaciones" >Cotizaciones</a></li>
-                  <li><a href="index.php?p=obras">Obras</a></li>
-                  <li><a href="index.php?p=clientes"><i class=""></i> Clientes <span class=""></span></a></li>
+                  <?php if ($_SESSION['perfil'] == "administrador") { ?>
+                    <li ><a href="index.php?p=cotizaciones" >Cotizaciones</a></li>                  
+                    <li><a href="index.php?p=obras">Obras</a></li>
+                    <li><a href="index.php?p=clientes"><i class=""></i> Clientes <span class=""></span></a></li>
+                  <?php }?>
                   <li><a href="index.php?p=compras"><i class=""></i> Compras <span class=""></span></a></li>
                   <li><a href="index.php?p=pedidos"><i class=""></i>Pedidos</i></a></li>
                   <li><a href="index.php?p=proveedores"><i class=""></i> Proveedores <span class=""></span></a></li>
@@ -122,7 +128,9 @@
                   <li><a href="index.php?p=grupos"><i class=""></i>Grupos</i></a></li>
                   <li><a href="index.php?p=asistencias"><i class=""></i>Asistencias</i></a></li>                  
                   <li><a href="index.php?p=inventario"><i class=""></i>Inventario</i></a></li>                  
-                  <li><a href="index.php?p=usuarios"><i class=""></i>Usuarios</i></a></li>                                  
+                  <?php if ($_SESSION['perfil'] == "administrador") { ?>                  
+                    <li><a href="index.php?p=usuarios"><i class=""></i>Usuarios</i></a></li>                                  
+                  <?php }?>
                 </ul>
               </div>
 
@@ -144,7 +152,7 @@
           <div class="nav_menu">
             <nav>
               <div class="nav toggle">
-                <a id="menu_toggle"><i class=""></i></a>
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
               </div>
 
               <ul class="nav navbar-nav navbar-right">
@@ -162,11 +170,11 @@
         </div>
         <!-- /top navigation -->
 
+
+
         <!-- Page content -->
         <div class="right_col" role="main">
-          <!-- top tiles for works-->
-          
-
+          <!-- top tiles for works-->          
             <div class="content-wrapper">
               <div class="container-fluid">
                 <div class="row">
@@ -190,6 +198,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
+            <input type="text" value =" <?php echo $_SESSION['valida'] ?>">
             <strong>
               Copyright &copy; 2018 <a href=""> Lex Software</a>
             </strong>

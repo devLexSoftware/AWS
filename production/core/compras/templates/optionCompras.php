@@ -198,6 +198,10 @@ else {
                         </div>
 
                         <div class="form-group row">
+                            <div class="col-md-4">
+                                <label for="CostoUnit_Reporte">Proceso:<span class="required">*</span></label>
+                                <input type="text" id="Proceso_Reporte" name="Proceso_Reporte" required="required" class="form-control col-md-2 col-xs-12" value="<?php echo($elemento['proceso']); ?>">
+                            </div>
                         <div class="col-md-2">
                             <label for="CostoUnit_Reporte">Sub-Total:</label>
                                 <input onchange="calculos(1)" type="number" step="0.01" id="Subtotal_Reporte" name="Subtotal_Reporte" class="form-control col-md-2 col-xs-12" placeholder="0" value="<?php echo($elemento['subtotal']); ?>">

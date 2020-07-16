@@ -1,5 +1,8 @@
 <?php
 include("../../../config/conexion.php");
+
+
+
 //error_reporting(E_ALL);
 //ini_set('display_errors', '1');
 $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
@@ -26,7 +29,7 @@ else {
     <!--Title page -->
     <div class="page-title">
         <div class="title_left">
-            <h3>C O M P R A S</h3>
+            <h3>C O M P R A S</h3> <?php echo $_SESSION["valida"] ?>
         </div>
 
         <div class="title_right">
@@ -167,6 +170,12 @@ else {
                         </div>
 
                          <div class="form-group row">
+                            <div class="col-md-4">
+                            <label for="CostoUnit_Reporte">Proceso:<span class="required">*</span></label>
+                                <input placeholder="Proceso" type="text" id="Proceso_Reporte" name="Proceso_Reporte" required="required" class="form-control col-md-2 col-xs-12" >
+
+                            </div>
+
                             <div class="col-md-2">
                             <label for="CostoUnit_Reporte">Sub-Total:</label>
                                 <input onchange="calculos(1)"  step="0.01" type="number" id="Subtotal_Reporte" name="Subtotal_Reporte" class="form-control col-md-2 col-xs-12" placeholder="0">
@@ -201,6 +210,15 @@ else {
         </div>
     </div>
 
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12" id="divTable">
+          <h4>Ultimas compras agregadas</h4>
+          <?php
+              include("tableComprasRecientes.php");
+          ?>
+        </div>
+    </div>
     <hr>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12" id="divTable">
@@ -210,6 +228,8 @@ else {
           ?>
         </div>
     </div>
+
+    
   </div>
 
 

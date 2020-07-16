@@ -8,6 +8,9 @@ echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->c
 }
 else {        
 
+    $con -> set_charset("utf8");
+
+
     
     //--- Filtrado 1 para sumatorio total
     $query1 = "SELECT factura, sum(importe) as suma from compras
@@ -42,7 +45,7 @@ else {
     if($ctr != "Todos")
         $query2 = $query2 . " and c.fk_contratista = '$ctr'";
 
-    $query2 = $query2. " and c.estado = 0 order by semana;";
+    $query2 = $query2. " and c.estado = 0 order by cast(semana as unsigned);";
     $result2 = mysqli_query($con,$query2);             
     
 
@@ -90,6 +93,24 @@ else {
     foreach ($el as $valor)
         $totalFrente = $totalFrente + $valor[suma];
  
+
+    //--- Sumatoria de frentes
+    $query5 = "SELECT frente, sum(importe) as sumaFrente from compras where fk_obra = $id";
+
+    if($sem != "Todas")
+        $query5 = $query5 . " and semana = '$sem'";
+    if($pro != "Todos")
+        $query5 = $query5 . " and descripcion = '$pro'";
+    if($prv != "Todos")
+        $query5 = $query5 . " and fk_proveedor = '$prv'";
+    if($ctr != "Todos")
+        $query5 = $query5 . " and fk_contratista = '$ctr'";
+        
+    $query5 = $query5 . " and estado = 0 group by(frente);";
+    $result5 = mysqli_query($con,$query5);     
+    while($row5 = $result5->fetch_array(MYSQLI_ASSOC)) 
+        $el5[] = $row5;        
+    
 }
 
 ?>
@@ -100,7 +121,7 @@ else {
         <tr align="center" >
         <th style="width:550px; height:150px" ></th>
             <th >
-            <img style="width:300px;" src="production/components/images/logo2.png"> 
+            <img style="width:300px;" src="production/components/images/logo3.png"> 
             </th>            
         </tr>        
     </table>
@@ -129,6 +150,7 @@ else {
         </tr>        
         
     </table>
+    
     <table bordercolor="#007"  style="font-size: 11px; width:100%; " >           
             <tr style="background-color: #1E8EC6; color:#333333; text-align: center;">
                 <th style=" padding: 3px 2px; width: 25px; ">Sem </th>
@@ -158,8 +180,10 @@ else {
 
                 foreach ($el2 as $elemento2) {                
                                                 
-                        $totFac = array_search($elemento2[factura], array_column($el, 'factura'));
+                        $totFac = array_search($elemento2[factura], array_column($el, 'factura'));                        
                         $totSem = array_search($elemento2[semana], array_column($el4, 'semana'));
+                        $totFre = array_search($elemento2[frente], array_column($el5, 'frente'));
+                                                
 
                         echo '
                             <tr'; if($bandera == false){ echo ' style="background-color: #CFE1F5;"'; } echo '>
@@ -176,8 +200,8 @@ else {
                                 <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($elemento2[iva],2).'</td>            
                                 <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($elemento2[importe],2).'</td>            
                                 <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($elemento2[costo],2).'</td>   
-                                <td style="border-bottom: 1px solid #B4B5B0;">$'.round($el[$totFac][suma],2).'</td>                                                                                                                
-                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($totalFrente,2).'</td>                                                                            
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($el[$totFac][suma],2).'</td>                                                                                                                
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($el5[$totFre][sumaFrente],2).'</td>                                                                            
                                 <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($el[$totFac][suma],2).'</td>                                                                                                            
                             </tr>
                         ';                        

@@ -199,6 +199,10 @@ function abrir(archivo, ref) {
             $("#divContenido").load('production/core/nominas/templates/nominas.php');
             break; 
 
+        case "reportesInventario":
+            $("#divContenido").load('production/core/inventarios/templates/reporte.php');
+            break; 
+
         case "materiales":
             $("#divContenido").load('production/core/compras/templates/reportes.php');
             break; 

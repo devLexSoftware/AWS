@@ -59,9 +59,10 @@
                                   <label >Tipo de perfil:</label>
                                     <select name="usuario_perfil" id="usuario_perfil" class="form-control"> 
                                         <option>Selecciona el perfil</option>
+                                        <option value="administrador">Administrador</option>
                                         <option value="cliente">Cliente</option>
                                         <option value="empleado">Empleado</option>
-                                        <option value="administrador">Administrador</option>
+                                        
                                     </select>  
                                   </div>                                  
                             </div>

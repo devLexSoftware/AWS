@@ -54,7 +54,7 @@
                                   <label >Categoría:</label>
                                       <!-- <input type="text" id="Empl_Categoria" name="Empl_Categoria" class="form-control col-md-7 col-xs-12" placeholder="Categoría del empleado"> -->
                                     <select class="form-control" id="Empl_Categoria" name="Empl_Categoria" >
-                                      <option value="Default">Selecciona la unidad</option>
+                                      <option value="Default">Selecciona</option>
                                       <option value="Oficial">Oficial</option>
                                       <option value="Peón">Peón</option>
                                       <option value="Sobre Estante">Sobre Estante</option>
@@ -66,6 +66,10 @@
                                       <option value="Arquitecto">Arquitecto</option>
                                       <option value="Electricista">Electricista</option>
                                       <option value="Plomero">Plomero</option>
+                                      <option value="asistente1">Asistente 1</option>
+                                      <option value="asistente2">Asistente 2</option>
+                                      <option value="asistente3">Asistente 3</option>
+                                      <option value="asistente4">Asistente 4</option>
                                     </select>
 
                                   </div>  

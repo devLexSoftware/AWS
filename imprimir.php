@@ -59,6 +59,13 @@ try {
         // $html2pdf = new HTML2PDF('L', 'A4', 'es', true, 'UTF-8');
         $html2pdf = new HTML2PDF('L', array($width_in_mm,$height_in_mm), 'es', true, 'UTF-8', array(0, 0, 0, 0));   
     }
+    else if($archivo == "pageInventario"){
+        $width_in_mm = 10 * 25.4; 
+        $height_in_mm = 15  * 25.4;
+        include dirname(__FILE__).'/production/core/inventarios/templates/pdfInventario.php';
+        // $html2pdf = new HTML2PDF('L', 'A4', 'es', true, 'UTF-8');
+        $html2pdf = new HTML2PDF('L', array($width_in_mm,$height_in_mm), 'es', true, 'UTF-8', array(0, 0, 0, 0));   
+    }
     
 
 
