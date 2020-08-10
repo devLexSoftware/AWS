@@ -198,7 +198,7 @@ session_start();
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            <input type="text" value =" <?php echo $_SESSION['valida'] ?>">
+            
             <strong>
               Copyright &copy; 2018 <a href=""> Lex Software</a>
             </strong>

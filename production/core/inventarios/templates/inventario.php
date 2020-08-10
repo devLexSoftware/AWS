@@ -7,6 +7,8 @@ if (mysqli_connect_errno()) {
 echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 else {
+    $con -> set_charset("utf8");
+
     $result1 = mysqli_query($con,"SELECT * FROM inventarios WHERE estado = 0;");        
     $result2 = mysqli_query($con,"SELECT * FROM almacenes WHERE estado = 0;");        
     $result3 = mysqli_query($con,"SELECT * FROM categorias_inventarios WHERE estado = 0;");        

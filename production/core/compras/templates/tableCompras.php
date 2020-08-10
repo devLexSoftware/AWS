@@ -7,6 +7,8 @@ if (mysqli_connect_errno()) {
 echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 else {
+    $con -> set_charset("utf8");
+
   //  $fechInicio = $_GET['ini'];
   //  $fechFinal  = $_GET['fin'];
     $obra       = $_GET['obra'];

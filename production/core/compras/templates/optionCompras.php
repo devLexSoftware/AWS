@@ -139,15 +139,20 @@ else {
                                 <label  for="Unidad_Reporte">Unidad:<span class="required">*</span></label>
                                 <select class="form-control" id="Unidad_Reporte" name="Unidad_Reporte" >
                                     <option value="<?php echo($elemento['unidad']); ?>"><?php echo($elemento['unidad']); ?></option>
+                                    <option value="Caja">Caja</option>
                                     <option value="Camion">Camión</option>
+                                    <option value="Días">Días</option>
+                                    <option value="Hora">Hora</option>
                                     <option value="Kilo">Kilo</option>
                                     <option value="Litros">Litros</option>
                                     <option value="Lote">Lote</option>
                                     <option value="Metros">Metros</option>
+                                    <option value="Metros cuadrados">Metros cuadrados</option>
+                                    <option value="Metros cubicos">Metros cubicos</option>
                                     <option value="Pieza">Pieza</option>
                                     <option value="Pipa">Pipa</option>
                                     <option value="Tonelada">Tonelada</option>
-
+                                    <option value="Viaje">Viaje</option>
                                 </select>
                             </div>
                             <div class="col-md-3">

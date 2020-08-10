@@ -8,6 +8,8 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
   }
   else {
 
+    $con -> set_charset("utf8");
+
     //--Datos de usuario
     $obr_id            = $_POST['obr_id'];
     $obr_ref            = $_POST['obr_ref'];

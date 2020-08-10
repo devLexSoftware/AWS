@@ -7,6 +7,7 @@
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
     else {
+        $con -> set_charset("utf8");
 
         $obra = $_POST['val3'];
         $cliente = $_POST['val2'];

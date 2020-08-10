@@ -7,6 +7,8 @@ if (mysqli_connect_errno()) {
 echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 else {
+    $con -> set_charset("utf8");
+
     $ref = $_POST["id"];    
         
     $result = mysqli_query($con,"SET SQL_SAFE_UPDATES = 0;");

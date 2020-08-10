@@ -6,7 +6,9 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 if (mysqli_connect_errno()) {
 echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
-else {        
+else {      
+    $con -> set_charset("utf8");
+
     $result = mysqli_query($con,"SELECT * FROM empleados where estado = 0");    
     $result2 = mysqli_query($con,"SELECT * FROM contratistas where estado = 0");    
 }

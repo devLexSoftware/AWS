@@ -238,7 +238,7 @@
                                             INNER JOIN asistencias_empleados ae on ge.fk_empleado = ae.fk_empleado
                                             WHERE ae.fk_asistencia = $id;");   
 
-            $result03 = mysqli_query($con,"SELECT distinct(c.id), c.empresa, ae.lunes, ae.martes, ae.miercoles, ae.jueves, ae.viernes, ae.sabado, ae.monto, ae.abono, ae.totalpagar  FROM contratistas c 
+            $result03 = mysqli_query($con,"SELECT distinct(c.id),  ae.id as fk_ac, c.empresa, ae.lunes, ae.martes, ae.miercoles, ae.jueves, ae.viernes, ae.sabado, ae.monto, ae.abono, ae.totalpagar  FROM contratistas c 
                                             INNER JOIN grupos_contratistas ge on c.id = ge.fk_contratista
                                             INNER JOIN asistencias_contratistas ae on ge.fk_contratista = ae.fk_contratista
                                             WHERE ae.fk_asistencia = $id;");   
@@ -365,8 +365,12 @@
                                                         
                                                         echo '
                                                             <tr>
-                                                                <td style="display: none;"><input name="contratista_'.$count2.'" id="contratista_'.$count2.'" type="text" value="'.$elemento03[id].'" />
-                                                                <input name="contratista_salario_'.$count2.'" id="contratista_salario_'.$count2.'" type="text" value="'.$elemento03[salario].'" /></td>           
+                                                                <td style="display: none;">
+                                                                    <input name="id_asistencia_'.$count2.'" id="id_asistencia_'.$count2.'" type="text" value="'.$id.'" />
+                                                                    <input name="fk_asistencia_'.$count2.'" id="fk_asistencia_'.$count2.'" type="text" value="'.$elemento03[fk_ac].'" />
+                                                                    <input name="contratista_'.$count2.'" id="contratista_'.$count2.'" type="text" value="'.$elemento03[id].'" />
+                                                                    <input name="contratista_salario_'.$count2.'" id="contratista_salario_'.$count2.'" type="text" value="'.$elemento03[salario].'" />
+                                                                </td>           
                                                                 <td>'.$elemento03[empresa].'</td>            
                                                                 <td>
                                                                     <input value="1" '; if($elemento03[lunes] == 1){ echo 'checked'; } echo ' name="contratista_dia_1_'.$elemento03[id].'"  type="radio" id="contratista_dia_1_'.$elemento03[id].'" > día
@@ -397,6 +401,7 @@
                                                                     echo'
                                                                     <td>
                                                                         <input style="width:100px" readonly value="'.$elemento03[monto].'" name="contratista_monto_'.$count2.'" type="number" id="contratista_monto_'.$count2.'" >                                                                    
+                                                                        <input value="'.$elemento03[monto].'" name="contratista_monto_original_'.$count2.'" type="hidden" id="contratista_monto_original_'.$count2.'" >                                                                    
                                                                     </td>';
                                                                 }
                                                                 else{
@@ -410,7 +415,8 @@
                                                                 {
                                                                     echo'                                                                                                                                                      
                                                                     <td>
-                                                                        <input style="width:100px" readonly value="'.$elemento03[totalpagar].'" name="contratista_restante_'.$count2.'" type="number" id="contratista_restante_'.$count2.'" >                                                                    
+                                                                        <input style="width:100px" readonly value="'.$elemento03[totalpagar].'" name="contratista_restante_'.$count2.'" type="number" id="contratista_restante_'.$count2.'" >                                                                                                                                            
+                                                                        
                                                                     </td>';
                                                                 }
                                                                 else{
@@ -423,8 +429,10 @@
                                                                 echo'
                                                                 <td>
                                                                     <input style="width:100px" readonly value="'.$elemento03[abono].'" name="contratista_pago_'.$count2.'" type="number" id="contratista_pago_'.$count2.'" >                                                                    
+                                                                    <input value="'.$elemento03[abono].'" name="contratista_pago_original_'.$count2.'" type="hidden" id="contratista_pago_original_'.$count2.'" >                                                                    
                                                                 </td>
                                                                 <td>
+                                                                    <input value="editar" onclick="editarCampos2('.$count2.', '.$tipo.')" name="editar" type="button" id="editar" >                                                                    
                                                                     <input value="limpiar" onclick="limpiarCampos2('.$elemento03[id].', '.$tipo.')" name="limpiar" type="button" id="limpiar" >                                                                    
                                                                 </td>
                                                             </tr>

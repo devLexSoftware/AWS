@@ -8,6 +8,9 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
   }
   else {
 
+    $con -> set_charset("utf8");
+
+
     //--Datos de usuario
     $asis_obra         = $_POST['asis_obra'];    
     $asis_semana           = $_POST['asis_semana'];   
@@ -20,7 +23,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     
     $result = mysqli_query($con, "SET FOREIGN_KEY_CHECKS=0");
     $result = mysqli_query($con, "Delete from asistencias_empleados where fk_asistencia = '$idAsistencia'");    
-    $result = mysqli_query($con, "Delete from asistencias_contratistas where fk_asistencia = '$idAsistencia'");    
+    // $result = mysqli_query($con, "Delete from asistencias_contratistas where fk_asistencia = '$idAsistencia'");    
 
 
     $result = mysqli_query($con, "UPDATE asistencias SET fk_obra = '$asis_obra', semana = '$asis_semana', 
@@ -78,11 +81,14 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
         
         $result = mysqli_query($con,"INSERT INTO asistencias_empleados(usuCreacion, lunes, martes, miercoles, jueves, viernes, sabado, domingo, monto, fk_empleado, fk_asistencia, estado)
             VALUES('admin','$lunes', '$martes', '$miercoles', '$jueves', '$viernes', '$sabado', '0',  '$salarioEmpleado', '$idEmpleado', '$idAsistencia', '0' )");
-      }  
+    }  
 
 
       for ($i=0 ; $i <  $count_contratista; $i++ ) {
         $idEmpleado           = $_POST['contratista_'.$i];                           
+        $idAsisCont           = $_POST['fk_asistencia_'.$i];  
+        $idAsistencia         = $_POST['id_asistencia_'.$i];    
+        $flagCambios = false;                       
 
         if(isset($_POST['contratista_dia_1_'.$idEmpleado])){
           $lunes = $_POST['contratista_dia_1_'.$idEmpleado];
@@ -121,14 +127,77 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
           $sabado = 0;
         }
 
-        $monto = $_POST['contratista_monto_'.$i];
         $restante = $_POST['contratista_restante_'.$i];
+        $monto = $_POST['contratista_monto_'.$i];
         $pago = $_POST['contratista_pago_'.$i];
-  
-        
-        
-        $result = mysqli_query($con,"INSERT INTO asistencias_contratistas(usuCreacion, lunes, martes, miercoles, jueves, viernes, sabado, domingo, monto, fk_contratista, fk_asistencia, estado, abono, totalpagar)
-            VALUES('admin','$lunes', '$martes', '$miercoles', '$jueves', '$viernes', '$sabado', '0',  '$monto', '$idEmpleado', '$idAsistencia', '0', '$pago','$restante' )");
+
+
+        $montoOriginal = $_POST['contratista_monto_original_'.$i];        
+        $pagoOriginal = $_POST['contratista_pago_original_'.$i];
+
+
+        $result2 = mysqli_query($con,"SELECT fk_obra FROM asistencias a                          
+                          where a.id = $idAsistencia;");   
+        $elemento2 = mysqli_fetch_array($result2);
+
+
+
+        //--Actualizar Semana
+        $result = mysqli_query($con, "UPDATE asistencias_contratistas SET 
+                          lunes = '$lunes', martes = '$martes', miercoles = '$miercoles', jueves = '$jueves', viernes = '$viernes', sabado = '$sabado',
+                          abono = '$pago'
+                          WHERE id = '$idAsisCont'");
+
+
+
+
+        // //---Actualizar en  cascada porque hay cambio en abono
+        // if($pago != $pagoOriginal){
+        //   $resultC1 = mysqli_query($con, "SELECT ac.monto, ac.abono, ac.totalpagar, ac.id as fk, a.id from asistencias a 
+        //                 inner join asistencias_contratistas ac on a.id = ac.fk_asistencia
+        //                 where ac.fk_contratista = $idEmpleado and a.fk_obra = $elemento2[fk_obra] order by cast(totalpagar as unsigned) desc");;
+
+        //   while($row = $resultC1->fetch_array(MYSQLI_ASSOC)) 
+        //     $el[] = $row;  
+
+        //   foreach ($el as $valor) {            
+        //     if($valor[fk] == $idAsisCont)
+        //       $flagCambios = true;
+            
+        //     if($flagCambios == true){
+        //       $difPago = $pagoOriginal - $pago;
+        //       $totNuevo = $valor[totpagar] +  $difPago;
+        //       $resultU1 = mysqli_query($con, "UPDATE asistencias_contratistas SET
+        //                     abono = '$pago', totalpagar = '$totNuevo';
+        //                     where id = $valor[fk]");
+
+        //     }                                            
+        //   }
+        // }
+
+
+        //---Actualizar en cascada porque hay cambio en monto
+        if($monto != $montoOriginal || $pago != $pagoOriginal){
+          $resultC1 = mysqli_query($con, "SELECT ac.monto, ac.abono, ac.totalpagar, ac.id as fk, a.id from asistencias a 
+                          inner join asistencias_contratistas ac on a.id = ac.fk_asistencia
+                          where ac.fk_contratista = $idEmpleado and a.fk_obra = $elemento2[fk_obra] order by cast(totalpagar as unsigned) desc");;
+
+          while($row = $resultC1->fetch_array(MYSQLI_ASSOC)) 
+            $el[] = $row;  
+
+          foreach ($el as $valor) {            
+            if($valor[monto] == NULL || $valor[monto] == "")              
+              break;
+
+            $sumAbono = $sumAbono + $valor[abono];  
+            $totalPagarC = $monto - $sumAbono;            
+            $resultU1 = mysqli_query($con, "UPDATE asistencias_contratistas SET
+                            monto = '$monto', totalpagar = '$totalPagarC'
+                            where id = $valor[fk]");            
+          }
+        }        
+        // $result = mysqli_query($con,"INSERT INTO asistencias_contratistas(usuCreacion, lunes, martes, miercoles, jueves, viernes, sabado, domingo, monto, fk_contratista, fk_asistencia, estado, abono, totalpagar)
+        //     VALUES('admin','$lunes', '$martes', '$miercoles', '$jueves', '$viernes', '$sabado', '0',  '$monto', '$idEmpleado', '$idAsistencia', '0', '$pago','$restante' )");
       }  
      
         

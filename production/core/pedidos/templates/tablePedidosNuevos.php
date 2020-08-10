@@ -7,6 +7,8 @@ if (mysqli_connect_errno()) {
 echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 else {
+    $con -> set_charset("utf8");
+
     $result =  mysqli_query($con,"SELECT pedidos.id, pedidos.frente, pedidos.descripcion, pedidos.estado,  obras.nombre from pedidos
     inner join obras on pedidos.fk_obra = obras.id where pedidos.estatus=0 ORDER by pedidos.id DESC limit 5;");
 

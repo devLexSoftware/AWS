@@ -7,6 +7,7 @@ if (mysqli_connect_errno()) {
 echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 else {
+    $con -> set_charset("utf8");
 
     $id = $_GET["ref"];    
     $result = mysqli_query($con,"SELECT i.id, i.identificador, i.nombre, i.cantidad, i.categoria, i.ubicacion, i.descripcion,  i.fk_almacen, a.nombre as nomAlmacen FROM inventarios i inner join almacenes a on i.fk_almacen = a.id WHERE i.id = '$id';");    

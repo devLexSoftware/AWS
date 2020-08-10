@@ -7,6 +7,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
   }
   else {
+    $con -> set_charset("utf8");
 
     //--Datos de usuario
     $item_id                = $_POST['item_id'];

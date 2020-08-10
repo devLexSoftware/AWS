@@ -202,7 +202,8 @@ else {
                                 <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($elemento2[costo],2).'</td>   
                                 <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($el[$totFac][suma],2).'</td>                                                                                                                
                                 <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($el5[$totFre][sumaFrente],2).'</td>                                                                            
-                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($el[$totFac][suma],2).'</td>                                                                                                            
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($el4[$totSem][suma],2).'</td>                                                                                                            
+                                
                             </tr>
                         ';                        
                         if($bandera == false)

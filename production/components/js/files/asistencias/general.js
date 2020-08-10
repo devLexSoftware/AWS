@@ -9,7 +9,13 @@ function obtenerAsistencia(valor1, valor2) {
         success: function(data) {               
             arrayDatos = $.parseJSON(data);
 
-            $('#asis_semana').empty().append('<option>Selecciona la semana</option>');            
+            $('#asis_semana').empty();            
+            var option = new Option("Todas", "Todas" );                
+            $("#asis_semana").append(option);
+
+            $('#asis_cateem').prop('disabled', true);
+            $('#asis_cateco').prop('disabled', true);            
+
             for(var i = 0; i < arrayDatos.length; i++)
             {
                 var valor = arrayDatos[i].id;
@@ -29,51 +35,47 @@ function obtenerListaEmpleados(valor1, valor2){
     debugger;
     var exito = false;
     var id = 0;
-    for(var i = 0; i < arrayDatos.length; i++)
+
+    if(valor1 == "Todas")
     {
-        if(arrayDatos[i].id== valor1){
-            $("#fechInicial_Reporte").val(arrayDatos[i].periodoInicial);
-            $("#fechFinal_Reporte").val(arrayDatos[i].periodoFinal);
-            id = arrayDatos[i].id;
-            $("#asis_id").val(id);
-            exito = true;
-            break;
-        }
-        
-
-    }
-    // if(exito == true)
-    // {
-    //     $.ajax({
-    //         type: 'POST', //aqui puede ser igual get
-    //         url: '../../../production/core/asistencias/actions/getDatos.php', //aqui va tu direccion donde esta tu funcion php
-    //         data: { id: id, tabla: valor2 }, //aqui tus datos
-    //         success: function(data) {               
-    //             // arrayDatos = $.parseJSON(data);
+        $('#asis_cateem').val("todos");
+        $('#asis_cateco').val("todos");
     
-    //             // $('#asis_semana').empty().append('<option>Selecciona la semana</option>');            
-    //             // for(var i = 0; i < arrayDatos.length; i++)
-    //             // {
-    //             //     var valor = arrayDatos[i].id;
-    //             //     var text = arrayDatos[i].semana;
-    //             //     var option = new Option(text, valor );                
-    //             //     $("#asis_semana").append(option);
-    //             // }            
-    //             $('#tablaAsistencas').html(data).fadeIn();
-    //         },
-    //         error: function(data) {
-    //             alert("error");
-    //         }
-    //     });
-    // }
+        $('#asis_cateem').prop('disabled', true);
+        $('#asis_cateco').prop('disabled', true);            
 
+        $('#fechInicial_Reporte').val("");
+        $('#fechFinal_Reporte').val("");
+    }
+    else
+    {
+        $('#asis_cateem').prop('disabled', false);
+        $('#asis_cateco').prop('disabled', false);            
+        for(var i = 0; i < arrayDatos.length; i++)
+        {
+            if(arrayDatos[i].id== valor1){
+                $("#fechInicial_Reporte").val(arrayDatos[i].periodoInicial);
+                $("#fechFinal_Reporte").val(arrayDatos[i].periodoFinal);
+                id = arrayDatos[i].id;
+                $("#asis_id").val(id);
+                exito = true;
+                break;
+            }     
+        }  
+    }    
 }
 
 
 function imprimirNomina()
 {
-    var id = $('#asis_id').val();
+    var id = $('#asis_id').val();    
     var cateem = $('#asis_cateem').val();
     var cateco = $('#asis_cateco').val();
+    if($('#fechInicial_Reporte').val() == "Todas"){
+        var idObra = $('#asis_id').val();
+    }
     window.open("../imprimir.php?id="+id+"&archivo=pageNomina&cateem="+cateem+"&cateco="+cateco, '_blank');
+
+
+    
 }

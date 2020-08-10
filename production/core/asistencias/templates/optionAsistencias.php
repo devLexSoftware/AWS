@@ -7,6 +7,7 @@ if (mysqli_connect_errno()) {
 echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 else {
+    $con -> set_charset("utf8");
 
     $idAsistencia = $_GET["ref"];    
     $result = mysqli_query($con,"SELECT a.id, a.fk_obra, a.semana, a.periodoInicial, a.periodoFinal, a.fk_grupo, o.nombre from asistencias a INNER JOIN obras o on a.fk_obra = o.id WHERE a.id = '$idAsistencia';");    
@@ -261,3 +262,18 @@ function limpiarCampos2(id, tipo)
     
     
 }
+
+
+
+function editarCampos2(id, tipo)
+{
+    debugger;
+
+    // document.getElementsByName('contratista_pago_'+id).removeAttribute("readonly");
+    $('#contratista_pago_'+id).prop('readonly', false);
+
+    $('#contratista_monto_'+id).prop('readonly', false);
+
+
+}
+</script>

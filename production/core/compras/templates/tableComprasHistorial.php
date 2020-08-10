@@ -7,6 +7,8 @@ if (mysqli_connect_errno()) {
 echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 else {
+    $con -> set_charset("utf8");
+
     $result =  mysqli_query($con,"SELECT compras.id, compras.descripcion, compras.fecha, compras.frente, compras.semana,
     compras.numero, compras.unidad, compras.factura, compras.costo, compras.cantidad, compras.importe, compras.subtotal, compras.iva, compras.fechInicial, compras.fechFinal,
     compras.comentario FROM compras order by compras.id desc;");

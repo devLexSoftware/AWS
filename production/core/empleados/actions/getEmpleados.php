@@ -6,7 +6,9 @@
     if (mysqli_connect_errno()) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
-    else {                
+    else {          
+    $con -> set_charset("utf8");
+
         $id = $_POST["id"];
 
         if($id == "todos")
