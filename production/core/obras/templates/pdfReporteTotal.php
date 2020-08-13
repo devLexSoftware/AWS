@@ -15,55 +15,9 @@ else {
     $count = $_GET["count"];    
 
 
-    $result = mysqli_query($con,"SELECT ae.lunes, ae.martes, ae.miercoles, ae.jueves, ae.viernes, ae.sabado, e.salario, a.semana, a.periodoInicial, a.periodoFinal from asistencias_empleados ae
-                inner join asistencias a on ae.fk_asistencia = a.id
-                inner join empleados e on ae.fk_empleado = e.id
-                where a.fk_obra = $id and a.estado = 0 order by a.semana;");               
-
-    $result2 = mysqli_query($con,"SELECT c.semana, c.importe, c.fechInicial, c.fechFinal from compras c
-                where c.fk_obra = $id and c.estado = 0 order by c.semana;");      
 
 
-    $result3 = mysqli_query($con,"SELECT o.porcentajeGanancia, o.costoTotal, c.nombre as cliente, o.nombre as obra, o.superficie, o.superficieConstruir  from obras o
-                inner join clientes c on o.fk_clientes = c.id    
-                where o.id = $id;");                              
-    
-
-
-
-
-    $result4 = mysqli_query($con, "SELECT a.semana, c.id, c.empresa, c.categoria, ac.lunes, ac.martes, ac.miercoles, ac.jueves, ac.viernes, ac.sabado, ac.monto, ac.totalpagar, ac.abono
-                from asistencias_contratistas ac
-                inner join contratistas c on ac.fk_contratista = c.id
-                inner join asistencias a on ac.fk_asistencia = a.id
-                where a.fk_obra = $id;");
-
-  
-    while($row = $result->fetch_array(MYSQLI_ASSOC)) 
-        $elemento[] = $row;                            
-    while($row = $result2->fetch_array(MYSQLI_ASSOC)) 
-        $elemento2[] = $row;                 
-    $elemento3 = mysqli_fetch_array($result3);
-    while($row = $result4->fetch_array(MYSQLI_ASSOC)) 
-        $elemento4[] = $row;
-        
-
-    $maxE1 = max(array_column($elemento, "semana"));
-    $maxE2 = max(array_column($elemento2, "semana"));
-    // $maxE4 = max(array_column($elemento4, "semana"));
-
-    $max = $maxE1 > $maxE2 ? $maxE1 : $maxE2;
-    // $max = $max > $maxE4 ? $max : $maxE4;
-
-    $semanas = 0;    
-
-
-
-
-
-
-
-    function foo($el1, $el2, $el3, $max, $el4) {
+    function foo($el1, $el2, $el3, $max, $el4, $el5) {
 
         for ($i=1; $i <= $max; $i++) { 
 
@@ -90,12 +44,30 @@ else {
                 }
             }
 
-            // foreach ($el4 as $key) {
-            //     if($key["semana"] == $i)
-            //     {                                                        
-            //         $material = $material + $key["importe"];                    
-            //     }
-            // }
+            $pagoVal = 0;            
+            foreach ($el5 as $key) {
+                if($key["semana"] == $i)
+                {                                                        
+                    $pagoVal = $key["pago"];                    
+                }
+            }
+
+            //---Contratistas
+            foreach ($el4 as $key) {
+                if($key["semana"] == $i)
+                {
+                    $count = $key["lunes"] + $key["martes"] + $key["miercoles"] + $key["jueves"] + $key["viernes"] + $key["sabado"];
+                    if($count > 0 && $key[pago] > 0)
+                    {
+                       $abono = $abono + $key['abono'];  
+                    }
+
+                    
+                }
+            }
+
+            $manoObra = $manoObra + $abono;
+          
 
             $honorariosMo = $manoObra * ($el3["porcentajeGanancia"] / 100);
             $totalMano = $honorariosMo + $manoObra;
@@ -103,9 +75,12 @@ else {
             $totalMate = $honorariosMa + $material;
             $totManoObra = $totManoObra + $totalMano;
 
+
+            $GLOBALS['totDir'] = $GLOBALS['totDir'] + ($material + $manoObra);
+
             $GLOBALS['totMaOb'] = $GLOBALS['totMaOb'] + $totalMano;
             $GLOBALS['totMate'] = $GLOBALS['totMate'] + $totalMate;
-            $GLOBALS['totCobr'] = $GLOBALS['totCobr'] + $_POST["pago".($i-1)];
+            $GLOBALS['totCobr'] = $GLOBALS['totCobr'] + $pagoVal;
 
             $GLOBALS['totconHono'] = $GLOBALS['totconHono'] + ($totalMano + $totalMate);
 
@@ -116,10 +91,59 @@ else {
 
         }
 
+        
+        $GLOBALS['deudaActual'] = $GLOBALS['totconHono'] -  $GLOBALS['totCobr'];
+
+
+        // foreach ($el5 as $key) {
+        //     $GLOBALS['totCobr'] = $GLOBALS['totCobr'] + $key['pago'];
+        // }
+
         // $GLOBALS['postresquefaltaran']         
     }
 
-    foo($elemento, $elemento2, $elemento3, $max, $elemento4);
+
+    $result = mysqli_query($con,"SELECT ae.lunes, ae.martes, ae.miercoles, ae.jueves, ae.viernes, ae.sabado, e.salario, a.semana, a.periodoInicial, a.periodoFinal from asistencias_empleados ae
+                inner join asistencias a on ae.fk_asistencia = a.id
+                inner join empleados e on ae.fk_empleado = e.id
+                where a.fk_obra = $id and a.estado = 0 order by a.semana;");               
+
+    $result2 = mysqli_query($con,"SELECT c.semana, c.importe, c.fechInicial, c.fechFinal from compras c
+                where c.fk_obra = $id and c.estado = 0 order by c.semana;");      
+
+    $result3 = mysqli_query($con,"SELECT o.porcentajeGanancia, o.costoTotal, c.nombre as cliente, o.nombre as obra, o.superficie, o.superficieConstruir  from obras o
+                inner join clientes c on o.fk_clientes = c.id    
+                where o.id = $id;");                              
+    
+    $result4 = mysqli_query($con, "SELECT a.semana, c.id, c.empresa, c.categoria, ac.lunes, ac.martes, ac.miercoles, ac.jueves, ac.viernes, ac.sabado, ac.monto, ac.totalpagar, ac.abono
+                from asistencias_contratistas ac
+                inner join contratistas c on ac.fk_contratista = c.id
+                inner join asistencias a on ac.fk_asistencia = a.id
+                where a.fk_obra = $id;");
+
+    $result5 = mysqli_query($con,"SELECT semana, pago, comentario from pagos_obras
+                where fk_obra = $id;"); 
+
+  
+    while($row = $result->fetch_array(MYSQLI_ASSOC)) 
+        $elemento[] = $row;                            
+    while($row = $result2->fetch_array(MYSQLI_ASSOC)) 
+        $elemento2[] = $row;                 
+    $elemento3 = mysqli_fetch_array($result3);
+    while($row = $result4->fetch_array(MYSQLI_ASSOC)) 
+        $elemento4[] = $row;
+    while($row = $result5->fetch_array(MYSQLI_ASSOC)) 
+        $elemento5[] = $row; 
+        
+
+    $maxE1 = max(array_column($elemento, "semana"));
+    $maxE2 = max(array_column($elemento2, "semana"));    
+
+    $max = $maxE1 > $maxE2 ? $maxE1 : $maxE2;    
+
+    $semanas = 0;    
+
+    foo($elemento, $elemento2, $elemento3, $max, $elemento4, $elemento5);
       
 }
 
@@ -171,9 +195,9 @@ else {
     <table border=0.5   bordercolor="#73879ca3" width=1440 >
         <tr>
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:520px;">Relación Materiales, Equipo, Maquinaria y Personal -> <b>Costo M2</b></td>
-            <td style="width:150px;">$<?php echo round($costom2,2)?></td>            
+            <td style="width:150px;">$<?php echo round($totDir,2)?></td>            
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:200px;" ><b>Total Directo</b></td>
-            <td style="width:150px;" >$<?php echo round($totconHono,2)?></td>            
+            <td style="width:150px;" >$<?php echo round($totDir,2)?></td>            
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:206px;" ><b>Total con Honorarios <?php echo $elemento3["porcentajeGanancia"] ?> %</b></td>
             <td style="width:150px;" >$<?php echo round($totconHono,2);?></td>            
             
@@ -217,6 +241,7 @@ else {
 
                         $manoObra = 0;                                                                                               
                         $semanaDato = "";
+                        //---Empleados
                         foreach ($elemento as $key) {
                             if($key["semana"] == $i)
                             {
@@ -234,6 +259,21 @@ else {
                             }
                         }
 
+                        //---Contratistas
+                        foreach ($elemento4 as $key) {
+                            if($key["semana"] == $i)
+                            {
+                                $count = $key["lunes"] + $key["martes"] + $key["miercoles"] + $key["jueves"] + $key["viernes"] + $key["sabado"];
+                                if($count > 0 && $key[pago] > 0)
+                                {
+                                   $abono = $abono + $key['abono'];  
+                                }
+
+                                
+                            }
+                        }
+                        
+                        //---Materiales
                         $material = 0;
                         foreach ($elemento2 as $key) {
                             if($key["semana"] == $i)
@@ -247,11 +287,28 @@ else {
                             }
                         }
 
+                        //---Pagos
+                        $pagoVal = "";
+                        $comeVal = "";
+                        foreach ($elemento5 as $key) {
+                            if($key["semana"] == $i)
+                            {                                                        
+                                $pagoVal = $key["pago"];
+                                $comeVal = $key["comentario"];
+                            }
+                        }
+
+                        $manoObra = $manoObra + $abono;
+
                         $honorariosMo = $manoObra * ($elemento3["porcentajeGanancia"] / 100);
                         $totalMano = $honorariosMo + $manoObra;
                         $honorariosMa = $material * ($elemento3["porcentajeGanancia"] / 100);
                         $totalMate = $honorariosMa + $material;
                         $totManoObra = $totManoObra + $totalMano;
+
+                        
+                        
+
                         echo '
                         <tr'; if($bandera == false){ echo ' style="background-color: #CFE1F5;"'; } echo '>
                                 <td>'.($i).'</td>                                                                     
@@ -265,8 +322,8 @@ else {
                                 <td>$'.round(($material + $manoObra),2).'</td>                                                                     
                                 <td>$'.round(($honorariosMo + $honorariosMa),2).'</td>
                                 <td>$'.round(($totalMano + $totalMate),2).'</td> 
-                                <td>$'.$_POST["pago".($i-1)].'</td>
-                                <td>'.$_POST["come".($i-1)].'</td>                                
+                                <td>$'.$pagoVal.'</td>
+                                <td>'.$comeVal.'</td>                                
                             </tr>
                         ';                                                 
                         $semanas++;

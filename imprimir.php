@@ -32,6 +32,7 @@ try {
     else if($archivo == "pageNomina"){
         $cateem = $_GET["cateem"];    
         $cateco = $_GET["cateco"];    
+        $idObra = $_GET["idObra"];
         $width_in_mm = 10 * 25.4; 
         $height_in_mm = 15  * 25.4;
         include dirname(__FILE__).'/production/core/nominas/templates/pdfNominas.php';

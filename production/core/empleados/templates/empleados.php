@@ -47,11 +47,11 @@
                                     <input type="text" id="Empl_EmpresaEmpleado" name="Empl_EmpresaEmpleado" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el nombre de la empresa">
                                 </div>
                                 <div class="col-md-2">
-                                  <label >Giro:</label>
-                                      <input type="text" id="Empl_GiroEmpleado" name="Empl_GiroEmpleado" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el giro de la empresa">
+                                  <label >Categoria:</label>
+                                      <input type="text" id="Empl_GiroEmpleado" name="Empl_GiroEmpleado" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la categoría">
                                   </div>     
                                   <div class="col-md-2">
-                                  <label >Categoría:</label>
+                                  <label >Puesto:</label>
                                       <!-- <input type="text" id="Empl_Categoria" name="Empl_Categoria" class="form-control col-md-7 col-xs-12" placeholder="Categoría del empleado"> -->
                                     <select class="form-control" id="Empl_Categoria" name="Empl_Categoria" >
                                       <option value="Default">Selecciona</option>

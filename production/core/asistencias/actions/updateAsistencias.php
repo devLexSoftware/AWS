@@ -148,34 +148,6 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
                           abono = '$pago'
                           WHERE id = '$idAsisCont'");
 
-
-
-
-        // //---Actualizar en  cascada porque hay cambio en abono
-        // if($pago != $pagoOriginal){
-        //   $resultC1 = mysqli_query($con, "SELECT ac.monto, ac.abono, ac.totalpagar, ac.id as fk, a.id from asistencias a 
-        //                 inner join asistencias_contratistas ac on a.id = ac.fk_asistencia
-        //                 where ac.fk_contratista = $idEmpleado and a.fk_obra = $elemento2[fk_obra] order by cast(totalpagar as unsigned) desc");;
-
-        //   while($row = $resultC1->fetch_array(MYSQLI_ASSOC)) 
-        //     $el[] = $row;  
-
-        //   foreach ($el as $valor) {            
-        //     if($valor[fk] == $idAsisCont)
-        //       $flagCambios = true;
-            
-        //     if($flagCambios == true){
-        //       $difPago = $pagoOriginal - $pago;
-        //       $totNuevo = $valor[totpagar] +  $difPago;
-        //       $resultU1 = mysqli_query($con, "UPDATE asistencias_contratistas SET
-        //                     abono = '$pago', totalpagar = '$totNuevo';
-        //                     where id = $valor[fk]");
-
-        //     }                                            
-        //   }
-        // }
-
-
         //---Actualizar en cascada porque hay cambio en monto
         if($monto != $montoOriginal || $pago != $pagoOriginal){
           $resultC1 = mysqli_query($con, "SELECT ac.monto, ac.abono, ac.totalpagar, ac.id as fk, a.id from asistencias a 
@@ -186,7 +158,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
             $el[] = $row;  
 
           foreach ($el as $valor) {            
-            if($valor[monto] == NULL || $valor[monto] == "")              
+            if($valor[monto] == NULL || $valor[monto] == "" || $valor[monto] == 0)              
               break;
 
             $sumAbono = $sumAbono + $valor[abono];  

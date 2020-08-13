@@ -58,11 +58,11 @@ else {
                                     <input type="text" id="Empl_EmpresaEmpleado" name="Empl_EmpresaEmpleado" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el nombre de la empresa" value="<?php echo($elemento['empresa']); ?>">
                                 </div>
                                 <div class="col-md-2">
-                                  <label >Giro:</label>
-                                      <input type="text" id="Empl_GiroEmpleado" name="Empl_GiroEmpleado" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el giro del Empleado" value="<?php echo($elemento['giro']); ?>">
+                                  <label >Categoria:</label>
+                                      <input type="text" id="Empl_GiroEmpleado" name="Empl_GiroEmpleado" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la categoría" value="<?php echo($elemento['giro']); ?>">
                                   </div>     
                                   <div class="col-md-2">
-                                  <label >Cagtegoría:</label>                                      
+                                  <label >Puesto:</label>                                      
                                       <select class="form-control" id="Empl_Categoria" name="Empl_Categoria" >
                                         <option value="<?php echo($elemento['categoria']); ?>"><?php echo($elemento['categoria']); ?></option>                                        
                                         <option value="Oficial">Oficial</option>

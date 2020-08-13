@@ -44,6 +44,9 @@
             $result3 = mysqli_query($con,"SELECT porcentajeGanancia, costoTotal from obras
                                         where id = $id;"); 
 
+            $result4 = mysqli_query($con,"SELECT semana, pago, comentario from pagos_obras
+                                        where fk_obra = $id;"); 
+
 
             while($row = $result->fetch_array(MYSQLI_ASSOC)) 
                 $elemento[] = $row;                            
@@ -51,6 +54,9 @@
                 $elemento2[] = $row;                       
                 
             $elemento3 = mysqli_fetch_array($result3);
+
+            while($row = $result4->fetch_array(MYSQLI_ASSOC)) 
+                $elemento4[] = $row; 
                 
             
             $maxE1 = max(array_column($elemento, "semana"));
@@ -58,7 +64,7 @@
 
             $max = $maxE1 > $maxE2 ? $maxE1 : $maxE2;
 
-            $semanas = 0;
+            $semanas = 1;
 
 
             echo '
@@ -103,10 +109,14 @@
                                                     if($key["semana"] == $i)
                                                     {
                                                         $count = $key["lunes"] + $key["martes"] + $key["miercoles"] + $key["jueves"] + $key["viernes"] + $key["sabado"];
-                                                        $importeLibre = ($key["salario"]/6) * $count;
-                                                        $seguro = $key["salario"] * 0.31;                        
-                                                        $importeSeguro = $importeLibre + $seguro;                                                                                                                
-                                                        $manoObra = $manoObra + $importeSeguro;
+                                                        if($count > 0)
+                                                        {
+                                                            $importeLibre = ($key["salario"]/6) * $count;
+                                                            $seguro = $key["salario"] * 0.31;                        
+                                                            $importeSeguro = $importeLibre + $seguro;                                                                                                                
+                                                            $manoObra = $manoObra + $importeSeguro;
+                                                        }
+                                                        
                     
                                                         $semanaDato = $key["periodoInicial"]." al ".$key["periodoFinal"];                                                        
                                                     }
@@ -129,6 +139,16 @@
                                                 $totalMano = $honorariosMo + $manoObra;
                                                 $honorariosMa = $material * ($elemento3["porcentajeGanancia"] / 100);
                                                 $totalMate = $honorariosMa + $material;
+
+
+                                                $comenVal = "";
+                                                $pagoVal = "";
+                                                foreach ($elemento4 as $key) {
+                                                    if($key['semana'] == $i){
+                                                        $comenVal = $key['comentario'];
+                                                        $pagoVal = $key['pago'];
+                                                    }
+                                                }
                                                 
                                                 echo '
                                                     <tr>
@@ -143,8 +163,8 @@
                                                         <td>$'.round(($material + $manoObra),2).'</td>                                                                     
                                                         <td>$'.round(($honorariosMo + $honorariosMa),2).'</td>
                                                         <td>$'.round(($totalMano + $totalMate),2).'</td> 
-                                                        <td><input id="pago'.$semanas.'" name="pago'.$semanas.'" type="number"></td>
-                                                        <td><input id="come'.$semanas.'" name="come'.$semanas.'" type="text"></td>                                                                                                                      
+                                                        <td><input id="pago'.$semanas.'" value="'.$pagoVal.'" name="pago'.$semanas.'" type="number"></td>
+                                                        <td><input id="come'.$semanas.'" value="'.$comenVal.'" name="come'.$semanas.'" type="text"></td>                                                                                                                      
                                                     </tr>
                                                 ';                                                 
                                                 $semanas++;
@@ -152,7 +172,7 @@
                                             echo '
                                         </tbody>
                                     </table>
-                                    <input type="hidden" value="'.$semanas.'" name="semregi" id="semregi">
+                                    <input type="hidden" value="'.($semanas-1).'" name="semregi" id="semregi">
                                 </div>
                             </div>
                         </div>                                        

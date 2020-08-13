@@ -122,11 +122,39 @@ function imprimirReporte()
     window.open("../imprimir.php?id="+id+"&archivo=pageObraAvance&semana="+semana, '_blank');
 }
 
-// function imprimirReporteFinal()
-// {
-//     var id = $('#asis_obra2').val();
-//     window.open("../imprimir.php?id="+id+"&archivo=pageObraFinal", '_blank');
-// }
+
+function guardarPagos(){
+
+    var idObra = $("#asis_obra").val();
+    var count = $("#semregi").val();
+    var semanas = [];
+
+    for(var i = 1; i <= count; i++){
+        var pago = $("#pago"+i).val();
+        var come = $("#come"+i).val();
+        var semana = {};
+        semana['semana'] = i;
+        semana['pago'] = pago;
+        semana['comen'] = come;
+        semanas.push(semana);
+    }
+
+    debugger;
+
+    $.ajax({
+        type: 'POST', //aqui puede ser igual get
+        url: '../../../production/core/obras/actions/addPagos.php', //aqui va tu direccion donde esta tu funcion php
+        data: { id: idObra, valor: semanas }, //aqui tus datos
+        success: function(data) {              
+           imprimirReporteTotal();
+        },
+        error: function(data) {
+            alert("error");
+        }
+    });
+
+
+}
 
 function imprimirReporteTotal()
 {

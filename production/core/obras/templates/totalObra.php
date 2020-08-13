@@ -55,7 +55,7 @@ else {
                                             <div class="col-md-2">
                                                 <label for="Semana_Reporte">Opciones</label>
                                                 
-                                                <input onclick="imprimirReporteTotal()" class="form-control btn btn-info" value="Imprimir">
+                                                <input onclick="guardarPagos()" class="form-control btn btn-info" value="Imprimir">
                                                 
                                             </div>                                            
                                         </div>                                                                                

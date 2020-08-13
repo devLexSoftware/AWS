@@ -71,10 +71,15 @@ function imprimirNomina()
     var id = $('#asis_id').val();    
     var cateem = $('#asis_cateem').val();
     var cateco = $('#asis_cateco').val();
-    if($('#fechInicial_Reporte').val() == "Todas"){
-        var idObra = $('#asis_id').val();
+    if($('#asis_semana').val() == "Todas"){
+        var idObra = $('#asis_obra').val();
+        window.open("../imprimir.php?idObra="+idObra+"&archivo=pageNomina", '_blank');
+
     }
-    window.open("../imprimir.php?id="+id+"&archivo=pageNomina&cateem="+cateem+"&cateco="+cateco, '_blank');
+    else{
+        window.open("../imprimir.php?id="+id+"&archivo=pageNomina&cateem="+cateem+"&cateco="+cateco, '_blank');
+
+    }
 
 
     
