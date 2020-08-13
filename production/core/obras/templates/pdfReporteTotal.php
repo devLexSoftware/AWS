@@ -72,10 +72,13 @@ else {
                 if($key["semana"] == $i)
                 {
                     $count = $key["lunes"] + $key["martes"] + $key["miercoles"] + $key["jueves"] + $key["viernes"] + $key["sabado"];
-                    $importeLibre = ($key["salario"]/6) * $count;
-                    $seguro = $key["salario"] * 0.31;                        
-                    $importeSeguro = $importeLibre + $seguro;                                                                                                                
-                    $manoObra = $manoObra + $importeSeguro;                    
+                    if($count > 0){
+                        $importeLibre = ($key["salario"]/6) * $count;
+                        $seguro = $key["salario"] * 0.31;                        
+                        $importeSeguro = $importeLibre + $seguro;                                                                                                                
+                        $manoObra = $manoObra + $importeSeguro;                    
+                    }
+                    
                 }
             }
 
@@ -218,10 +221,14 @@ else {
                             if($key["semana"] == $i)
                             {
                                 $count = $key["lunes"] + $key["martes"] + $key["miercoles"] + $key["jueves"] + $key["viernes"] + $key["sabado"];
-                                $importeLibre = ($key["salario"]/6) * $count;
-                                $seguro = $key["salario"] * 0.31;                        
-                                $importeSeguro = $importeLibre + $seguro;                                                                                                                
-                                $manoObra = $manoObra + $importeSeguro;
+                                if($count > 0)
+                                {
+                                    $importeLibre = ($key["salario"]/6) * $count;
+                                    $seguro = $key["salario"] * 0.31;                        
+                                    $importeSeguro = $importeLibre + $seguro;                                                                                                                
+                                    $manoObra = $manoObra + $importeSeguro;    
+                                }
+                                
 
                                 $semanaDato = $key["periodoInicial"]." al ".$key["periodoFinal"];                                                        
                             }
