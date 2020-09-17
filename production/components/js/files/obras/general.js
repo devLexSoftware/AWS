@@ -126,32 +126,40 @@ function imprimirReporte()
 function guardarPagos(){
 
     var idObra = $("#asis_obra").val();
-    var count = $("#semregi").val();
-    var semanas = [];
-
-    for(var i = 1; i <= count; i++){
-        var pago = $("#pago"+i).val();
-        var come = $("#come"+i).val();
-        var semana = {};
-        semana['semana'] = i;
-        semana['pago'] = pago;
-        semana['comen'] = come;
-        semanas.push(semana);
-    }
-
-    debugger;
-
-    $.ajax({
-        type: 'POST', //aqui puede ser igual get
-        url: '../../../production/core/obras/actions/addPagos.php', //aqui va tu direccion donde esta tu funcion php
-        data: { id: idObra, valor: semanas }, //aqui tus datos
-        success: function(data) {              
-           imprimirReporteTotal();
-        },
-        error: function(data) {
-            alert("error");
+debugger;
+    if(idObra != 21){
+        var count = $("#semregi").val();
+        var semanas = [];
+    
+        for(var i = 1; i <= count; i++){
+            var pago = $("#pago"+i).val();
+            var come = $("#come"+i).val();
+            var semana = {};
+            semana['semana'] = i;
+            semana['pago'] = pago;
+            semana['comen'] = come;
+            semanas.push(semana);
         }
-    });
+    
+        debugger;
+    
+        $.ajax({
+            type: 'POST', //aqui puede ser igual get
+            url: '../../../production/core/obras/actions/addPagos.php', //aqui va tu direccion donde esta tu funcion php
+            data: { id: idObra, valor: semanas }, //aqui tus datos
+            success: function(data) {              
+               imprimirReporteTotal();
+            },
+            error: function(data) {
+                alert("error");
+            }
+        });
+    }
+    else{
+        window.open("../imprimir.php?id="+idObra+"&archivo=pageReporteAnual", '_blank');
+        
+    }
+    
 
 
 }

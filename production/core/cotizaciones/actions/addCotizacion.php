@@ -28,24 +28,23 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $id = mysqli_insert_id($con);
 
     for ($i=0 ; $i <  $cot_cantidad; $i++ ) {
-      $detalleProceso           = $_POST['detalleProceso'.$i];
-      $detalleDescripcion       = $_POST['detalleDescripcion'.$i];
-      $detalleDuracion          = $_POST['detalleDuracion'.$i];
-      $detalleX                 = $_POST['detalleX'.$i];
-      $detalleUnidad            = $_POST['detalleUnidad'.$i];
-      $detalleAncho             = $_POST['detalleAncho'.$i];
-      $detalleLargo             = $_POST['detalleLargo'.$i];
-      $detalleAlto              = $_POST['detalleAlto'.$i];
-      $detalleCantidad          = $_POST['detalleCantidad'.$i];
-      $detalleCosto             = $_POST['detalleCosto'.$i];
-      $detalleImporte           = $_POST['detalleImporte'.$i];
-      $detalleSubtotalxTarea    = $_POST['detalleSubtotalxTarea'.$i];
-      $detalleSubtotalxFecha    = $_POST['detalleSubtotalxFecha'.$i];
-      $detalleSubtotalxProceso  = $_POST['detalleSubtotalxProceso'.$i];      
+      $detalleConcepto            = $_POST['detalleConcepto'.$i];
+      $detalleUnidad              = $_POST['detalleUnidad'.$i];
+      $detalleCantidad            = $_POST['detalleCantidad'.$i];
+      $detalleCosto               = $_POST['detalleCosto'.$i];
+      $detalleUtil                = $_POST['detalleUtil'.$i];
+      $detalleAdmin               = $_POST['detalleAdmin'.$i];
+      $detalleDirecto             = $_POST['detalleDirecto'.$i];
+      $detalleCU                  = $_POST['detalleCostoUni'.$i];
+      $detalleDescuento           = $_POST['detalleDescuento'.$i];
+      $detalleCReal               = $_POST['detalleCReal'.$i];
+      $detalleGanancia            = $_POST['detalleGanancia'.$i];
+      $detalleReal                = $_POST['detalleReal'.$i];
+      $detalleImporte             = $_POST['detalleImporte'.$i];
+      
 
-      $result = mysqli_query($con,"INSERT INTO cotizaciones_detalles(usuCreacion, fk_cotizaciones, proceso, descripcion, duracion, x, unidad, anchoPieza, largo, alto, cantidad, costo, importe, subtotalxtarea, subtotalxfecha, subtotalxproceso)
-          VALUES('admin','$id', '$detalleProceso', '$detalleDescripcion', '$detalleDuracion', '$detalleX', '$detalleUnidad', '$detalleAncho', '$detalleLargo', '$detalleAlto', '$detalleCantidad', '$detalleCosto', '$detalleImporte', '$detalleSubtotalxTarea', '$detalleSubtotalxFecha', '$detalleSubtotalxProceso')");
-
+      $result = mysqli_query($con,"INSERT INTO cotizaciones_detalles(usuCreacion, fk_cotizaciones, concepto, unidad, cantidad, costo, util, admin, directo, cu, descuento, costo_real, ganancia_real, real_valor, importe)
+          VALUES('admin','$id', '$detalleConcepto', '$detalleUnidad', '$detalleCantidad', '$detalleCosto', '$detalleUtil', '$detalleAdmin', '$detalleDirecto', '$detalleCU', '$detalleDescuento', '$detalleCReal', '$detalleGanancia', '$detalleReal', '$detalleImporte')");
 
     }
    header("Location: ../../../../index.php?p=cotizacionesOk");

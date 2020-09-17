@@ -36,12 +36,19 @@ else {
 
                     <div class="x_content" id="target" >
                         <br/>
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="production/core/cotizaciones/actions/addCotizacion.php">
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="production/core/cotizaciones/actions/updateCotizacion.php">
                         <div class="form-group row">
                                 <div class="col-md-6">
                                   <label for="Nom-Client">Nombre de cliente:<span class="required">*</span></label>
                                     <input value="<?php echo $elemento[cliente]; ?>" type="text" name="Nomcliente" required="required" class="form-control " placeholder="Ingrese el nombre del cliente">
-                                </div>                                
+                                </div>        
+                                <div class="col-md-2"></div>        
+                                <div class="col-md-2 ">
+                                    <button type="button" onclick="imprimirReporte(1)" class="btn btn-info"> Imprimir cliente</button>
+                                </div>
+                                <div class="col-md-2 ">
+                                    <button type="button" onclick="imprimirReporte(2)" class="btn btn-danger"> Imprimir</button>
+                                </div>
                             </div>
 
                             <div class="form-group row">
@@ -102,66 +109,94 @@ else {
                                   <div class="col-md-3">
                                     <h2>Detalles de la cotización</h2>
                                   </div>
-                                  <div class="col-md-7"></div>                                                                    
+                                  <div class="col-md-7"></div>
+                                  <div class="col-md-1">
+                                    <button type="button" onclick="addDetalles()" class="btn btn-success"> Agregar</button>
+                                  </div>
+                                  
                                 </div>
 
                                 <div style="overflow-x:auto;">
                                 <table id="tableDetalles" class="table table-striped table-bordered" style="width:2200px;">
-                                <thead>
-                                    <tr>                                               
-                                        <th width="10%">Proceso general</th>            
-                                        <th width="10%">Nombre tarea</th>
-                                        <th width="10%">Duración días</th> 
-                                        <th width="2%">X</th> 
-                                        <th width="10%">Unidad</th>                
-                                        <th width="5%">Ancho/Pieza</th>
-                                        <th width="5%">Largo</th>   
-                                        <th width="5%">Alto</th>   
-                                        <th width="5%">Cant</th>
-                                        <th width="5%">Costo</th>
-                                        <th width="7%">Importe</th>
-                                        <th width="7%">Sub x Tarea</th>
-                                        <th width="7%">Sub a la fecha</th>
-                                        <th width="7%">Sub x Proceso</th>                                        
+                                  <thead>
+                                    <tr>
+                                        <th width="5%">Borrar</th>            
+                                        <th width="10%">Concepto</th>            
+                                        <th width="10%">Unidad</th>
+                                        <th width="10%">Cantidad</th>                                                                                            
+                                        <th width="10%">Costo</th>                                                                                            
+                                        <th width="5%">Util</th>
+                                        <th width="5%">Admin</th>   
+                                        <th width="5%">Directo</th>   
+                                        <th width="5%">C.U.</th>
+                                        <th width="5%">Descuento</th>
+                                        <th width="7%">Costo Real</th>
+                                        <th width="7%">Gancia Real</th>
+                                        <th width="7%">Real</th>
+                                        <th width="7%">Importe</th>                                        
                                     </tr>
-                                </thead>
-                                <tbody style="">    
-                                <?php
-
-                                    $detalle = 0;
-                                    while($elemento1 = mysqli_fetch_array($result1)){                                    
+                                  </thead>
+                                  <tbody>    
+                                  <?php
+                                      $detalle = 0;
+                                      while($elemento1 = mysqli_fetch_array($result1)){                                    
                                         echo '
-                                            <tr>
-                                                <td><input type="text" class="form-control" value="'.$elemento1[proceso].'" placeholder="Proceso"></td>
-                                                <td><textarea  class="form-control">'.$elemento1[descripcion].'</textarea></td>
-                                                <td><input type="text" class="form-control" value="'.$elemento1[duracion].'" placeholder="Proceso"></td>
-                                                <td><input type="text" class="form-control" value="'.$elemento1[x].'" placeholder="Proceso"></td>
-                                                <td><input type="text" class="form-control" value="'.$elemento1[unidad].'" placeholder="Proceso"></td>
-                                                <td><input type="text" class="form-control" value="'.$elemento1[anchoPieza].'" placeholder="Proceso"></td>
-                                                <td><input type="text" class="form-control" value="'.$elemento1[largo].'" placeholder="Proceso"></td>
-                                                <td><input type="text" class="form-control" value="'.$elemento1[alto].'" placeholder="Proceso"></td>
-                                                <td><input type="text" class="form-control" value="'.$elemento1[cantidad].'" placeholder="Proceso"></td>
-                                                <td><input type="text" class="form-control" value="'.$elemento1[costo].'" placeholder="Proceso"></td>
-                                                <td><input type="text" class="form-control" value="'.$elemento1[importe].'" placeholder="Proceso"></td>
-                                                <td><input type="text" class="form-control" value="'.$elemento1[subtotalxtarea].'" placeholder="Proceso"></td>
-                                                <td><input type="text" class="form-control" value="'.$elemento1[subtotalxfecha].'" placeholder="Proceso"></td>
-                                                <td><input type="text" class="form-control" value="'.$elemento1[subtotalxproceso].'" placeholder="Proceso"></td>
-                                            </tr>
-                                       ';                                        
-                                    }
-                                    ?>                                
-                                </tbody>
+                                        <tr>
+                                        <td><button type="button" id="btnBorrar' . $detalle .'" onclick="deleteDetalle(' . $detalle .')" class="btn btn-info"> <span class="glyphicon glyphicon-trash" ></span></button></td>
+                                        
+                                        <td><textarea value="'.$elemento1[concepto].'" name="detalleConcepto' . $detalle .'" id="detalleConcepto' . $detalle .'" placeholder="Concepto" class="form-control">'.$elemento1[concepto].'</textarea></td>
+
+                                        <td><select class="form-control" id="detalleUnidad' . $detalle .'" name="detalleUnidad' . $detalle .'" >
+                                          <option value="'.$elemento1[unidad].'">'.$elemento1[unidad].'</option>
+                                          <option value="Caja">Caja</option>
+                                          <option value="Camion">Camión</option>
+                                          <option value="Días">Días</option>
+                                          <option value="Hora">Hora</option>
+                                          <option value="Kilo">Kilo</option>
+                                          <option value="Litros">Litros</option>
+                                          <option value="Lote">Lote</option>
+                                          <option value="Metros">Metros</option>
+                                          <option value="Metros cuadrados">Metros cuadrados</option>
+                                          <option value="Metros cubicos">Metros cubicos</option>
+                                          <option value="Pieza">Pieza</option>
+                                          <option value="Pipa">Pipa</option>
+                                          <option value="Tonelada">Tonelada</option>
+                                          <option value="Viaje">Viaje</option>            
+                                        </select></td>
+                                        <td><input value="'.$elemento1[cantidad].'" type="text" class="form-control" onchange="calPres('. $detalle.')"  name="detalleCantidad' . $detalle .'" id="detalleCantidad' . $detalle .'" placeholder="Cantidad"></td>
+                                        <td><input value="'.$elemento1[costo].'" type="text" class="form-control" onchange="calPres('. $detalle .')" name="detalleCosto' . $detalle .'" id="detalleCosto' . $detalle .'" placeholder="Cantidad"></td>
+                                        <td><input value="'.$elemento1[util].'" type="text" class="form-control"  name="detalleUtil' . $detalle .'" id="detalleUtil' . $detalle .'" placeholder="Util"></td>
+                                        <td><input value="'.$elemento1[admin].'" type="text" class="form-control"  name="detalleAdmin' . $detalle .'" id="detalleAdmin' . $detalle .'" placeholder="Admin"></td>
+                                        <td><input value="'.$elemento1[directo].'" type="text" class="form-control"  name="detalleDirecto' . $detalle .'" id="detalleDirecto' . $detalle .'" placeholder="Directo"></td>
+                                        <td><input value="'.$elemento1[cu].'" type="text" class="form-control"  name="detalleCostoUni' . $detalle .'" id="detalleCostoUni' . $detalle .'" placeholder="Costo"></td>
+                                        <td><input value="'.$elemento1[descuento].'" type="text" class="form-control"  name="detalleDescuento' . $detalle .'" id="detalleDescuento' . $detalle .'" placeholder="Descuento"></td>
+                                        <td><input value="'.$elemento1[costo_real].'" type="text" class="form-control"  name="detalleCReal' . $detalle .'" id="detalleCReal' . $detalle .'" placeholder="Costo Real"></td>
+                                        <td><input value="'.$elemento1[ganancia_real].'" type="text" class="form-control"  name="detalleGanancia' . $detalle .'" id="detalleGanancia' . $detalle .'" placeholder="Ganancia"></td>
+                                        <td><input value="'.$elemento1[real_valor].'" type="text" class="form-control"  name="detalleReal' . $detalle .'" id="detalleReal' . $detalle .'" placeholder="Real"></td>
+                                        <td><input value="'.$elemento1[importe].'" type="text" class="form-control"  name="detalleImporte' . $detalle .'" id="detalleImporte' . $detalle .'" placeholder="Importe"></td>
+                                        </tr>
+                                        ';  
+                                        $detalle++;                                      
+                                      }
+                                      ?>                                
+                                  </tbody>
                                 </table>
+                                  <div class="col-md-1">
+                                    <input id="detalleCantidad" style="display:none" name="detalleCantidad" readonly class="form-control" value="<?php echo (double)$detalle; ?>">
+                                  </div>
+
+                                  <div class="col-md-1">
+                                    <input id="cotizacionId" style="display:none" name="cotizacionId" readonly class="form-control" value="<?php echo $id; ?>">
+                                  </div>
                                 </div>                               
 
                                 <div class="form-group row">
                                   <div class="col-md-10 col-sm-10 col-xs-10 "></div>
                                     <div class="col-md-2 col-sm-2 col-xs-2 ">
-                                        <!-- <button type="button" class="btn btn-success">Imprimir</button> -->
-                                        <!-- <button type="button" class="btn btn-success">Imprimir</button> -->
+                                        <button type="submit" class="btn btn-success"> Guardar</button>
                                     </div>
                                 </div>
-
+                                
                             </div>
                         </div>
                     </div>

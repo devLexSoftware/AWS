@@ -112,20 +112,19 @@ else {
                                 <thead>
                                     <tr>
                                         <th width="5%">Borrar</th>            
-                                        <th width="10%">Proceso general</th>            
-                                        <th width="10%">Nombre tarea</th>
-                                        <th width="10%">Duración días</th> 
-                                        <th width="2%">X</th> 
-                                        <th width="10%">Unidad</th>                
-                                        <th width="5%">Ancho/Pieza</th>
-                                        <th width="5%">Largo</th>   
-                                        <th width="5%">Alto</th>   
-                                        <th width="5%">Cant</th>
-                                        <th width="5%">Costo</th>
-                                        <th width="7%">Importe</th>
-                                        <th width="7%">Sub x Tarea</th>
-                                        <th width="7%">Sub a la fecha</th>
-                                        <th width="7%">Sub x Proceso</th>                                        
+                                        <th width="10%">Concepto</th>            
+                                        <th width="10%">Unidad</th>
+                                        <th width="10%">Cantidad</th>                                                                                            
+                                        <th width="10%">Costo</th>                                                                                            
+                                        <th width="5%">Util</th>
+                                        <th width="5%">Admin</th>   
+                                        <th width="5%">Directo</th>   
+                                        <th width="5%">C.U.</th>
+                                        <th width="5%">Descuento</th>
+                                        <th width="7%">Costo Real</th>
+                                        <th width="7%">Gancia Real</th>
+                                        <th width="7%">Real</th>
+                                        <th width="7%">Importe</th>                                        
                                     </tr>
                                 </thead>
                                 <tbody style="">                                    

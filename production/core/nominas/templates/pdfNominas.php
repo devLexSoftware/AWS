@@ -91,11 +91,6 @@ else {
         $el5 = $el2;    
     }
 
-    
-
-
-    
-    
 
     function fuNomina($el2, $el4) {
         foreach ($el2 as $elemento02) {
