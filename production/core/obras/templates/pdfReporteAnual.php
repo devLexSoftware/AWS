@@ -9,7 +9,8 @@ echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->c
 else {        
     $con -> set_charset("utf8");
 
-
+    setlocale(LC_MONETARY, 'es_MX');
+    
 
     // $id = $_GET["id"];
     // $count = $_GET["count"];    
@@ -254,14 +255,14 @@ else {
                                                                                          
                                 <td>'.$semanaDato.'</td>                                                                     
                                 <td>$'.round($manoObra,2).'</td>                                                                     
-                                    <td>$'.round($honorariosMo,2).'</td>                                                                     
-                                    <td>$'.round($totalMano,2).'</td>                                                                     
-                                    <td>$'.round($material,2).'</td>                                                                     
-                                    <td>$'.round($honorariosMa,2).'</td>                                                                     
-                                    <td>$'.round($totalMate,2).'</td>                                                                                                                                                                                                 
-                                    <td>$'.round(($material + $manoObra),2).'</td>                                                                     
-                                    <td>$'.round(($honorariosMo + $honorariosMa),2).'</td>
-                                    <td>$'.round(($totalMano + $totalMate),2).'</td> 
+                                    <td>$'. money_format("%.2n", $honorariosMo) .'</td>                                                                     
+                                    <td>$'. money_format("%.2n", $totalMano) .'</td>                                                                     
+                                    <td>$'. money_format("%.2n", $material).'</td>                                                                     
+                                    <td>$'. money_format("%.2n", $honorariosMa).'</td>                                                                     
+                                    <td>$'. money_format("%.2n", $totalMate).'</td>                                                                                                                                                                                                 
+                                    <td>$'. money_format("%.2n", ($material + $manoObra)) .'</td>                                                                     
+                                    <td>$'. money_format("%.2n", ($honorariosMo + $honorariosMa)) .'</td>
+                                    <td>$'. money_format("%.2n", ($totalMano + $totalMate)) .'</td> 
                                                             
                             </tr>
                         ';                                                 

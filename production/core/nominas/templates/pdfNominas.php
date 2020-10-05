@@ -155,7 +155,7 @@ else {
             <td colspan="2" style="text-align: center; padding: 5px 2px; background-color: #BFCCD7;">Lista Nominal</td>
             
             <td style="width: 100px; background-color: #BFCCD7;">Total Nomina Obra</td>
-            <td style="width: 100px;">$<?php echo round($totNomi,2); ?></td>
+            <td style="width: 100px;">$<?php echo money_format("%.2n", $totNomi) ; ?></td>
         </tr>        
         
     </table>
@@ -256,19 +256,19 @@ else {
                                 <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[viernes] == 1){ $count++; echo 'x'; } else if($elemento2[viernes] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
                                 <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[sabado] == 1){ $count++; echo 'x'; } else if($elemento2[sabado] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
                                 <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">'.$count.'</td>       
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.$seguro.'</td>       
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.$elemento2[salario].'</td>                                       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'. money_format("%.2n", $seguro) .'</td>       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'. money_format("%.2n", $elemento2[salario]) .'</td>                                       
                                 ';
                                 $importeLibre = ($elemento2[salario]/6) * $count;
                                 $importeSeguro = $importeLibre + $seguro;
 
 
                                 echo '
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.round($importeLibre,2).'</td>       
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.round($importeSeguro,2).'</td>                                       
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.round($totSemLi,2).'</td>                                       
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.round($totSemSe,2).'</td>                                       
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.round($totCate,2).'</td>                                       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'. money_format("%.2n", $importeLibre) .'</td>       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'. money_format("%.2n", $importeSeguro).'</td>                                       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'. money_format("%.2n", $totSemLi).'</td>                                       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'. money_format("%.2n", $totSemSe).'</td>                                       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'. money_format("%.2n", $totCate ).'</td>                                       
                                 <td style="border-bottom: 1px solid #B4B5B0;">'.$elemento2[comentario].'</td>       
                             </tr>
                         ';                        
@@ -346,9 +346,9 @@ else {
                                 <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[viernes] == 1){ $count++; echo 'x'; } else if($elemento2[viernes] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
                                 <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">';if($elemento2[sabado] == 1){ $count++; echo 'x'; } else if($elemento2[sabado] == 0.5){$count = $count + 0.5; echo '1/2'; } echo'</td>
                                 <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">'.$count.'</td>                                       
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.$elemento2[monto].'</td>                                                                       
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.$elemento2[abono].'</td>
-                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'.$elemento2[totalpagar].'</td>                                                                 
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'. money_format("%.2n", $elemento2[monto] ).'</td>                                                                       
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'. money_format("%.2n", $elemento2[abono] ) .'</td>
+                                <td style="border-bottom: 1px solid #B4B5B0; text-align: center; ">$'. money_format("%.2n", $elemento2[totalpagar] ) .'</td>                                                                 
                             </tr>
                         ';       
                         }

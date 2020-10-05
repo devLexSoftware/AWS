@@ -86,7 +86,7 @@ else {
                                             </div>
                                             <div class="col-md-2">
                                                 <label for="Semana_Reporte">Opciones</label>
-                                                <input onclick="imprimirReporte()" id="mostrar" name="boton1" value="Imprimir"  class="btn btn-info">                                                                                                    
+                                                <input onclick="imprimirReporte()" name="boton1" value="Imprimir"  class="btn btn-info">                                                                                                    
                                             </div>
                                         </div>                                                                                
                                         <br>                                     

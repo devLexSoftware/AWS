@@ -54,7 +54,7 @@ else {
 
                 <div class="x_content">
                     <br/>
-                    <form id="form" data-parsley-validate class="form-horizontal form-label-left">
+                    <form id="form" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
                         <div class="form-group row">
                             <div class="col-md-6">
                             <label  for="Cliente_Reporte">Cliente:<span class="required">*</span></label>
@@ -75,7 +75,8 @@ else {
                                 </select>
                             </div>
                             <div class="col-md-3">
-
+                            <label for="totalFact_Reporte">Ticket:</label>
+                              <input type="file" accept="image/*" name="comprobante_Reporte" id="comprobante_Reporte" />
                             </div>
                             <div class="col-md-3" style="background-color:#c3daef9c; padding: 10px 10px 10px 10px;" >
                                 <label for="totalFact_Reporte">Total Factura:</label>
@@ -353,10 +354,17 @@ else {
 <script>
 $(document).ready(function() {
     $("form").submit( function() {
+      var form = $('#form')[0];
+      var data = new FormData(form);
+
         $.ajax({
             type: "POST",
+            enctype: 'multipart/form-data',
             url: "../../../production/core/compras/actions/addCompras.php",
-            data: $("#form").serialize(),
+            data: data,
+            processData: false,
+            contentType: false,
+            // data: $("#form").serialize(),
             success: function(data)
             {
               debugger;

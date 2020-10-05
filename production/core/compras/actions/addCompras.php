@@ -29,18 +29,29 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $com_fechFinal = $_POST['fechFinal_Reporte'];
     $com_proceso = $_POST['Proceso_Reporte'];
 
+    // $com_ticket = $_POST['comprobante_Reporte'];
+    $data = NULL;
+    
+    
 
+    if( $_FILES["comprobante_Reporte"]["tmp_name"] != null || $_FILES["comprobante_Reporte"]["tmp_name"] != ""){
+      $dataEncoded = base64_encode(file_get_contents( $_FILES["comprobante_Reporte"]["tmp_name"] ));
+      $data = 'data:image/' . $_FILES["comprobante_Reporte"]["type"] . ';base64,' . $dataEncoded;
+
+    }
+
+// echo $data;
     $cadena = explode("_",$com_proveedor);
     if($cadena[0] == "prv"){
       $result = mysqli_query($con,"INSERT INTO compras(usuCreacion,identificador, descripcion, fecha, semana, frente, factura, unidad, costo, cantidad, importe, iva, subtotal, comentario, fk_proveedor, fk_obra, fk_clientes, foto, fechInicial, fechFinal, estado, fk_contratista, proceso)
-      VALUES('admin', 'ref', '$com_descripcion', '$com_fecha', '$com_semana','$com_frente', '$com_numero', '$com_unidad', '$com_costo', '$com_cantidad', '$com_importe', '$com_iva', '$com_subtotal', '$com_nota', '$cadena[1]', '$com_obra', '$com_cliente', '', '$com_fechInicial', '$com_fechFinal', '0', null, '$com_proceso')");
+      VALUES('admin', 'ref', '$com_descripcion', '$com_fecha', '$com_semana','$com_frente', '$com_numero', '$com_unidad', '$com_costo', '$com_cantidad', '$com_importe', '$com_iva', '$com_subtotal', '$com_nota', '$cadena[1]', '$com_obra', '$com_cliente', '$data', '$com_fechInicial', '$com_fechFinal', '0', null, '$com_proceso')");
 
       //$dat= "INSERT INTO compras(usuCreacion,identificador, descripcion, fecha, semana, frente, factura, unidad, costo, cantidad, importe, iva, subtotal, comentario, fk_proveedor, fk_obra, fk_clientes, foto, fechInicial, fechFinal, estado, fk_contratista)
       // VALUES('admin', 'ref', '$com_descripcion', '$com_fecha', '$com_semana','$com_frente', '$com_numero', '$com_unidad', '$com_costo', '$com_cantidad', '$com_importe', '$com_iva', '$com_subtotal', '$com_nota', '$cadena[1]', '$com_obra', '$com_cliente', '', '$com_fechInicial', '$com_fechFinal', '0', null)";
     }
     else if($cadena[0] == "ctr"){
       $result = mysqli_query($con,"INSERT INTO compras(usuCreacion,identificador, descripcion, fecha, semana, frente, factura, unidad, costo, cantidad, importe, iva, subtotal, comentario, fk_proveedor, fk_obra, fk_clientes, foto, fechInicial, fechFinal, estado, fk_contratista, proceso)
-      VALUES('admin', 'ref', '$com_descripcion', '$com_fecha', '$com_semana','$com_frente', '$com_numero', '$com_unidad', '$com_costo', '$com_cantidad', '$com_importe', '$com_iva', '$com_subtotal', '$com_nota', null, '$com_obra', '$com_cliente', '', '$com_fechInicial', '$com_fechFinal', '0', '$cadena[1]', '$com_proceso')");
+      VALUES('admin', 'ref', '$com_descripcion', '$com_fecha', '$com_semana','$com_frente', '$com_numero', '$com_unidad', '$com_costo', '$com_cantidad', '$com_importe', '$com_iva', '$com_subtotal', '$com_nota', null, '$com_obra', '$com_cliente', '$data', '$com_fechInicial', '$com_fechFinal', '0', '$cadena[1]', '$com_proceso')");
       
      // $dat = "INSERT INTO compras(usuCreacion,identificador, descripcion, fecha, semana, frente, factura, unidad, costo, cantidad, importe, iva, subtotal, comentario, fk_proveedor, fk_obra, fk_clientes, foto, fechInicial, fechFinal, estado, fk_contratista)
       // VALUES('admin', 'ref', '$com_descripcion', '$com_fecha', '$com_semana','$com_frente', '$com_numero', '$com_unidad', '$com_costo', '$com_cantidad', '$com_importe', '$com_iva', '$com_subtotal', '$com_nota', null, '$com_obra', '$com_cliente', '', '$com_fechInicial', '$com_fechFinal', '0', '$cadena[1]')";

@@ -11,7 +11,7 @@ else {
     $con -> set_charset("utf8");
 
 
-    
+    set_time_limit(500);
     //--- Filtrado 1 para sumatorio total
     $query1 = "SELECT factura, sum(importe) as suma from compras
                 where fk_obra = $id";
@@ -135,7 +135,7 @@ else {
         
         <tr>            
             <td style="text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:100px;" >Frente</td>
-            <td style="width:100px;"></td>
+            <td style="width:100px;"><?php echo count($el2);?></td>
             <td style="text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:100px;">Fecha impresión</td>
             <td style="width:100px;"><?php echo date("d/m/Y");?></td>
         </tr>
@@ -146,7 +146,7 @@ else {
             <td colspan="2" style="text-align: center; padding: 5px 2px; background-color: #BFCCD7;">Relación de Materiales, Equipo y Maquinaria</td>
             
             <td style="width: 100px; background-color: #BFCCD7;">Total Material Obra</td>
-            <td style="width: 100px;">$<?php echo round($totalFrente, 2); ?></td>
+            <td style="width: 100px;">$<?php echo money_format("%.2n", $totalFrente); ?></td>
         </tr>        
         
     </table>
@@ -154,9 +154,9 @@ else {
     <table bordercolor="#007"  style="font-size: 11px; width:100%; " >           
             <tr style="background-color: #1E8EC6; color:#333333; text-align: center;">
                 <th style=" padding: 3px 2px; width: 25px; ">Sem </th>
-                <th style="width: 140px;">Periodo </th>
+                <th style="width: 120px;">Periodo </th>
                 <th style="width: 40px;">Cant</th>
-                <th style="width: 240px;">Descripcion</th>
+                <th style="width: 200px;">Descripcion</th>
                 <th style="width: 80px;">Unidad</th>
                 <th style="width: 110px;">Frente</th>
                 <th style="width: 65px;">Fecha</th>            
@@ -176,7 +176,7 @@ else {
             <tr style="color:black;">
                 <?php
                 $bandera = true;
-                
+                $count = 0;
 
                 foreach ($el2 as $elemento2) {                
                                                 
@@ -196,20 +196,26 @@ else {
                                 <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento2[fecha].'</td>            
                                 <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento2[factura].'</td>            
                                 <td style="border-bottom: 1px solid #B4B5B0; ">'.$elemento2[empresa].'</td>            
-                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($elemento2[subtotal],2).'</td>            
-                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($elemento2[iva],2).'</td>            
-                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($elemento2[importe],2).'</td>            
-                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($elemento2[costo],2).'</td>   
-                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($el[$totFac][suma],2).'</td>                                                                                                                
-                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($el5[$totFre][sumaFrente],2).'</td>                                                                            
-                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.round($el4[$totSem][suma],2).'</td>                                                                                                            
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.money_format("%.2n", $elemento2[subtotal]) .'</td>            
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.money_format("%.2n", $elemento2[iva]) .'</td>            
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.money_format("%.2n", $elemento2[importe]) .'</td>            
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.money_format("%.2n", $elemento2[costo]) .'</td>   
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.money_format("%.2n", $el[$totFac][suma]) .'</td>                                                                                                                
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.money_format("%.2n", $el5[$totFre][sumaFrente]) .'</td>                                                                            
+                                <td style="border-bottom: 1px solid #B4B5B0; ">$'.money_format("%.2n", $el4[$totSem][suma]) .'</td>                                                                                                            
                                 
                             </tr>
                         ';                        
+                          
+                    $count ++;               
                         if($bandera == false)
                             $bandera = true;
                         else
                             $bandera = false;
+
+                        // if($count == 100 )
+                        if($count == count($el2) )
+                            break;
 
                     }      
                     ?>

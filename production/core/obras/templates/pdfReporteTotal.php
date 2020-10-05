@@ -195,11 +195,11 @@ else {
     <table border=0.5   bordercolor="#73879ca3" width=1440 >
         <tr>
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:520px;">Relación Materiales, Equipo, Maquinaria y Personal -> <b>Costo M2</b></td>
-            <td style="width:150px;">$<?php echo round($totDir,2)?></td>            
+            <td style="width:150px;">$<?php echo money_format("%.2n", $totDir)?></td>            
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:200px;" ><b>Total Directo</b></td>
-            <td style="width:150px;" >$<?php echo round($totDir,2)?></td>            
+            <td style="width:150px;" >$<?php echo money_format("%.2n", $totDir) ?></td>            
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:206px;" ><b>Total con Honorarios <?php echo $elemento3["porcentajeGanancia"] ?> %</b></td>
-            <td style="width:150px;" >$<?php echo round($totconHono,2);?></td>            
+            <td style="width:150px;" >$<?php echo money_format("%.2n", $totconHono)?></td>            
             
         </tr>
     </table>
@@ -207,13 +207,13 @@ else {
     <table border=0.5   bordercolor="#73879ca3" width=1440 >
         <tr>
             <td style="width:335px; text-align:right;" >Tot. Mano de Obra</td>
-            <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:150px;" >$<?php echo round($totMaOb,2);?></td>            
+            <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:150px;" >$<?php echo money_format("%.2n", $totMaOb);?></td>            
             <td style=" text-align: center; width:175px;" ><b>Tot. Materiales </b></td>
-            <td style=" text-align: center; width:150px; padding: 5px 2px; background-color: #BFCCD7;" >$<?php echo round($totMate,2);?></td>            
+            <td style=" text-align: center; width:150px; padding: 5px 2px; background-color: #BFCCD7;" >$<?php echo money_format("%.2n", $totMate);?></td>            
             <td style=" text-align: center; width:130px;" ><b>Total cobrado</b></td>
-            <td style=" text-align: center; width:143px; padding: 5px 2px; background-color: #BFCCD7;" >$<?php echo round($totCobr,2);?></td>                        
+            <td style=" text-align: center; width:143px; padding: 5px 2px; background-color: #BFCCD7;" >$<?php echo money_format("%.2n", $totCobr);?></td>                        
             <td style=" text-align: center; width:130px;" ><b>Deuda</b></td>
-            <td style=" text-align: center; width:143px; padding: 5px 2px; background-color: #BFCCD7;" >$<?php echo round($deudaActual,2);?></td>                        
+            <td style=" text-align: center; width:143px; padding: 5px 2px; background-color: #BFCCD7;" >$<?php echo money_format("%.2n", $deudaActual);?></td>                        
         </tr>
     </table>
 
@@ -313,15 +313,15 @@ else {
                         <tr'; if($bandera == false){ echo ' style="background-color: #CFE1F5;"'; } echo '>
                                 <td>'.($i).'</td>                                                                     
                                 <td>'.$semanaDato.'</td>                                                                     
-                                <td>$'.round($manoObra,2).'</td>                                                                     
-                                <td>$'.round($honorariosMo,2).'</td>                                                                     
-                                <td>$'.round($totalMano,2).'</td>                                                                     
-                                <td>$'.round($material,2).'</td>                                                                     
-                                <td>$'.round($honorariosMa,2).'</td>                                                                     
-                                <td>$'.round($totalMate,2).'</td>                                                                                                                                                               
-                                <td>$'.round(($material + $manoObra),2).'</td>                                                                     
-                                <td>$'.round(($honorariosMo + $honorariosMa),2).'</td>
-                                <td>$'.round(($totalMano + $totalMate),2).'</td> 
+                                <td>$'. money_format("%.2n", $manoObra) .'</td>                                                                     
+                                <td>$'. money_format("%.2n", $honorariosMo) .'</td>                                                                     
+                                <td>$'. money_format("%.2n", $totalMano) .'</td>                                                                     
+                                <td>$'. money_format("%.2n", $material) .'</td>                                                                     
+                                <td>$'. money_format("%.2n", $honorariosMa) .'</td>                                                                     
+                                <td>$'. money_format("%.2n", $totalMate) .'</td>                                                                                                                                                               
+                                <td>$'. money_format("%.2n", $material) .'</td>                                                                     
+                                <td>$'. money_format("%.2n", $honorariosMo) .'</td>
+                                <td>$'. money_format("%.2n", $totalMano) .'</td> 
                                 <td>$'.$pagoVal.'</td>
                                 <td>'.$comeVal.'</td>                                
                             </tr>

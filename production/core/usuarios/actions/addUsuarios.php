@@ -33,7 +33,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
       $result = mysqli_query($con,"SET FOREIGN_KEY_CHECKS=1;");
       $result = mysqli_query($con,"SET SQL_SAFE_UPDATES = 1;");
 
-        $result = mysqli_query($con, "UPDATE users SET usuario = '$usuario_nombre', pass = '$usuario_password'
+        $result = mysqli_query($con, "UPDATE users SET usuario = '$usuario_nombre', pass = '$usuario_password',
                                     perfil = '$usuario_perfil'
                                     WHERE id = '$usuario_id'");
     
