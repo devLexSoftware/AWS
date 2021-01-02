@@ -32,7 +32,7 @@
         else if($tabla == "totalSemanas") 
         {
             //--para imprimir el reporte total
-            if($id != 21)
+            if($id != 19)
             {
                 $result = mysqli_query($con,"SELECT ae.lunes, ae.martes, ae.miercoles, ae.jueves, ae.viernes, ae.sabado, e.salario, a.semana, a.periodoInicial, a.periodoFinal from asistencias_empleados ae
                                             inner join asistencias a on ae.fk_asistencia = a.id

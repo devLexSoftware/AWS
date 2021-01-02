@@ -127,7 +127,7 @@ function guardarPagos(){
 
     var idObra = $("#asis_obra").val();
 debugger;
-    if(idObra != 21){
+    if(idObra != 19){
         var count = $("#semregi").val();
         var semanas = [];
     
