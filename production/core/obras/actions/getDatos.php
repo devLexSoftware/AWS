@@ -22,7 +22,7 @@
         {
             $myArray  = null;
             $result = mysqli_query($con,"SELECT o.id, o.avance, o.semana, o.periodoInicial, o.periodoFinal, o.comentario from detalles_obras o 
-            where o.fk_obra = $id;");               
+            where o.fk_obra = $id group by o.semana;");               
 
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {
             $myArray[] = $row;
@@ -163,6 +163,7 @@
                                                             <td>$'.round($honorariosMa,2).'</td>                                                                     
                                                             <td>$'.round($totalMate,2).'</td>                                                                                                                                                                                                 
                                                             <td>$'.round(($material + $manoObra),2).'</td>                                                                     
+                                                           
                                                             <td>$'.round(($honorariosMo + $honorariosMa),2).'</td>
                                                             <td>$'.round(($totalMano + $totalMate),2).'</td> 
                                                             <td><input id="pago'.$semanas.'" value="'.$pagoVal.'" name="pago'.$semanas.'" type="number"></td>

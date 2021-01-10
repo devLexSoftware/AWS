@@ -21,8 +21,8 @@
             $myArray3  = null;
             $myArray4  = null;
 
-            $result = mysqli_query($con,"SELECT distinct semana, fechInicial, fechFinal from compras 
-            where fk_obra = $id and estado = 0 order by semana;");        
+            $result = mysqli_query($con,"SELECT cast(semana as int) as semana, fechInicial, fechFinal from compras 
+            where fk_obra = $id and estado = 0 group by semana order by semana;");        
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $myArray[] = $row;
             }

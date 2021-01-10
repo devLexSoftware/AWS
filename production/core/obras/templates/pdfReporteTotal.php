@@ -71,8 +71,10 @@ else {
 
             $honorariosMo = $manoObra * ($el3["porcentajeGanancia"] / 100);
             $totalMano = $honorariosMo + $manoObra;
+
             $honorariosMa = $material * ($el3["porcentajeGanancia"] / 100);
             $totalMate = $honorariosMa + $material;
+            
             $totManoObra = $totManoObra + $totalMano;
 
 
@@ -84,14 +86,16 @@ else {
 
             $GLOBALS['totconHono'] = $GLOBALS['totconHono'] + ($totalMano + $totalMate);
 
-            $GLOBALS['costom2'] = $GLOBALS['totconHono'] / $el3[superficieConstruir];
 
             $GLOBALS['deudaActual'] = $el3['costoTotal'] - $GLOBALS['totCobr'];
+
+            $GLOBALS['totHono'] = $GLOBALS['totHono'] + ($honorariosMo + $honorariosMa);
 
 
         }
 
-        
+        $GLOBALS['totHono'] = $GLOBALS['totHono'] / $el3[superficieConstruir];
+
         $GLOBALS['deudaActual'] = $GLOBALS['totconHono'] -  $GLOBALS['totCobr'];
 
 
@@ -168,7 +172,7 @@ else {
     <table border=0.5   bordercolor="#73879ca3" width=1440 >
         <tr>
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:200px;" >Cliente</td>
-            <td  style="width:1216px;"  ><?php echo $elemento3["cliente"] ?></td>
+            <td  style="width:1216px;"  ><b><?php echo $elemento3["cliente"] ?></b></td>
             
         </tr>
     </table>
@@ -176,7 +180,7 @@ else {
     <table border=0.5   bordercolor="#73879ca3" width=1440 >
         <tr>
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:200px;">Obra</td>
-            <td style="width:520px;"><?php echo $elemento3["obra"] ?></td>            
+            <td style="width:520px;"><b><?php echo $elemento3["obra"] ?></b></td>            
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:200px;" >No. Control</td>
             <td style="width:200px;" ></td>            
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:264px;" ></td>            
@@ -186,7 +190,7 @@ else {
             <td style="text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:100px;" >Frente</td>
             <td style="width:100px;"></td>
             <td style="text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:100px;">Fecha</td>
-            <td style="width:100px;"><?php echo date("d/m/Y") ?></td>
+            <td style="width:100px;"><b><?php echo date("d/m/Y") ?></b></td>
             <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:264px;" ></td>            
 
         </tr>        
@@ -194,12 +198,12 @@ else {
 <hr>
     <table border=0.5   bordercolor="#73879ca3" width=1440 >
         <tr>
-            <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:520px;">Relación Materiales, Equipo, Maquinaria y Personal -> <b>Costo M2</b></td>
-            <td style="width:150px;">$<?php echo money_format("%.2n", $totDir)?></td>            
-            <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:200px;" ><b>Total Directo</b></td>
-            <td style="width:150px;" >$<?php echo money_format("%.2n", $totDir) ?></td>            
-            <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:206px;" ><b>Total con Honorarios <?php echo $elemento3["porcentajeGanancia"] ?> %</b></td>
-            <td style="width:150px;" >$<?php echo money_format("%.2n", $totconHono)?></td>            
+            <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:520px;">Relación Materiales, Equipo, Maquinaria y Personal ->Costo M2</td>
+            <td style="width:150px;"><b>$<?php echo money_format("%.2n", $totHono)?></b></td>            
+            <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:200px;" >Total Directo</td>
+            <td style="width:150px;" ><b>$<?php echo money_format("%.2n", $totDir) ?></b></td>            
+            <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7;width:206px;" >Total con Honorarios <?php echo $elemento3["porcentajeGanancia"] ?> %</td>
+            <td style="width:150px;" ><b>$<?php echo money_format("%.2n", $totconHono)?></b></td>            
             
         </tr>
     </table>
@@ -207,13 +211,13 @@ else {
     <table border=0.5   bordercolor="#73879ca3" width=1440 >
         <tr>
             <td style="width:335px; text-align:right;" >Tot. Mano de Obra</td>
-            <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:150px;" >$<?php echo money_format("%.2n", $totMaOb);?></td>            
-            <td style=" text-align: center; width:175px;" ><b>Tot. Materiales </b></td>
-            <td style=" text-align: center; width:150px; padding: 5px 2px; background-color: #BFCCD7;" >$<?php echo money_format("%.2n", $totMate);?></td>            
-            <td style=" text-align: center; width:130px;" ><b>Total cobrado</b></td>
-            <td style=" text-align: center; width:143px; padding: 5px 2px; background-color: #BFCCD7;" >$<?php echo money_format("%.2n", $totCobr);?></td>                        
-            <td style=" text-align: center; width:130px;" ><b>Deuda</b></td>
-            <td style=" text-align: center; width:143px; padding: 5px 2px; background-color: #BFCCD7;" >$<?php echo money_format("%.2n", $deudaActual);?></td>                        
+            <td style=" text-align: center; padding: 5px 2px; background-color: #BFCCD7; width:150px;" ><b>$<?php echo money_format("%.2n", $totMaOb);?></b></td>            
+            <td style=" text-align: center; width:175px;" >Tot. Materiales</td>
+            <td style=" text-align: center; width:150px; padding: 5px 2px; background-color: #BFCCD7;" ><b>$<?php echo money_format("%.2n", $totMate);?></b></td>            
+            <td style=" text-align: center; width:130px;" >Total cobrado</td>
+            <td style=" text-align: center; width:143px; padding: 5px 2px; background-color: #BFCCD7;" ><b>$<?php echo money_format("%.2n", $totCobr);?></b></td>                        
+            <td style=" text-align: center; width:130px;" >Deuda</td>
+            <td style=" text-align: center; width:143px; padding: 5px 2px; background-color: #BFCCD7;" ><b>$<?php echo money_format("%.2n", $deudaActual);?></b></td>                        
         </tr>
     </table>
 
@@ -307,6 +311,10 @@ else {
                         $totManoObra = $totManoObra + $totalMano;
 
                         
+                        $tosum = $material + $honorariosMo;
+                        $tosumSem = $material + $manoObra;
+                        $tosumHon = $honorariosMo + $honorariosMa;
+                        $tosumcHo = $totalMano + $totalMate;
                         
 
                         echo '
@@ -319,9 +327,10 @@ else {
                                 <td>$'. money_format("%.2n", $material) .'</td>                                                                     
                                 <td>$'. money_format("%.2n", $honorariosMa) .'</td>                                                                     
                                 <td>$'. money_format("%.2n", $totalMate) .'</td>                                                                                                                                                               
-                                <td>$'. money_format("%.2n", $material) .'</td>                                                                     
-                                <td>$'. money_format("%.2n", $honorariosMo) .'</td>
-                                <td>$'. money_format("%.2n", $totalMano) .'</td> 
+                                <td>$'. money_format("%.2n", $tosumSem) .'</td>  
+                                                                                                   
+                                <td>$'. money_format("%.2n", $tosumHon) .'</td>
+                                <td>$'. money_format("%.2n", $tosumcHo) .'</td> 
                                 <td>$'.$pagoVal.'</td>
                                 <td>'.$comeVal.'</td>                                
                             </tr>

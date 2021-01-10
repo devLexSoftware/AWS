@@ -12,7 +12,7 @@ else {
 
     $result = mysqli_query($con,"SELECT a.id, o.nombre, a.fechCreacion, a.periodoInicial, a.periodoFinal, a.semana, a.comentario as detalles, a.avance from detalles_obras a
                                 inner join obras o on a.fk_obra = o.id
-                                where a.fk_obra = $id order by a.fechCreacion");
+                                where a.fk_obra = $id and a.semana = '$semana' order by a.fechCreacion");
     
     while($row = $result->fetch_array(MYSQLI_ASSOC)) {
         $myArray[] = $row;

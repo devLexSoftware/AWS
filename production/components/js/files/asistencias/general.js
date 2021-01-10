@@ -68,6 +68,7 @@ function obtenerListaEmpleados(valor1, valor2){
 
 function imprimirNomina()
 {
+    debugger;
     var id = $('#asis_id').val();    
     var cateem = $('#asis_cateem').val();
     var cateco = $('#asis_cateco').val();

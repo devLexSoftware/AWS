@@ -25,7 +25,9 @@ try {
     $archivo = $_GET["archivo"];
 
     
-    if( $archivo == "pageObraAvance"){    
+    if( $archivo == "pageObraAvance"){
+        $semana = $_GET["semana"];    
+
         include dirname(__FILE__).'/production/core/obras/templates/pdfAvances.php';
         $html2pdf = new HTML2PDF('P', 'A4', 'es', true, 'UTF-8');
     }

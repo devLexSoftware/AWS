@@ -10,8 +10,8 @@ else {
     $con -> set_charset("utf8");
 
     $result = mysqli_query($con,"SELECT * FROM obras where estado = 0");        
-    $result02 = mysqli_query($con,"SELECT distinct categoria FROM empleados ");        
-    $result03 = mysqli_query($con,"SELECT distinct categoria FROM contratistas");        
+    $result02 = mysqli_query($con,"SELECT distinct giro as categoria FROM empleados where categoria != '';");        
+    $result03 = mysqli_query($con,"SELECT distinct empresa as categoria FROM contratistas where empresa != '';");        
 }
 ?>
 

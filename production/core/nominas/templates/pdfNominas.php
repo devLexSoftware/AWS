@@ -22,7 +22,7 @@ else {
     inner join empleados e on ae.fk_empleado = e.id";
 
     if($cateem != "todos")
-        $q2 = $q2. " where ae.fk_asistencia = $id and e.categoria = '$cateem' ";
+        $q2 = $q2. " where ae.fk_asistencia = $id and e.giro = '$cateem' ";
     else    
         $q2 = $q2. " where ae.fk_asistencia = $id ";    
                 
@@ -47,7 +47,7 @@ else {
     inner join contratistas c on ac.fk_contratista = c.id";
 
     if($cateco != "todos")
-        $q4 = $q4. " where ac.fk_asistencia = $id and c.categoria = '$cateco' ";
+        $q4 = $q4. " where ac.fk_asistencia = $id and c.empresa = '$cateco' ";
     else    
         $q4 = $q4. " where ac.fk_asistencia = $id ";    
     $result4 = mysqli_query($con,$q4);                                  

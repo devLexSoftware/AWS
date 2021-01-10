@@ -14,9 +14,9 @@
         $count = 0;
         $count2 = 0;
         if($tabla == "asistenciasNominas"){
-            $result = mysqli_query($con,"SELECT a.id, a.fk_grupo, a.semana, a.periodoInicial, a.periodoFinal, a.estado from asistencias a 
+            $result = mysqli_query($con,"SELECT a.id, a.fk_grupo, cast(a.semana as int) as semana, a.periodoInicial, a.periodoFinal, a.estado from asistencias a 
                                         inner join obras o on a.fk_obra = o.id
-                                        where o.id = $id and a.estado = 0;");               
+                                        where o.id = $id and a.estado = 0 group by semana order by semana");               
 
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $myArray[] = $row;
